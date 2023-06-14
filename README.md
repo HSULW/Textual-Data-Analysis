@@ -5,3 +5,4 @@
 [IT邦幫忙](https://github.com/HSULW/Textual-Data-Analysis/blob/main/final/iti.py)
 
 ## 文字雲
+[Wordcloud](https://github.com/HSULW/Textual-Data-Analysis/blob/main/final/wordcloud.py)
