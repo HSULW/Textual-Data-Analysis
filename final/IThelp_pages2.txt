@@ -1,0 +1,6016 @@
+-------------------------------------第1頁-------------------------------------
+<<PHP 與 Elasticsearch 串接>>
+
+請教各位，使用語法是 PHP 安裝的套件是 elasticsearch 8.8 遇到以下問題
+curl -u u:p -X GET "http://" 取得 403 reason":"action [cluster:monitor/main] is unauthorized for user [...]
+curl -u u:p -X GET "http:///tipo_abs" 可以取得資料。
+在 php 中設定完成後取得回應 403 reason":"action [cluster:monitor/main] is unauthorized for user [...] ，這點可以理解(圖一)。
+但搜尋指定 index 後卻得到 The client noticed that the server is not Elasticsearch and we do not support this unknown product(圖二)。
+客戶 DBA 堅持不能開 cluster:monitor/main 權限。
+開發環境上確認串接與運行式無誤的。
+請問這個問題有解嗎？
+先感謝各位回答。
+
+
+
+
+<<DB LINK  ，可以做 區域性暫存表 嗎?>>
+
+您好：
+請問 是否可以 對DB LINK的　目標ＤＢ
+做　區域性暫存表
+一般是用
+IF object_id( 'tempdb.dbo.#t') is not null
+BEGIN
+drop TABLE #t
+END
+那　DB LINK 端，要如何用？
+謝謝
+
+<<請教如何ip定位gps位置>>
+
+請問各位前輩
+我們公司在使用HR System這套線上打卡系統
+但是都會出現
+固定ip位置gps錯誤
+會偏離公司兩公里的距離
+請問有沒有有這方面的經驗或是方法可以定位呢
+或是要跟那個機構申請ip定位
+我試過Google Chrome設定
+也有開啟電腦的定位功能
+但設定完後還是一樣呈現距離錯誤**
+
+<<趣味SQL又來了  訂便當之後做排名以及相對另一組時的排名>>
+
+訂便當一段時間之後,總是需要排名.假設雞腿跟便當各有前10的,做排名,
+還有到另一組時會排名第幾?
+為了方便大家研究,不用亂數,使用循序的產生.
+create table 雞腿組 (
+  id int not null primary key
+, val int
+);
+
+create table 排骨組 (
+  id int not null primary key
+, val int
+);
+
+insert into 雞腿組
+select n, 6 + 10 * n
+  from generate_series(1, 10) n;
+
+insert into 排骨組
+select n, 4 + 10 * n
+  from generate_series(1, 10) n;
+
+select id, val
+     , rank() over(order by val desc)
+  from 雞腿組;
+
+ id | val | rank 
+----+-----+------
+ 10 | 106 |    1
+  9 |  96 |    2
+  8 |  86 |    3
+  7 |  76 |    4
+  6 |  66 |    5
+  5 |  56 |    6
+  4 |  46 |    7
+  3 |  36 |    8
+  2 |  26 |    9
+  1 |  16 |   10
+(10 rows)
+
+方便測試用,已經做好線上的 按我前往
+想要做到如下圖:
+
+
+<<[已解決] Win 11  23H2 記憶體異常過高問題>>
+
+如題，近日公司有位User的筆電，更新完Win 11專業版23H2後，重新開機什麼程式都還沒執行，就直接吃掉83%記憶體如下圖：
+
+如果再開多一點網站分頁，就會可能記憶體不足而無法顯示網頁，目前此User的筆電規格如下：
+CPU-13th Gen Intel(R) Core(TM) i5-1340P   1.90 GHz
+RAM：DDR4 3200MHz 8G+8G
+SSD 1TB
+Intel 內顯
+防毒是用Sophos
+用RAMmap查看是Driver Locked佔很多使用量，如下圖：
+
+有確認過這台筆電沒有安裝其他設備的驅動，請問iT邦友們，這個問題有辦法解決嗎？謝謝。
+
+<<DB LINK 處理資料問題>>
+
+您好：
+目前有做DBLINK
+DB_A  join DBLINK 後做差異
+DBLINK 有差異 ， UPDATE 或DELETE DBLINK
+DBLINK 沒有資料，INSERT 到DBLINK
+但165 筆資料
+INSERT 只需要2秒
+UPDATE 或DELETE 卻需要 6秒
+這有調校的地方嗎?
+謝謝
+
+<<Solidwork 3DEXPERIENCE 雲端平台網速問題>>
+
+使用Solidwork 3DEXPERIENCE 雲端平台與美國客戶協同開發時，大陸分公司的連線非常慢，台灣連線還可以正常運作，solidwork回應因為主要的伺服器在美國，大陸端可能有國際網路限制的問題，導致網路太慢而無法使用，目前原廠還沒給出一個合理的解決方案。
+大陸端外網測速100m，但3dx測速只有2m，(官方回復至少8m才能使用)
+請問有人在大陸使用Solidwork 3DEXPERIENCE也遇到相同問題嗎，或是有其它解決方案嗎?
+
+<<我要試著刻出跟圖片中一樣的框架>>
+
+
+
+
+<<wamp無法安裝,C++已安裝,但是一直出現C++未安裝,OS:win10,WAMP VER:3.3.2 >>
+
+
+<<正則如何取得正確縣市？>>
+
+目前正則寫法如下:
+\[(\d+)\](.+市|.+縣)(.+?[市區鎮鄉])(.+)
+一班的縣市都可以正常取得，例如:
+
+[235]新北市中和區民安街66號
+[253]新北市石門區茂林里茂林社區74號
+[719]臺南市龍崎區崎頂里新市子41號
+
+但如果是特殊情況就會取得不完全，例如:
+
+[744]臺南市新市區大社里39號
+
+這樣因為會認定為新市，但應該顯示新市區
+請問有什麼方法可以取得正確縣市名稱？
+(不透過字數做篩選)
+
+<<Edge：Failed to load resource: net::ERR_TOO_MANY_REDIRECTS>>
+
+公司的首頁想要發布公告，圖片會需要上傳到伺服器內，
+開啟時發現edeg會跳出下列訊息
+Failed to load resource:伺服器網址 net::ERR_TOO_MANY_REDIRECTS
+但是換其他瀏覽器就不會有這問題。
+不曉得有沒有方法可以解決?
+
+<<Rocky 8.8 無法安裝套件>>
+
+在rocky linux 8.8 上安裝pacemaker pcs 等套件
+但yum 上都無法搜尋到相關的套件
+有試著更換過幾個repo來源
+請問是不支援嗎
+或是有前輩有使用其他套件能夠架設cluster能夠建議?
+
+<<求救!如何抓取公司其他台電腦的IP.安裝日期等等資訊>>
+
+各位大神好!小妹我剛剛被主管要求要抓取公司其他200多台電腦資訊
+完全一頭霧水啊想問谷歌大神也不知道該如何下關鍵字
+沒有想當伸手牌的意思就是希望有人可以提點一下關鍵字怎麼查...
+如果可以教學一下小妹我會很感激的
+
+<<laravel入門看youtobe推薦看哪個>>
+
+laravel入門看youtobe推薦看哪個！後面想跟著學寫project
+
+<<目前業界使用狀況ASP.NET  及 ASP.NET MVC>>
+
+想請問學習MVC後需要特別專研把ASP.NET控制項完成學習嗎?
+並想問問目前業界關於ASP.NET使用狀況有被取代嗎?
+
+<<Exchange 2016 信箱容量/搬移的問題?>>
+
+假設個人信箱容量設定為200M，搬移到別DB時，使用New-MoveRequest指令，裡面有個TotalMailboxSize的欄位，數值都很大，甚至都大於個人信箱容量設定為200M許多，這樣對嗎?是什麼樣的資訊會大於200M?謝謝
+
+<<Visual Studio 2012 都會 輸出訊息造成 開發LAG>>
+
+您好：
+Visual Studio 2012 開發時，都會出現
+類似下列訊息
+11:38:58.0454: 已取消智慧縮排要求，因為它未在 250 毫秒內完成。
+11:38:58.2947: 格式化要求已取消，因為它未在 250 毫秒內完成。
+造成 打程式碼時，會LAG
+請問這有解嗎?
+謝謝
+
+
+<<exceljs.js 讀取XLS檔 ERR>>
+
+您好：
+目前使用 exceljs.js
+讀取 XLSX 沒問題
+但讀 XLS  就會出現ERR
+Uncaught (in promise) Error: Can't find end of central directory : is this a zip file ? If it is, see https://stuk.github.io/jszip/documentation/howto/read_zip.html
+請問exceljs.js  可以讀取XLS檔嗎?
+
+<<【已解決】Fortigate 60E 的HA同步&偵測>>
+
+各位好
+小弟有個Fortigate 60E裝置的問題想請教
+狀況是這樣的
+公司有買4台Fortigate，並且2台一組作HA (master+slave)
+近期有一組的HA出問題，於是將其master拔除，slave上線work
+後來主管先買了一台新的Fortigate回來
+想要將這台與既有的slave作HA
+將新的Fortigate照原本的接線接上了，燈號也都有亮了
+但在管理介面中，無法查找到新的Fortigate裝置
+在想是不是要先針對他作什麼設定？
+正常的HA，有抓到2台設備
+
+目前有問題的，只有抓到舊有的slave，新的設備沒有抓到
+
+目前有2個想法：
+方案1：
+將新的Fortigate作為slave
+目前正在work的原slave變成master
+方案2：
+將新的Fortigate作為master
+目前正在work的原slave就繼續作為slave
+不知道這2個方案，哪一個較簡單操作或有可行性
+還請各位專家們給點意見指點一下，謝謝
+================= 2023/11/28 17:23 =================
+經各位專家們給的建議後
+後來有去查看一些文件
+在查看文件發現這邊有說「型號要相同」
+由於60e已經停產了，於是主管新買的是60f(後來才發現…)
+不知道這樣是否會有影響？或者還是可以讓60e與60f作ha呢？
+再煩請各位專家指點一下，謝謝
+
+
+<<如何JS在載入界面全屏顯示? 【100】>>
+
+詢問AI得到以下code，但是在頁面載入時調用會出現權限不足被block問題
+要實現在進入頁面時自動全屏顯示，您可以在 JavaScript 中使用 Fullscreen API。以下是一個簡單的示例：
+HTML:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Fullscreen</title>
+</head>
+<body>
+  <h1>自動全屏示例</h1>
+  <script src="script.js"></script>
+</body>
+</html>
+
+JavaScript (script.js):
+document.addEventListener("DOMContentLoaded", function() {
+  openFullscreen();
+});
+
+function openFullscreen() {
+  const elem = document.documentElement;
+
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { // Firefox
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { // Chrome, Safari and Opera
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { // IE/Edge
+    elem.msRequestFullscreen();
+  }
+}
+
+這段代碼會在文檔加載完成後觸發 openFullscreen 函數，使頁面全屏顯示。請注意，某些瀏覽器可能會阻止自動全屏操作，因此建議在用戶與頁面互動時（例如點擊按鈕）觸發全屏功能。
+
+<<JS 上傳EXCEL 讀取資料問題請教>>
+
+想請問：
+目前有使用 exceljs.js 來做上傳EXCEL 讀取資料寫道後端問題
+前端先讀，再組成json AJAX傳到後端C#執行
+想到一個問題，用js上傳讀取檔案，一般可以被CHROME F12來看到程式碼，
+這樣是否會被用假資料，傳回後端，造成 SQL INJECTION?
+謝謝
+
+<<我可以請問odoo的動作選單後點複製選項，為甚麼點放棄按鈕，不是取消複製呢?反而多一筆資料呢?>>
+
+各位大大好!我想請教odoo問題，如下:
+(1).我點動作選單，下拉出現複製選項，點一下複製選項，照片如下:
+
+(2).複製出一筆form畫面，我點放棄的按鈕，照片如下:
+
+(3).我點放棄按鈕後，結果主畫面多出一筆(紅筆框起來)，照片如下:
+
+程式碼，如下:
+class AppMain(models.Model):
+    _name = 'app.myoder'
+    _description = '訂單'
+    #_rec_name='id'
+    #_copy = False 
+
+我的疑問是為甚麼點動作選單，下拉出現複製選項，點一下複製選項後，我再點放棄的按鈕，就會取消複製，主畫面應該不會多一筆資料。
+我要怎麼解決，點動作選單後，下拉出現複製選項，點一下複製選項後，我點放棄的按鈕，取消複製和主畫面不會出現多一筆資料[(3)的照片]呢?我該怎麼寫呢?
+本來想說多加_copy = False ，就無法複製
+
+
+<<【自解】tinyMCE tpImportword 導入Word表格 置中效果秀逗>>
+
+專案用了tinyMCE編輯器，
+並且自定義了一套表格置左中右的button，
+以下拿表格置中來做範例展示：
+editor.ui.registry.addButton('tableCenterButton', {
+    onAction: function (_) {
+        // 獲取選中的元素
+        let selectedElement = editor.selection.getNode();
+        // 在父層中查找最近的表格元素
+        let tableElement = selectedElement.closest('table');
+        // 檢查找到的元素是否為表格
+        if (tableElement) {
+            // 將表格居中
+            tableElement.style.marginLeft = 'auto';
+            tableElement.style.marginRight = 'auto';
+        }
+    }
+});
+
+並且專案使用tpImportword插件給使用者導入Word文件；
+但目前遇到的狀況是...
+一、tinyMCE內自行新增的表格在編輯器中置中效果正常、預覽正常、儲存正常。
+二、tpImportword導入的表格在編輯器中是正常，但在預覽時會失效。
+三、專案儲存會跟預覽時的效果一致，置中失效。
+目前測下來發現，Word導入的表格：
+一、一開始一定會失效，但過很久或是操作很多東西後就正常。
+二、只要一可以正常置左中右就會持續正常。
+三、但重新整理後，又會回到一開始失效的狀態。
+四、發現只要對該表格有調整過欄寬或高，就會正常。
+目前還找不出原因，一頭霧水中...
+但難以解釋現況，請大神們救救我 TAT
+
+<<固定情報解析器（Dead Drop Resolver）到底是甚麼？跟C2中繼站的差別？>>
+
+各位大大好~
+如提所示，想請問各位大大，固定情報解析器到底是甚麼？因為網路上資訊很少，目前的理解是駭客交換情資的一種方式，例如將預告之其他駭客的資料放置在某定點，其他駭客則至該固定地點撈取前位駭客所留下之資料，大概是這樣，然後查詢固定情報解析器的時候，很常會講到C2中繼站，請問兩者一樣嗎？再麻煩各位大神們協助說明，謝謝。
+
+<<Unifi  UDM-SE Vlan切完網段後兩邊不會通>>
+
+各位邦友，目前有在UDM-SE上設定切好兩個網段 VLan 192.168.1.X & 192.168.6.X 兩個網段
+UDM-SE 版本: 3.1.16
+USW-16-POE 版本 : 6.5.59
+目前在USW-16-POE上有針對兩個孔位設定好 .6的網段(兩隻監視器)，在將筆電接上其他孔位.1的網段會ping不到.6網段的設備
+
+有人有遇過類似的狀況嗎?
+現況是先將所有設備都先改成.1網段，讓設備都先可以通跟使用。
+
+<<OUTLOOK + EX CHANGE 郵件收信問題>>
+
+遇到一個怪問題，有同仁的OUTLOOK 2016，沒辦法收新郵件
+一定要把OUTLOOK關閉再重開的當下，才會有新郵件進來
+再來就沒郵件了，請問有遇過類似問題嗎？
+感謝
+已做過的測試：
+1.WINDOWS 10更新至22H2最新
+2.OFFICE 更新 2019，無效
+3.換二台電腦登入同仁的帳號，也無法直接收信
+　而這二台電腦，換別人的帳號可以正常收信
+補充：
+設定檔全刪除重建過，一樣問題
+換電腦登入帳號，也一樣的問題
+EXCHANGE，WEB MAIL信件收發顯示正常
+唯獨OUTLOOK收信有問題
+確認不是離線工作狀態，單一信箱於OUTLOOK上
+
+<<請問IP位址的問題>>
+
+以往中華電信固定IP架構，為什麼最小固定IP位址申請量為一個IP位址，而後是五個IP位址？
+就我理解只申請一個IP需要的遮罩值最少為/30但這樣不是可以提供2個主機位置嗎？為何只能申請一個
+而申請五個的遮罩值為/29，明明可以用6個可用IP不是嗎？
+那為何中華電信要定為一個和五個呢？
+
+<<vmware workstation pro記憶體限制>>
+
+我的問題是請問vmware workstation pro的記憶體分配，單一VM上限最高只能64G嗎?
+我筆電處理器是Intel(R) Core(TM) i9-12900HX
+記憶體SO-DIMM插4支DDR5-4800 32G共128G
+vmware workstation pro版本17.5.0 build-22583795
+我爬相關文，國外網友也遇到上限64G限制，雖然其他網友提供其他測試方法，但我能做的也測了，所以請問先進們有無方法可以解除上限64G的限制?
+我需求是用EVE-NG運行多個節點在虛擬環境內運行，例如cisco、forti、paloalto、checkpoint等，又或者先進們建議我可嘗試其他hypervisor? 謝謝!
+
+
+===============================
+已解決畫面
+
+
+
+<<已刪文 >>
+
+已刪文
+
+<<WIFI AP 品牌選擇>>
+
+小弟公司一直使用Fortinet FortiAP 221E (10台) 配搭Fortigate 201E 做Controller.
+但最近想升級WIFI6 並希望配搭Cloud Controller.
+請問各位師兄, 論價格 & 設定就以下品牌可以給些意見嗎?
+
+HP Aruba
+Cisco
+Ruckus
+Fortinet
+Juniper
+
+
+-------------------------------------第2頁-------------------------------------
+<<ChatGPT Enterprise>>
+
+想請問各位大神前輩的公司有導入ChatGPT Enterprise嗎，我們公司老闆想導入ChatGPT但又不想公司機密被紀錄上傳，只能考慮企業版的，但寫信詢問OpenAI遲遲未回信，也有考慮Azure OpenAI服務，但可惜的是目前台灣尚未提供該服務。
+
+<<請問TT GP有API呼叫接口嗎? 【100$】>>
+
+舉例 : 想要讓PDA程序借由 10.152.25.1/apmt720 參數單號、項次、數量，即可呼叫apmt720程序，操作入庫
+或是需要在 TT redhat 架設 java tomcat 下 command 命令?
+
+<<安裝MySQL問題>>
+
+最近想學習Spring MVC在安裝Mysql出了問題。
+昨天一開始有先安裝成功，但是新增新的連線時，test一直不過；
+我是使用windows 64位元；
+connection name ：SpringDb；使用127.0.0.1；port：3306；
+username ：root,密碼：123456；
+testconnection時，
+跳出failed to connect to mysql at 127.0.0.1:3306 with user
+unable to connect to localhost
+
+後來就砍掉重裝，結果就變成沒辦法安裝成功，一直跳出這個問題：
+!
+透過他的網站有找到類似的解法，但是沒有差不多的版本，所以就隨便下載，安裝了還是不過。
+
+想問一下有沒有哪位大老可以解答~
+
+<<Python 輸出問題>>
+
+#r1 是 str,歌手名字
+print("JJ has known this song wirter:", r1)  #奇怪的點 print應預設是用空白連接的
+print("JJ has known this song writer: %s" % r1)  #這一行可以過測資，上面不行
+
+我用的是judge girl(學校自己的批改系統
+想問一下會出錯是真的會有差別還是是因為批改系統的問題呢
+感謝各位~
+
+<<Miracast連接問題>>
+
+目前筆電使用Intel內顯用dxdiag檢測可以支援miracast，但是卻顯示網卡intel AX201 160MHz不支援，更新過新的驅動程式還是不支援，但是查詢這個設備是支援miracast的，請問有什麼方式可以解決嗎?
+
+<<請問 RedHat/Centos 6.7 final 開放外網情況，是否有資安問題需要升級版本? 【100】>>
+
+請問 RedHat/Centos 6.7 final 開放外網情況，是否有資安問題需要升級版本?
+請問有經驗的朋友假如要升級，需要升級到幾版本，會遇到哪些坑?
+
+詢問 GPT4
+RedHat/Centos 6.7 final已經於2015年發行，目前已經不再獲得官方支援和更新。如果您的系統需要連接到外網，而且安全性對您很重要，我們建議您升級到最新版本，以獲得最新的安全修補程式和功能。這樣可以幫助您確保系統的安全性和穩定性。
+建議您升級到最新的CentOS 7或CentOS 8版本。升級操作需要注意以下幾點：
+
+
+在進行升級之前，請務必備份重要的數據和系統設置，以防止意外情況發生。
+
+
+請確保您的硬件和軟件都支持新版本的CentOS，可以通過官方文檔或其他資源進行驗證。
+
+
+在升級過程中，請確保您的系統已經安裝了最新的更新和修補程式，以確保升級順利進行。
+
+
+升級過程中可能需要下載和安裝大量的軟件包，請確保您的網絡連接穩定，並且有足夠的磁盤空間進行安裝。
+
+
+在升級完成後，請確保重新配置和測試您的系統，以確保其正常運行。
+
+
+總之，升級操作需要謹慎處理，建議您在升級前做好充分的準備和備份，以確保系統安全穩定。
+
+<<使用CTE 建立VIEW，兩者實測，VIEW 變慢了>>
+
+您好：
+不管CTE OR VIEW ，使用條件查詢時，都會去底層TABLE抓資料
+目前遇到一個問題
+1.CTE 查詢時
+;with a as(
+),b
+...
+)select * from e where datex between '1121101' and '1121120'
+2.把它建成VIEW 後
+這兩個查詢
+
+0秒就跑完
+2秒才跑完
+
+這樣算正常嗎?
+謝謝
+
+<<windows server 2022 虛擬機OS授權>>
+
+公司近期購買了1台附有 windows server 2022 標準隨機版的伺服器，
+最近有想再該伺服器上再使用hyper-v安裝2台虛擬機，同樣也使用windows server 2022。
+依照微軟網頁（https://www.microsoft.com/zh-tw/windows-server/pricing ）
+上的說明：「Windows Server Standard Edition 授權包含兩個 OSE 或 VM 的權限」。
+這樣是不是代表，我司可用該實體機伺服器既有的windows server 2022序號，於其上的2台虛擬機再安裝2套windows server 2022呢?
+還是說我司還要再為該2台虛擬機再購買2套windows server 2022授權呢?
+
+<<Windows桌機不小心將ubuntu安裝到D槽 救援>>
+
+如題
+情境是在windows桌機
+要在外接硬碟安裝Ubuntu的時候磁碟區分錯變成裝到windows的D曹這樣還有機會救回來嗎
+目前變成是有雙系統windows跟ubuntu可以分別進去
+但是在windows中看不到D槽
+
+<<請問 Redhat 6.7 版本如何安裝 git【100$】【已自行解決】>>
+
+使用 sudo yum install git
+會跳出
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+This system is not registered to Red Hat Subscription Management. You can use subscription-manager to register.
+Setting up Install Process
+file:///media/rh/Server/repodata/repomd.xml: [Errno 14] Could not open/read file:///media/rh/Server/repodata/repomd.xml
+Trying other mirror.
+Error: Cannot retrieve repository metadata (repomd.xml) for repository: my. Please verify its path and try again
+
+但看其他 mirror 好像都被停用支持 6.7 版本了..
+This directory (and version of CentOS) is deprecated.  For normal users,
+you should use /6/ and not /6.7/ in your path. Please see this FAQ
+concerning the CentOS release scheme:
+
+https://wiki.centos.org/FAQ/General
+
+If you know what you are doing, and absolutely want to remain at the 6.7
+level, go to http://vault.centos.org/ for packages. 
+
+Please keep in mind that 6.0, 6.1, 6.2, 6.3, 6.4 , 6.5, 6.6 and 6.7 no longer gets any updates, nor
+any security fix's.
+
+
+請問還有6.7能用的 mirror 或是老版本 redhat 安裝 git 的方式嗎?
+
+終於找到了活著的 mirror 了，用以下命令解決
+wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-1.8.3.4.tar.gz --no-check-certificate
+wget -O git-manpages-1.8.3.4.tar.gz https://mirrors.edge.kernel.org/pub/software/scm/git/git-manpages-1.8.3.4.tar.gz --no-check-certificate
+
+$ tar xvfz git-1.8.3.4.tar.gz
+$ cd git-1.8.3.4
+$ ./configure
+$ make
+$ sudo make prefix=/usr install
+$ git --version
+git version 1.8.3.4
+
+
+<<請問word如何對齊上一行置中文字的第一個字？>>
+
+最近在寫報告，有規定圖片的標題文字必須置中，但若圖標題超過一行，則與標題第一行第一字上下切齊。
+簡單來講，就是標題文字的第二行，必須和上一行的第一個字對齊
+但上一行的文字是用置中表示，所以對齊起來就有點麻煩
+google了很久，都找不到合適的答案，最常看到的是兩行一起調整上方的尺規，但是這樣感覺不是我要的答案，而且並不通用，如果上一行有變，下一行就要再調整
+請問有大神知道怎麼做嗎？
+
+
+<<python爬蟲問題(新手)>>
+
+小弟剛接觸python，如有蠢問題請見諒
+
+問題
+1.為甚麼檔案不是下載到"下載"而是桌面?
+2.檔案名稱和download_path一模一樣(download, download.png)是正常的嗎?還是是我設計的不夠好?有改善/解決方法嗎?
+謝謝
+
+<<win11 印象檔新增其他語系不完全問題>>
+
+目前應工作上需要，需要製作WIN11_23H2多語系版本
+使用官方MSDN釋出的英文版23H2當母檔，
+依照官方說明操作
+https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/system-builder-deployment?view=windows-11
+該加入的語系檔案都加入了、本地語言體驗包(LXPs)、FOD該加的也加進去了，在OOBE第一個畫面也都有成功讓我選擇新增的語言，但是進桌面後像記事本、小畫家、小算盤...等基本程式還是英文版的，但我FOD已經有安裝進去該語系cab檔，有相關經驗的前輩能分享是否還有缺少哪個部分?萬分感謝
+
+<<有可以使用HTML做為筆記的好工具嗎？>>
+
+因為眾多的筆記軟體、筆記服務老是變來變去，也不想使用office
+想來想去只有像html可以長久不變，所以希望將筆記以html呈獻
+但codeing還是有些不方便
+請問大神們是否有好的工具能提升筆記效率？
+
+<<下載Google Drive遇到無法找到程式輸入點IsEnclaveTypeSopported>>
+
+各位大大好，最近在下載Google Drive桌面版遇到無法找到程式輸入點IsEnclaveTypeSopported 這個問題，想詢問是否有人遇過相同問題並解決了呢
+
+
+<<Reporting Service匯出的檔案可否設密碼?>>
+
+最近為了個資問題，要限制Reporting Service的權限，
+因有些報表一定得顯示完整的資料，否則沒辦法作業，
+所以就想說那至少把匯出功能拿掉，少一層資料外流的顧慮，
+有google到方法，但要去改底層的程式碼，這之後可能造成後續人員維護上的困難，
+想說...若匯出的檔案設密碼應該也是一種方式，
+但google不到相關資訊，請問這功能辦得到嗎??
+順便問一下，Reporting Service可以讓資料顯示是完整的，
+但匯出是匯另外的隱藏欄位(資料打*號)嗎?
+
+<<EntraID同步地端AD問題>>
+
+請問一下各位大大~
+公司目前有一套地端的ADserver
+有計畫要把地端AD同步到EntraID上去做其他雲端的身分驗證功能
+但地端的domain在外網上沒有註冊且地端的domain在外網也已經被註冊使用
+無法使用微軟提供的cluoud sync同步上去直接帶地端的domain
+公司現有其他已註冊的domain
+不知是否有方法可以不改動地端domain的方式
+用已註冊的domain同步上去
+
+<<設定chrome維持google帳號不要登出>>
+
+因一般google帳號開google meet有限制一小時的時間
+所以部分開會用電腦都有設定一組付費帳號可以不受限制
+大約一兩個月左右，chrome上的帳號就會被系統登出要重新登入
+因為這些電腦都有設定自動還原程式
+開機時會自動還原到已設定的恢復點
+不確定是否是因為這樣導致被登出的
+不然我自己電腦登入約數個月都沒有被登出過。
+想請問有辦法可以讓chrome可以維持登入的google帳號嗎。
+
+<<MSSQL 如何動態取得 查詢結果的欄位名稱>>
+
+您好：
+一般在查詢會類似
+select a.x,b.y ,b.z as 'XXX'
+from a inner join b
+那是否在 MSSQL 與查詢的結果，取得 x, y ,xxx的欄位名稱
+目前，想用DBMAIL發信
+但想說標題欄位，是否能 直接抓 查詢與法中的select 名稱 來呈現
+謝謝
+
+<<Fortigate: Local-In Policy & Firewall Policy>>
+
+請問在Fortigate防火牆設定中, Local-In Policy 與 Firewall Policy 有甚麼分別和差異?
+假設兩種分別設定一條相同功能的Policy (例如: deny 外網 > 內網某IP port:80), 那種會優先執行?
+
+<<MSSQL  多一個JOIN 變慢問題請教>>
+
+您好：
+如下1.原始： 這樣很快1秒就出來
+SELECT * from (
+
+	   SELECT 
+	        20個欄位
+		from (
+				SELECT * FROM  區段1
+				
+
+		) m LEFT join 區段2  p on 
+			left JOIN  區段3 s on 
+			LEFT join ( 
+			
+			   SELECT ...
+			   from     區段4
+			   WHERE
+			   
+            ) 
+			x on 
+
+
+) z 
+where 
+    	 條件4個
+Order by ...
+
+
+----------------2.我另外內圈 JOIN一個新區段，結果變慢3秒出來
+SELECT 
+	        20個欄位
+		from (
+				SELECT * FROM  區段1
+				
+
+		) m LEFT join 區段2  p on 
+			left JOIN  區段3 s on 
+			LEFT join ( 
+			
+			   SELECT ...
+			   from     區段4
+			   WHERE
+			   
+            ) 
+			x on 
+            LEFR JOIN  新區段
+
+------------------------3.我把它加到原始內圈，跑了一分多宗還跑不完
+SELECT * from (
+
+	   SELECT 
+	        20個欄位
+		from (
+				SELECT * FROM  區段1
+				
+
+		) m LEFT join 區段2  p on 
+			left JOIN  區段3 s on 
+			LEFT join ( 
+			
+			   SELECT ...
+			   from     區段4
+			   WHERE
+			   
+            ) 			
+          	x on 
+            LEFR JOIN  新區段  
+
+) z 
+where 
+    	 條件4個
+Order by ...
+
+------------------------------4.我把(1)的先寫到#tmp，再JOIN
+這樣就很快2-3秒內出來
+再用
+#tmp LEFR JOIN  新區段
+
+我看實際執行計畫，有沒出線索遺漏
+請問 這大致什麼原因，有方式可以可循跡解決嗎?
+謝謝
+
+<<電腦時常自動當機>>
+
+重灌原WIN11系統也是一樣，重灌系統跟安裝驅動，也不會再安裝一些有的沒的軟體，硬體裝置也沒有出現任何錯誤，每次關機(完全斷開電源)一天後，再開機過沒有幾分鐘，如果有開聲音耳機會出現不中斷的爆音，然後就整個卡住，需要手動重開機或有時或自動重開，以前也不曾這樣過...
+
+<<加入子網域的電腦會不斷去連根網域控制站的389 port>>
+
+公司有一根網域:root
+有二子網域:sub1、sub2
+公司清查防火牆log時，發現會有加入sub1及sub2的PC會去不斷連線root DC的udp 389 port
+但在AD建置時官方文檔並沒有提到需要開通子網域電腦到跟網域控制站這一段，因此有大量被拒絕的log
+且按理說加入子網域的電腦應不須和root有任何LDAP傳輸需求，請問是否有方法可以避免此連線或是官方機制本就是這樣?
+
+<<AD GPO套用時，預設沒有電腦>>
+
+我在AD上有新增GPO，套用目標想設定為電腦
+目前碰到的困難是，在這邊新增電腦，一次只能選擇一位
+新增完要按完成在繼續點新增。
+而且預設不能直接輸入電腦名稱
+預設只能輸入使用者、群組等。
+要先點右上角物件類型-然後把電腦打勾，在輸入電腦名稱
+想請問有辦法預設讓電腦成為可以輸入的名單嗎
+
+
+<<SQL保存歷史表方式研究【100$】>>
+
+SQL保存歷史表方式
+建立 history 表，如order_history每次order insert同時也insert一筆到history
+建立 max string json log 表，所有表insert同時也insert一筆到log，表格結構只有id,createtime,log
+直接查 DB 底層 transation log
+請問還有其他方式能建立數據保存表嗎?
+
+詢問 GPT4
+SQL保存歷史表方式
+建立 history 表，如order_history每次order insert同時也insert一筆到history
+建立 max string json log 表，所有表insert同時也insert一筆到log，表格結構只有id,createtime,log
+直接查 DB 底層 transation log
+請問還有其他方式能建立數據保存表嗎?
+
+詢問 GPT4
+除了您提到的方法外，還有以下幾種常見的保存歷史數據的方法：
+
+1. 使用觸發器（Triggers）：
+
+   當在主表中進行插入、更新或刪除操作時，可以創建一個數據庫觸發器，自動將變更記錄到歷史表中。這種方法可以確保在任何更改發生時都會自動記錄歷史數據。
+
+```sql
+CREATE TRIGGER order_history_trigger
+AFTER INSERT OR UPDATE OR DELETE ON orders
+FOR EACH ROW
+BEGIN
+   INSERT INTO order_history (order_id, action, action_time, ...)
+   VALUES (NEW.order_id, 'INSERT/UPDATE/DELETE', NOW(), ...);
+END;
+
+
+
+使用數據庫的時間點恢復（Point-in-Time Recovery）功能：
+大多數數據庫管理系統都提供時間點恢復功能，可以將數據庫恢復到過去的某個時間點。這種方法可以在需要查詢歷史數據時，將數據庫恢復到指定時間，然後查詢對應的數據。這種方法不需要額外的歷史表，但可能需要較長的恢復時間，且在恢復過程中，數據庫可能無法正常提供服務。
+
+
+使用數據庫的分區表（Partitioned Tables）：
+對於大量歷史數據的保存，可以考慮使用數據庫的分區表功能。將數據根據時間或其他條件分區存儲，可以提高查詢效率，同時方便管理歷史數據。例如，可以根據訂單創建時間，將訂單數據分區存儲到不同的表中，如 orders_2021_q1、orders_2021_q2 等。
+
+
+CREATE TABLE orders (
+   order_id INT,
+   create_time TIMESTAMP,
+   ...
+) PARTITION BY RANGE (create_time) (
+   PARTITION orders_2021_q1 VALUES LESS THAN ('2021-04-01'),
+   PARTITION orders_2021_q2 VALUES LESS THAN ('2021-07-01'),
+   ...
+);
+
+
+
+使用數據庫的 Change Data Capture（CDC）功能：
+Change Data Capture 是一種用於捕獲數據庫表中的數據更改（如插入、更新和刪除操作）的技術。許多數據庫系統（如 SQL Server、Oracle、MySQL 等）都提供了 CDC 功能，可以將數據更改記錄到專門的更改表中，以便後續查詢和處理。
+
+
+這些方法可以根據實際需求和數據庫系統的特性進行選擇，以實現高效、靈活的歷史數據保存和查詢。
+
+<<如何用vue引用npm套件並打包成另一個npm套件給vue, nuxt引用>>
+
+最終目的是將pdfjs-dist套件再以vue2專案引用並加以改寫並打包給其他vue2, nuxt2專案用，
+在引用完pdfjs-dist套件後的打包動作是參考以下網頁的上半段實作專案套件化，
+最後在給vue及nuxt引用時，vue專案可以正常引用，nuxt就會報以下錯誤，__webpack_modules__[moduleId] is not a function，
+或是
+Module parse failed: Unexpected token (257:106) You may need an appropriate loader to handle this file type
+
+想問問怎麼解決？ 看起來像打包的問題？
+
+<<DNS Open Resolver關閉問題>>
+
+大家好,公司目前是使用server2008建立DNS,只是單純作為公司給外部主機查詢我司
+網路服務主機解析IP用,目前有收到電信警示信,說可能被DNS Open Resolver攻擊,建議關閉DNS Open Resolver.我網路上查了是到DNS屬性高級設置中,將遞歸查詢禁用即可. 可是我禁用後從遠端電腦用nslookup www.google.com.tw 我司dnsIP 測試還是可以得到解析IP. 請問有先輩可以指導一下,還有那裏需要關閉嗎??
+
+<<想用win10的bat檔自動執行"建立還原點"但失敗了>>
+
+各位先進 先知 大家好
+程式小白小妹我這幾天研究了關於自動備份，
+網路上有教學如何從A點備份至B點，
+但沒有教如何建立系統備份檔[建立還原點]
+
+但code貌似有錯誤狀況但也不知從何查起?
+我唯一方式只能去Rstrui.exe查[還原系統檔案及設定]
+僅有我自己手動執行的還原點......
+以程式管理員執行批次檔 全失敗了
+
+系統：Windows Pro 10
+另外我有建立工作排程器，排程是成功，只是code不知道錯在哪?
+以下是我的code
+@echo off
+setlocal
+set BackupTarget=D:\system backup
+set RestorePointDescription=System Restore Point
+wbadmin start systemstatebackup -backuptarget:%BackupTarget% -quiet -description "%RestorePointDescription%"
+if %errorlevel% neq 0 (
+echo 建立系統還原點失敗。
+) else (
+echo 建立系統還原點成功。
+)
+endlocal
+請問各位.這段應該要如何修改呢?
+謝謝(鞠躬)
+
+<<VB.net 執行網路路徑的檔案時, 如何跳過詢問?>>
+
+各位好,
+小弟用 VB.net 2022 寫執行檔要給排程用.
+最後一個步驟是呼叫網路路徑上的一個額外的程式.
+System.Diagnostics.Process.Start("\\XXX\A.exe", "-我是參數")
+
+但是 Windows 會詢問:
+開啟檔案 - 安全性警告
+是否要執行這個檔案?
+        名稱: A.exe
+      發行者: ....
+        類型: 應用程式
+          從: \\XXX
+              [執行(R)] [ 取消 ]
+[V]開啟這個檔案前一定要先詢問(W)
+
+請問, 在VB這邊要怎樣寫, 才能跳過這個詢問, 直接執行?
+謝謝.
+
+<<Hyperv P2V後找不到滑鼠>>
+
+最近將公司windows XP電腦轉虛擬，
+用Disk2vhd做映像檔，到HyperV上新增VM選擇做好的映象檔，
+開啟後原本XP裡面的東西都有，但只能用鍵盤操控。
+看滑鼠硬體是有的，但無法使用，按了就會出現"遠端桌面工作階段中未擷取滑鼠"![
+網路上找到的方法都是說要從 動作>插入整合服務安裝光碟
+
+但HyperV近幾年好像改掉了，現在看動作的話沒有這個功能QQ
+
+請各位大大幫忙查看，感謝!!
+
+-------------------------------------第3頁-------------------------------------
+<<prometheus設定targets問題>>
+
+我的架構如下：
+
+使用docker swarm init在虛擬機A建立manager node
+將netdata 服務架構在worker node上(虛擬機B)
+
+為了避免netdata的metric API被直接呼叫
+我先設置netdata.conf
+[web]
+    allow connections from = localhost
+
+然後配置nginx做proxy_pass以及basic authentication
+upstream netdata {
+   # netdata server
+   server 127.0.0.1:19999;
+   keepalive 1024;
+}
+
+server {
+  listen 19998;
+  server_name  my_netdata;
+     location / {
+	proxy_pass http://netdata;
+        auth_basic "Basic Authentication";
+        auth_basic_user_file /etc/nginx/.htpasswd;
+     }
+}
+
+我現在的問題點是，因為在prometheus設定targets時需要指定服務路徑
+在同一個docker swarm網路下，我原本可以直接設定
+static_configs:
+  - targets: ['netdata-container-name:19999']
+
+只是我現在在netdata有設定限制ip
+這樣我是否變成
+
+先建立prometheus service，然後拿到該container的ip
+將拿到的prometheus service ip去加入netdata的ip白名單中
+更新prometheus的設定，將targets改為
+
+
+targets: ['虛擬機B的ip:19998']
+
+只是這樣就會有問題，如果今天我的prometheus service進行update時，container改變導致ip也變更後，我又得手動更改netdata的ip白名單
+想請問在能建立擋ip的情形下，有更好的處理方式嗎？
+
+<<OFFICE365 需要採取動作>>
+
+您好：
+如附圖
+最近公司買的OFFICE365 ，有些機器會出現　「須採取動作」
+請問一定得一組　365帳號　配一台手機嗎來做驗證嗎？
+沒辦法在　office帳號管理介面來做管理就好　
+是否有其他解決方式，　有問過微軟，沒回應！
+謝謝
+
+管理介面
+
+
+<<office更新後Excel巨集執行發生執行階段錯誤:2147417848 (80010108)錯誤>>
+
+如題，該主機設定可以兩個Windows帳號登入，但其中一個windows帳號登入後執行巨集都會發生「執行階段錯誤:2147417848 (80010108)」，另一個windows帳號就不會發生，且該巨集在其他電腦執行都是正常的，想詢問該問題要如何解決？
+VBA語法如下：
+ActiveWorkbook.Worksheets("TABLE0").sort.SortFields.Add Key:=Range("AT2:AT200"), SortOn:=xlSortOnValues, Order:=xlDescending, DataOption:=xlSortNormal
+後來在微軟社群詢問到解決方案，就是登入該系統帳號進入到登錄檔(regedit)刪除他的excel登錄檔資訊(\HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\Excel)
+
+<<請問teamviewr有辦法在內網模式生成唯一ID嗎? 【50$】>>
+
+請問teamviewr有辦法在內網模式生成唯一ID嗎?
+因為設備使用WIFI連接，IP是浮動且是192.168.4.215跟WIFI之間的IP，而不是內網10.153.x.x的IP
+無法使用IP或是電腦名稱遠端連接此車間的電腦(車間電腦不能開外網)
+請問teamviewr有辦法在內網模式生成唯一ID嗎? 如: 154546789，內網能ping通的電腦，能借此ID連接
+
+<<無法安裝程式 ，無法開啟microsoft store，0 x 8019001錯誤，請幫解決此問題>>
+
+已解決
+
+
+
+<<Windows IIS 憑證匯入問題>>
+
+抱歉，因為這部份比較沒經驗，想求助一下
+上頭有需求要將網域內的 IIS Web Server 使用 SSL
+一開始我不曉得，直接在同網域下的 Linux 主機上用 openssl 建立金鑰 (*.key)與產生 csr
+接著提供這個 csr 給 戰xx 申請憑證
+現在憑證發下來要匯入的時候才發現，我的金鑰不是在 IIS 上透過 GUI 產生的，好像不能直接匯入，看官網的教學又看的一頭霧水...
+
+想請教，我可以拿手邊這個 .key 金鑰檔與核發的憑證直接匯入 IIS 嗎？
+好像要先轉成 pfx？
+這部份因為真的不太熟悉
+有大大可以協助講解一下現在我的步驟是什麼嗎？
+萬分感激...
+
+已經解決，憑證也順利匯入 IIS 了
+感謝有回覆的各位大大的協助 
+
+<<如何搜尋鐵人賽的主題？>>
+
+我只看到文章的搜尋，但是我想要的是類似系列文清單。
+例如，我要找 nuxt.js 的系列文清單，可是目前只有這個
+
+實際上，我希望找到的是類似這樣。只顯示系列文，而不是所有文章。
+
+請問有什麼技巧或方法嗎？
+
+<<JDevloper运行项目失败>>
+
+每次当我的account没有admin权限时，JDevloper运行项目会报错：
+
+
+<<如何篩選查詢所有git commit 的文件有包含某個字串?【50$】>>
+
+不是 commit log 而是，篩選出每個 commit 的文件更新/新增/刪除內容有包含 NNN 的字串的commit
+舉例 :
+2023-11-20 commit message = "更新訂單功能2"
+files:
+
+A.txt insert: update customer_order .......
+2023-11-19 commit message = "更新訂單功能1"
+files:
+A.txt modify: insert order .......
+
+
+想要能找出有 customer_order 字串的 2023-11-20 commit
+
+<<小企業用Windows與Office授權方式請益>>
+
+先簡單說一下公司使用環境
+目前桌機約6台、筆電3台(筆電都是私人設備)。
+隨著人員招聘可能會陸續再增加桌機數量。
+但軟體授權問題就開始出現了。
+由於小弟入職前電腦都是採購隨便買，軟體授權都沒買。(非台灣本地)
+現在想把軟體授權補齊。
+Windows感覺比較好處理，畢竟沒有月租版。 只需要思考買隨機版、彩盒版或走大量授權。
+功能限制的關係也不太可能去採用家用版，只有專業版能挑。
+但是也不知道微軟的大量授權最低要幾台、價格上划不划算、後期增加方不方便。
+Office就比較麻煩，除了版本以外還有月租與買斷。 而且商務版的授權明顯貴很多。
+由於已夠入群暉的NAS，感覺月租版的額外服務吸引力降低了不少。
+但月租一個帳號授權可以裝5台，好像平均下來又很便宜。
+由於是第一次接觸到授權問題這一塊，不知道有沒有大佬可以提供點意見。
+看採用什麼授權是合規又成本較低的?
+
+<<從localhost連不到phpmyadmin>>
+
+
+我的電腦是mac我跟著youtube的影片試著使用MySQL和phpmyadmin，但是當我和他們用一樣的連結要進入phpmyadmin的時候卻會顯示錯誤，看起來有連到MySQL但是被server擋掉了，請問我應該如何設定檔案解決這個問題
+
+<<為什麼筆電每隔幾天就會連線不到wifi？>>
+
+請問：為什麼筆電每隔幾天就會連線不到wifi？要重新開機才抓得到訊號，ip是自動分配的，請問我要怎麼調整呢？手機、ipad都沒有這些問題!!
+配置：中華電信搭配三台mesh!!
+
+<<有關buffer overflow 的問題>>
+
+不會使用gdb對return address做更改
+希望程式最後能導到myprivatetest()
+以下為程式碼:
+#include <stdio.h>
+#include <string.h>
+
+int UPtest(char *, char *,  char *);
+void myprivatetest(void);
+
+int main(int argc, char**argv){
+
+  if(UPtest(argv[1], argv[2], argv[3])){
+    printf("Access granted...\n");
+  } else {
+    printf("Wrong username and password!!!!\n");
+  }
+  return 0;
+}
+
+int UPtest(char *a1 , char *a2, char *a3){
+
+  char Uid[29], Uname[27], Upass[72];
+  strcpy(Uid, a1);
+  strcpy(Uname, a2);
+  strcpy(Upass, a3);
+
+if(!strcmp(Uname, "Admin") && !strcmp(Upass, "PassAd007"))
+     return 1;
+else
+     return 0;
+}
+
+void myprivatetest(){
+printf("This is test code to run other system program.\n");
+system("/usr/bin/xeyes");
+}
+
+
+
+<<有關Python匯出CSV的問題>>
+
+各位大大
+我現在製作一個XML解析的程式，我使用Beautiful soup find all和get text來解析XML，再使用表格型式輸出CSV
+因解析的內容會有逗號 (例如：我很喜歡台灣，你喜歡嗎)，當我匯出CSV時會出現因有逗號而導致CSV有移位情況，請問我有什麼方法來解決這問題呢？
+謝謝
+
+<<多語系的維護很困難>>
+
+最近專案處理多語系滿困擾的，想請教各位前輩
+我是寫 Java，所以多語系是用 ResourceBundle 讀取 .properties 檔案
+不過這應該影響不大？
+
+key 的命名
+
+key 通常是小寫英文，所以會遇到以下困難
+
+英文大小寫
+
+Today Price
+Today price
+today price
+
+
+符號
+
+Today Price
+Today Price $
+
+
+中文不同，英文相同
+
+價格、價錢：Price
+星期一、週一：Monday
+
+
+
+雖然這些情形可以解決，但會讓 key 變得又長又不直觀
+label.Today_Price=Today Price
+label.Today_price=Today price
+label.today_price=today price
+label.Today_Price_Dollar=Today Price $
+label.Monday1=星期一
+label.Monday2=週一
+label.Price1=價格
+label.Price2=價錢
+
+
+key 要有意義還是無意義
+
+有意義的話，內容改 key 也必須跟著改否則會越來越困惑
+而改 key 就意味著要改程式
+label.column.today=Yesterday
+
+無意義的話則是同樣的詞在不同地方都要定義
+如果改動要改很多地方
+label.sectionA=Today
+label.sectionB=Today
+label.sectionC=Today
+
+
+複合詞
+
+例如時間會有：上線時間、啟用時間、執行時間...
+一旦「時間」改為「日期」也是一堆地方要改
+當然也可以拆分為單詞再合併，但那也是另外一種工
+
+面對固有的問題
+
+.properties 檔案
+
+有重複 key
+有重複 value
+獨有 key（別的語系沒有）
+key 命名規則不一致
+越來越肥大
+
+我好像也只能忽視，繼續新增我的...
+總結來說
+會希望程式能更好維護、更好擴展
+但多語系這塊似乎是個難解的障礙
+
+<<DLL註冊失敗 (regsvr32)>>
+
+
+我的新電腦是Win11,
+為什麼這樣註冊會失敗,
+有用最高權限了,版本也是64位元執行檔沒錯
+實在想不到原因了,
+來找看看有沒有大神願意幫忙~~
+
+<<Powershell 擷取 AD User CN Name>>
+
+各位先進大家好
+小弟目前已經可以從AD上找出User的主管
+但找出主管的值是
+CN=XXX,OU=SSS科,OU=WWWW部,DC=YYY,DC=ZZZ
+
+請問小弟如何用PowerShell只取XXX，而不要其他的值呢?
+煩請各位先進不吝指導，謝謝
+
+<<DBMAIL或Ｃ＃發送MAIL安全性>>
+
+您好：
+目前有２種派送MAIL的方式
+1.SQL AGENT+DBMAIL
+2.C#　mial
+因為會要派送給不同人（google, yahoo 等外部信箱）
+請問，若是資料庫安全性來講
+哪一個比較適合
+謝謝
+
+<<請問電腦如何判斷HDMI接的屏幕是打開的?【100$】>>
+
+請問電腦如何判斷HDMI接的屏幕是打開的?
+目前在車間有放電視墻展示生產狀況
+但有時會有停電或是人為不小心關閉屏幕情況
+導致每天都要去現場巡視
+請問有辦法用程序或是其它方式，能知道電腦連接的HDMI屏幕是否打開狀態嗎?
+
+<<請問有辦法能不透過SQL Server Profiler就能得知異動TABLE資料的SQL是什麼嗎？>>
+
+各位前輩好
+目前小弟使用的資料庫是SQL Server
+最近遇到一個很弔詭的問題是某一個TABLE的固定幾筆資料的某一個欄位居然會莫名其妙的被修改成別的資料，但資料都相同
+而且每天都會被修改個幾次，時間則不固定
+已經翻遍了相關系統、排程與預存程序都查不到有哪段程式可以修改那個欄位
+現在只有用trigger調查出修改的執行時間點
+但是實在是太沒規律了所以還是不夠
+原本是想請機房管理員幫忙用SQL Server Profiler調查是哪隻SQL程式有在修改
+但是因為發生時間不固定故沒有辦法一直監測
+所以想請教還有沒有什麼其他方法可以知道這TABLE是如何被修改的？
+感謝各位前輩了！
+
+<<Vba 偵錯>>
+
+請大大們 指正誤區，這個巨集指令修正後無法執行，原定功能是要將每日好幾個xml檔，依序彙整到同一個工作表的每一列。如下：
+巨集1
+'
+IfMYFile.FileExists("C:\Users\hayes\Desktop\新增資料夾 - 複製\每日下載檔案(限50筆)\1.xml") = True Then
+Range("A2").Select
+ActiveWorkbook.XmlMaps("TALENTS_Map").Import Url:= _
+"C:\Users\hayes6646\Desktop\新增資料夾 - 複製\每日下載檔案(限50筆)\1.xml"
+IfMYFile.FileExists("C:\Users\hayes\Desktop\新增資料夾 - 複製\每日下載檔案(限50筆)\2.xml") = True Then
+
+ActiveCell.Offset(1, 0).Select
+
+ActiveWorkbook.XmlMaps("TALENTS_Map").Import Url:= _
+    "C:\Users\hayes6646\Desktop\新增資料夾 - 
+
+複製\每日下載檔案(限50筆)\1.xml"
+End If
+End Sub
+
+<<【感謝費100】請問如何自定義alert UI，或是有外掛能支持阻斷程序運行效果 (能兼容IE11)>>
+
+請問如何自定義alert UI，或是有外掛能支持阻斷程序運行效果 (能兼容IE11)
+目前用過幾個套件，有無法兼容IE11，有的無法實現alert時阻斷程序運行，按確認後，其他JS才能繼續運行效果
+如，用alert用戶可以看到提示字，知道自己完成送出
+alert('資料確認完成');
+windows.reload()
+
+用其他套件會一閃而過，直接reload
+
+<<更改 vscode 預設的終端機>>
+
+想問一下，目前習慣使用 warp 這款 terminal ，有辦法設定 vscode 讓他成為預設開啟的 terminal 嗎？
+
+<<PostgreSQL jieba斷詞器安裝 makefile問題>>
+
+照著官方文件的教學安裝jieba斷詞器
+
+進行到make時
+
+查了一下好像要安裝MinGW然後加到系統變數，所以先安裝了MinGW，照了網路上的教學做但還是報錯說沒有makefile
+
+請問各位有碰過這種情況嗎QQ
+
+<<k8s nginx ingress controller 後面的 service 是否還需要掛 nginx >>
+
+Hi
+最近在協助傳統轉變成 k8s 環境，
+請問有做過的前輩，
+LNMP 的環境，前面會有 nginx 設定
+那麼我在轉換成 k8s 環境的時候。
+假設我要用 nginx ingress controller，那我後面 service 後面的 pod 有沒有需要nginx 容器呢?
+因為 nginx ingress 本身就可以設定 nginx 參數了。
+
+<<K8s cronjob 實現問題>>
+
+最近在協助公司把傳統專案轉換成 k8s 方案，
+遇到了排程上面的問題。
+專案是一個 php 的程式，其中原本的成員是用 linux cronjob 去觸發 supervisord 再去觸發 php code (可能是清除快取的程式吧)。
+看了一下 k8s cronjob 範例，這個只是在 一個 pod 內啟動一隻 shell 去觸發 hello world。
+但是腦中還是沒有作法怎麼把用 k8s 觸發 supervisord container 觸發 php container 裡面的 code
+現在想到是不是只能把 php container 裡面在安裝 supervisord and crontab
+，不過這就不是我希望的初衷了，畢竟要作為服務，希望能把服務切開，而不是把所有東西又裝在一個容器裡面。
+
+<<在新增網頁的時候動到web.config結果出現錯誤>>
+
+在新增網頁的時候動到web.config結果出現錯誤，就變網頁登入、以及部分網頁也會跳出這個
+錯誤訊息
+https://drive.google.com/file/d/1EyoL1039UefKpcLePi6LFYUgUE-z7LNL/view?usp=drivesdk
+
+<<菜雞請益關於HTML、CSS語法問題>>
+
+目前正在使用線上課程自學，但遇到問題無法解決，丟了ChatGPT也無法理解，可能問題真的非常基礎，再麻煩前輩們能撥空指導。
+使用的是bootstrap格線系統。
+codepen如下↓
+https://codepen.io/mini7er/pen/KKJXEgr
+我的問題：想在不改變語法結構的狀況下(可以增加新的class)，將左邊的圖片往右移5個格線，右邊的文字往左移5個格線系統，並且能夠維持在同一行上。
+因為目前線上教學希望我們能用這種方式移動col，所以才有此一問。
+我做過的嚐試：
+1)利用現在的bootstrap裡面的offset-md-5跟col-md-6放在一起，沒有辦法維持照片跟文字在同一行。
+2)試著額外新增了一個postion的class，去移動文字欄位，勉強可以左右對調，但如果我把文字欄位的col-md-6改成col-md-4的時候，一樣會跑版。
+我自己的想法：因為bootstrap的格線系統使用的是flex，所以一但兩個col加起來超過100%就是會換行，但我不曉得要怎麼拯救它...再麻煩各位前輩們了
+
+<<WSUS找不到電腦>>
+
+目前新建置WSUS但實際報到的電腦只有100多台(公司電腦有300多台)，嘗試各種方法都無法解決，請問各位高手還有其他方法可以解嗎?  謝謝。
+公司環境:
+Client:Win10
+AD: Win Server 2012 R2
+WSUS: Win Server 2022
+已設定過但還是無效:
+
+GPO已指向WSUS伺服器
+
+
+2.重製過SUSClientID，並執行過如下指令(查看未報到的電腦SUSClientID本來就不一樣)
+
+@echo off
+if exist %systemdrive%\SUSClientID.log goto end
+net stop wuauserv
+reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate" /v PingID /f  > %systemdrive%\SUSClientID.log 2>&1
+reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate" /v AccountDomainSid /f  >> %systemdrive%\SUSClientID.log 2>&1
+reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate" /v SusClientId /f  >> %systemdrive%\SUSClientID.log 2>&1
+net start wuauserv
+wuauclt.exe /resetauthorization /detectnow
+:end
+exit
+
+<<AAD相關權限請教>>
+
+請問AAD
+我登入其他使用者 安裝軟體都需要輸入帳號密碼
+我要從哪邊設定先讓該USER為最大權限就不用一直輸入帳號密碼?
+最高權限的軟體設定後 是不是登任何的USER都需要再重新設定一次?
+
+-------------------------------------第4頁-------------------------------------
+<<【感謝費50$】請問 chrome devtool 如何指定 Mozilla 或是android版本測試?>>
+
+想要在電腦 chrome 以指定 Mozilla 來測試指定網頁
+目前知道對方的 agent 數據如下
+Mozilla/5.0 (Linux; U; Android 6.0.1; zh-cn; JDN-W09 Build/HuaweiMediaPad) AppleWebKit/537.36 (KHTML, like Gecko)Version/4.0 Chrome/37.0.0.0 MQQBrowser/6.0 Mobile Safari/537.36
+
+想要在 devtool 模式改成 Mozilla/5.0 或是 Chrome/37 Android 6.0.1 環境來測試兼容的情況。
+有使用More tools > Network conditions自定義agent，但不是想要的，因為agent設低版本，還是能正常顯示頁面UI，而不是客戶端手持設備上不兼容不顯示的UI效果
+
+<<Windows Server 2012 R2 x64 微軟從2023年10月10日終止支援>>
+
+請教各位大大
+Windows Server 2012 R2 x64 微軟從2023年10月10日終止支援，我司的windows server 2012 R2,好像不會自動下載相關service pack,只看到KB890830：Windows 惡意軟體移除工具 x64(v5.119)的更新套件，但我查找Micorsoft Update Catalog ,仍可以看到微軟發部的安全性套件更新,這是否表示以後只能自已手動下載套件安裝更新?
+
+<<如何在VPS的主機裡，安裝遠端桌面的程式?>>
+
+大家好，
+最近買了sugarhosts最便宜的VPS雲端主機服務，
+規格是:
+# Linux雲端主機
+Cloud L1
+1 個 CPU 核心
+1GB 記憶體
+20GB SSD 硬碟
+1TB 月流量
+
+傻傻以為可以像平常使用電腦的方式一樣使用。
+後來才發現只能使用SSH連線。
+
+google了一下，發現這篇文章
+linux的vps主机安装图形界面并远程访问
+內容如下:
+在我的Ubuntu的Vps主機上安裝圖形介面xfce
+
+sudo apt-get update
+sudo apt-get install xrdp
+sudo service xrdp start
+sudo apt-get install xubuntu-desktop
+
+漫長的等待後，在windows中運行【遠程桌面連線】登入你的vps主機開啟桌面之旅吧
+
+不過我照著安裝後，
+使用 windows遠程桌面連線，依然連不上去。
+出現未啟用對伺服器的遠端存取的錯誤
+想請問，是哪個步驟有錯誤嗎?
+謝謝
+
+目前防火牆 3390 也已經開啟了
+Status: active
+
+To                         Action      From
+--                         ------      ----
+3390                       ALLOW       Anywhere
+22                         ALLOW       Anywhere
+3390 (v6)                  ALLOW       Anywhere (v6)
+22 (v6)                    ALLOW       Anywhere (v6)
+
+服務也有開啟
+root@XXXXXXX:~# sudo systemctl enable xrdp
+
+Synchronizing state of xrdp.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable xrdp
+
+root@XXXXXXX:~# sudo systemctl start xrdp
+root@XXXXXXX:~#
+
+不過開啟服務sudo systemctl start xrdp後
+沒有跑任何的資訊，如上。
+是正常的嗎?
+
+<<filesever檔案存取紀錄>>
+
+長官想知道特定資料夾有誰去存取過，但是本身環境並沒有安裝第三方的稽核軟體。
+請問用server內建的功能能辦到嗎？
+server2019
+痾 抱歉敘述的不夠明確
+稽核只會紀錄打開後的吧？
+我是需要打開稽核前的紀錄
+
+<<crontab日誌使用logrotate切割問題>>
+
+系統： linux的CentOS Stream release 9
+因為看到/var/log下面的crontab日誌佔太大的容量
+所以想使用logroate做分割
+
+創建/etc/logrotate.d/cron
+
+/var/log/cron-* {
+    daily
+    rotate 2
+    size 50M
+    missingok
+    notifempty
+    compress
+    delaycompress
+    create 0640 root root
+}
+
+
+接著直接執行
+
+
+logrotate -f /etc/logrotate.conf
+
+
+卻出現錯誤
+
+
+error: rsyslog:1 duplicate log entry for /var/log/cron
+
+雖然不影響切割，但是還是想知道是不是有其他控制crontab日誌切割的預設檔
+因為原本總共也只有幾個cron檔
+分別為:
+cron, cron-20231112, cron-20231105, cron-20231029, cron-20231022
+然後我也去看/etc/cron.weekly, /etc/cron.monthly底下都沒東西
+
+<<CentOS 7 子目錄資料匣如何設定Windows Ad 帳號權限?>>
+
+SAMBA以設定A資料匣WINDOWS AD群組人資群組**(非CentOS主機群組)**
+USES登入A資料匣後可進入到1，2，資料匣(圖一)，3資料匣只能允許人資群組內特定人士可進入
+
+A主目錄1，2，3資料匣權限設定777，
+3資料夾本機權我無法變更為WINDOWS AD權限(圖二)
+
+
+<<WIN10 +EDGE  已管理員權限  開不起來>>
+
+您好：
+目前遇到一個情況 (目前已有2台)
+WIN10 +EDGE (我影經更新到 119.0.2151.58)
+但 只要把EDGE 設定為 以管理者權限開啟
+EDGE 就開不起來
+有看網路上，要修復但卻顯示無法修復
+
+**PC 這一台，重新開機，要等很久
+另一台，我下載 MicrosoftEdgeSetup_119.0.215.58.exe 可以修復
+修復好了，當下可以正常已管理員權限開起
+但重開機，就又開不起了..
+請問，次否有前輩，可以協助解決設一個問題
+謝謝!
+
+<<請問如何在Windows server的certificate authority更新快要的到期的SSL certificate?>>
+
+我有一張快要的到期的SSL certificate,這張certificate 是由Windows server的certificate authority 簽發,請要如何renew 這張certificate呢?
+
+<<【感謝費100$】請問如何寫html只能純數字過長自動換行+自動去掉尾數0的number textarea?>>
+
+請問如何寫html只能純數字過長自動換行+自動去掉尾數0的number textarea?
+目前用input number type只能一行，假設寬度只能100，大數量很多數字會被吃掉
+想要多的數字跨行並且去掉尾數為0的如
+123456789.234000
+
+希望變成
+123456
+6789.2
+34
+
+vue 的 data 取值還是能取得 123456789.234000 而不是 123456\n789.2\n34
+
+<<雲端佈署網站選擇建議>>
+
+最近建立了一個Blazor WebAssembly Hybrid 的應用程式，想佈署上雲資料庫使用MongoDB Atlas，檔案的儲存則使用AWS S3，網站內容為單純的商品圖瀏覽。
+想請問一般雲端佈署的選擇關於AWS EC2 與 AWS Elastic Beanstalk 考量點大概有那些。
+目前考量的點是技術上，若使用EC2全部環境都要自己弄會比困難點，但因資料庫已使用 MongoDB Atlas 排除DB的部分或許會比較容易!?
+如果使用EC2架設網站與使用Elastic Beanstalk，這兩個在價格上大概會差多少呢?
+目前的想法是覺得Elastic Beanstalk比較方便，但如果比較貴，會傾向試著學習使用EC2架設看看。
+第二個問題是因為程式使用C#寫的，之前有稍微使用過Azure App Service一鍵佈署，不清楚若是改為使用 AWS Elastic Beanstalk 是否也能像這樣方便。
+目前不太想考慮Azure的原因是個人覺得Azure的服務好像都比較貴一點，然後文件少就算了也不是那麼好懂，還是只是我誤會了，用微軟全家餐就好了呢?
+
+<<teams 內建麥克風無法輸入>>
+
+無法輸入電腦內建的麥克風聲音，但是外接便可以解決，使用錄音測試過是內建麥克風並沒有壞掉，是可以錄音的，但是在teams就是沒有聲音。
+依照過
+https://support.microsoft.com/zh-hk/office/%E6%88%91%E7%9A%84%E9%BA%A5%E5%85%8B%E9%A2%A8%E7%84%A1%E6%B3%95%E5%9C%A8-microsoft-teams-%E4%B8%AD%E9%81%8B%E4%BD%9C-666d1123-9dd0-4a31-ad2e-a758b204f33a
+的解決辦法問題依然存在
+
+<<LINE的「麥擱騙」羣組的貼文裏的連結為何能直接以外部瀏覽器開啟呢？>>
+
+我是在iPhone上的LINE加入「麥擱騙」羣組(@mygopen)，然後我發現在羣組上面的官方貼文裏面的連結點了之後是直接以外部瀏覽器，也就是Safari，來開啟的，並不是用LINE內建的瀏覽器來開。
+我印象中大家的常識是説要在URL加上一個叫做openExternalBrowser=1的參數，這樣LINE就會使用外部瀏覽器來開起連結，但是「麥擱騙」羣組並不需要這樣做，這是為什麼呢？
+舉例來説，使用openExternalBrowser=1的方法的URL像這樣
+https://ithelp.ithome.com.tw/articles/10340682?openExternalBrowser=1
+
+在「麥擱騙」羣組裏面如下面截圖
+
+那些https://mgp.care/開頭的連結點下之後就直接開起Safari來瀏覽了。
+其實我試過將「麥擱騙」羣組裏面的貼文分享到其他聊天室，然後在其他聊天室裏點那個連結之後是使用LINE內建的瀏覽器來開。
+所以，有人知道「麥擱騙」羣組是怎麼可以做到不用在URL加openExternalBrowser=1也可以使用外部瀏覽器開啟連結？
+
+<<求大大bat健檢>>
+
+我的需求大概就是N台電腦,想利用bat檢查電腦名稱的某兩個字元
+再透過這兩個字元來決定接下來要跑的安裝程式要走哪一台NAS
+@echo ON
+@mode con cols=130 lines=40
+@color 9f
+@chcp 65001
+
+rem 獲取電腦名稱
+set computerName=%COMPUTERNAME%
+
+rem 宣告NAS目錄及其對應的IP地址
+set NASDIRCA=1.1.1.1
+set NASDIRCB=2.2.2.2
+set NASDIRCC=3.3.3.3
+set NASDIRCD=4.4.4.4
+set NASDIRCE=5.5.5.5
+set NASDIRCF=6.6.6.6
+
+rem 宣告電腦名稱中的關鍵字
+set "keyword="
+
+rem 檢查電腦名稱中的關鍵字
+echo %computerName% | find /i "-CA" > nul
+if %errorlevel% equ 0 (
+    set keyword=CA
+)
+echo %computerName% | find /i "-CB" > nul
+if %errorlevel% equ 0 (
+    set keyword=CB
+)
+echo %computerName% | find /i "-CC" > nul
+if %errorlevel% equ 0 (
+    set keyword=CC
+)
+echo %computerName% | find /i "-CD" > nul
+if %errorlevel% equ 0 (
+    set keyword=CD
+)
+echo %computerName% | find /i "-CE" > nul
+if %errorlevel% equ 0 (
+    set keyword=CE
+)
+echo %computerName% | find /i "-CF" > nul
+if %errorlevel% equ 0 (
+    set keyword=CF
+)
+
+rem 如果找到匹配的關鍵字
+if not "%keyword%"=="" (
+    rem 獲取NAS目錄對應的IP地址
+    set "NASIPAddress=%%NASDIR%keyword%%%"
+    rem 安裝軟體
+    set "softwarePath=\\%NASIPAddress%\SW\TEST.exe"
+    start "%softwarePath%"
+)
+pause
+
+但是跑起來後變成最後面不代入QAQ
+set "softwarePath=\\SW\TEST.exe"
+start ""
+有大大能大腿抱一下嗎?
+Active code page: 65001
+
+C:\Users\Admin\Desktop>rem 獲取電腦名稱
+
+C:\Users\Admin\Desktop>set computerName=P15-CF1524
+
+C:\Users\Admin\Desktop>rem 宣告NAS目錄及其對應的IP地址
+
+C:\Users\Admin\Desktop>set NASDIRCA=1.1.1.1
+
+C:\Users\Admin\Desktop>set NASDIRCB=2.2.2.2
+
+C:\Users\Admin\Desktop>set NASDIRCC=3.3.3.3
+
+C:\Users\Admin\Desktop>set NASDIRCD=4.4.4.4
+
+C:\Users\Admin\Desktop>set NASDIRCE=5.5.5.5
+
+C:\Users\Admin\Desktop>set NASDIRCF=6.6.6.6
+
+C:\Users\Admin\Desktop>rem 宣告電腦名稱中的關鍵字
+
+C:\Users\Admin\Desktop>set "keyword="
+
+C:\Users\Admin\Desktop>rem 檢查電腦名稱中的關鍵字
+
+C:\Users\Admin\Desktop>echo P15-CF1524   | find /i "-CA"  1>nul
+
+C:\Users\Admin\Desktop>if 1 EQU 0 (set keyword=CA )
+C:\Users\Admin\Desktop>echo P15-CF1524   | find /i "-CB"  1>nul
+
+C:\Users\Admin\Desktop>echo P15-CF1524   | find /i "-CC"  1>nul
+
+C:\Users\Admin\Desktop>echo P15-CF1524   | find /i "-CD"  1>nul
+
+C:\Users\Admin\Desktop>if 1 EQU 0 (set keyword=CD )                                                                
+                                   
+C:\Users\Admin\Desktop>echo P15-CF1524   | find /i "-CE"  1>nul                                                   
+                                   
+C:\Users\Admin\Desktop>if 1 EQU 0 (set keyword=CE )                                                                
+                                   
+C:\Users\Admin\Desktop>echo P15-CF1524   | find /i "-CF"  1>nul                                                   
+                                   
+C:\Users\Admin\Desktop>if 0 EQU 0 (set keyword=CF )                                                                
+                                 
+C:\Users\Admin\Desktop>rem 如果找到匹配的關鍵字                                                                    
+                                
+C:\Users\Admin\Desktop>if not "CF" == "" (                                                                         
+rem 獲取NAS目錄對應的IP地址                                                                                             
+ set "NASIPAddress=%NASDIRCF%"                                                                                          
+ rem 安裝軟體                                                                                                           
+ set "softwarePath=\\\SW\TEST.exe"                                                                                      
+ start ""                                                                                                               
+)                                                                                                                       
+                           
+C:\Users\Admin\Desktop>pause                                                                                       
+Press any key to continue . . .                                
+
+
+<<請問有推薦的雲端虛擬主機嗎?>>
+
+大家好
+想請問大家有推薦的雲端虛擬主機嗎?
+我的需求是，可以安裝程式的虛擬主機。
+需要像是平常的電腦使用方式，也可以設定工作排程。
+因為有些好像只能用cPanel去操作?
+感謝大家
+
+<<【感謝費50$】IT邦幫忙是否能支持付費懸賞問題功能? (如: 掛N元問題，解決問題自動將N元給最佳回答者)>>
+
+IT邦幫忙是否能支持付費懸賞問題功能? (如: 掛N元問題，解決問題自動將N元給最佳回答者)
+或是有類似網路鏈接，可以給一串網頁或是其它方式，可以讓我私密回答者，給他感謝費用
+嘗試，本問題最佳回答者，可以私密我支付方式，我會轉賬給您 (應該不會有資安或是稅的問題吧?)
+
+<<投影機連接電腦，excel全屏模式下會一閃一閃情況?>>
+
+近期發現投影機連接電腦
+假如excel開全屏模式下會一亮一暗(像是一閃一閃)情況
+不最大化就沒這問題，請問如何解決此情況?
+投影機型號 VPL-EX453 https://99aplus.tarad.com/products_detail/view/6983458
+
+<<第一次用VUE， 如何將html改成Javascript>>
+
+完全沒用過javascript，不知道要如何開始
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<link rel="stylesheet" href="layout.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+        /*position: relative;*/
+    }
+
+    header {
+        background-color: white;
+        height: 140px;
+        position: relative;
+    }
+
+    header .dropbtn {
+        font-size: 18px;
+    }
+
+    .sticky-header {
+        padding: 10px;
+        text-align: center;
+        position: fixed;
+        width: 85%;
+        top: 0;
+        z-index: 1;
+        /* 确保标题在内容之上 */
+    }
+
+    .scrolling-content {
+        padding: 20px;
+        margin-top: 50px;
+        /* 为内容留出标题的空间 */
+        overflow-y: scroll;
+        /* 让内容区域可以滚动 */
+        height: calc(100vh - 50px);
+        /* 设置内容区域高度，确保内容在标题下面 */
+    }
+
+    header img {
+        border: white;
+        width: 100px;
+        height: 100px;
+    }
+
+    header .dropdown {
+        /*background-color: rgb(242, 255 ,0);*/
+        right: -245px;
+        bottom: -80px;
+    }
+
+    /*header nav a{
+            background-color: darkblue;
+            color: #fff;
+            font-size: 18px;
+            letter-spacing: 1px;
+            padding: 10px 20px;
+            display: block;
+            float: left;
+            text-decoration: none;
+            border-radius: 8px 8px 0 0;
+            border: 1px solid red;
+            margin: 0 3px;
+            margin-top: 20px; 
+        }*/
+
+    header .dropdown-content a {
+        background-color: white;
+        color: black;
+        font-size: 12px;
+        letter-spacing: 2px;
+        padding: 10px 12px;
+        border-radius: 8px 8px 0 0;
+        margin-left: 5px;
+        transition: .2s;
+    }
+
+    header .dropdown-content a:hover {
+        padding-bottom: 30px;
+    }
+
+    body>nav {
+        background-color: white;
+        color: #fff;
+        height: 60px;
+        position: sticky;
+        top: 0;
+    }
+
+    main {
+        background-color: white;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        margin-top: 400px;
+    }
+
+    aside {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    aside a {
+        text-align: right;
+    }
+
+    main aside {
+        background-color: white;
+        float: right;
+        width: 20%;
+        padding: 10px;
+    }
+
+    main video {
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .content {
+        background-color: white;
+        width: 80%;
+        padding: 20px;
+        margin: 4%;
+    }
+
+    .content img {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .content h1 {
+        font-size: 2em;
+        margin: 0 0 20px;
+        margin-top: 20px;
+    }
+
+    .content figure {
+        letter-spacing: 1px;
+        line-height: 1.5;
+        text-align: justify;
+        margin-top: 3px;
+    }
+
+    .gomore {
+        background-color: white;
+        color: black;
+        padding: 8px;
+        border: none;
+        font-size: 18px;
+        letter-spacing: 2px;
+        padding: 10px 12px;
+        border-radius: 8px 8px 0 0;
+    }
+
+    footer {
+        background-color: darkblue;
+        color:#fff;
+        text-align: center;
+        padding: 1em;
+    }
+
+    .footer-content{
+        margin-left: 20px;
+    }
+
+    img {
+        width: 25%;
+        height: 300px;
+        margin-top: auto;
+        margin-bottom: auto;
+        float: left;
+    }
+
+    /* 按鈕樣式 */
+    .dropbtn {
+        background-color: white;
+        color: black;
+        padding: 10px 10px;
+        border: none;
+    }
+
+    .dropbtn img {
+        width: 15px;
+        height: 15px;
+        float: right;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    /* 下拉菜單容器 */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* 下拉菜單內容（隱藏起來） */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    /* 下拉菜單內容中的選項 */
+    .dropdown-content a {
+        padding: 12px 16px;
+        text-align: left;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* 滑鼠懸停時，顯示下拉菜單內容 */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+</style>
+
+        <!-- 左右方向鍵 -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#sec1Slider" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#sec1Slider" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+
+        <!-- 換頁控制器 -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#sec1Slider" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#sec1Slider" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#sec1Slider" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#sec1Slider" data-bs-slide-to="3" aria-label="Slide 3"></button>
+        </div>
+    </div>
+</section>
+
+<header class="sticky-header">
+    <div class="header">
+        <img src="./images/02.png" alt="./images/02.png">
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">
+            <a class="gomore" href="https://www.itsesg.com/" target="_blank">首頁</a>
+        </button>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">
+            產品介紹
+        </button>
+        <div class="dropdown-content">
+            <a href="test003.html">BAS建築自動化系統</a>
+            <a href="test004.html">雲管家物管系統</a>
+            <a href="text005.html">AI智能影像辨識系統</a>
+            <a href="text006.html">智慧綠建築顧問</a>
+            <a href="text007.html">健康建築顧問</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">
+            專案
+        </button>
+        <div class="dropdown-content">
+            <a href="text008.html">成功案例</a>
+            <a href="text008.html">團隊證照</a>
+            <a href="text008.html">專業顧問群</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">
+            聯絡我們
+        </button>
+        <div class="dropdown-content">
+            <a class="gomore" href="test002.html" target="_blank">聯絡我們</a>
+        </div>
+    </div>
+
+</header>
+
+<main class="scrol-+ling-content">
+    <div class="content">
+        <hr class="my-4">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 mb-3">
+                <div class="card">
+                    <img class="card-img-top" src="images/01.jpg" alt="./images/01.jpg">
+                    <div class="card-body">
+                        <h5 class="card-title text_limit2">BAS建築自動化系統</h5>
+                        <a href="test003.html" class="btn btn-primary">More...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-3">
+                <div class="card">
+                    <img class="card-img-top" src="images/07.jpg" alt="./images/07.jpg">
+                    <div class="card-body">
+                        <h5 class="card-title text_limit2">雲管家物管系統</h5>
+                        <a href="test004.html" class="btn btn-primary">More...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-3">
+                <div class="card">
+                    <img class="card-img-top" src="images/08.jpg" alt="./images/08.jpg">
+                    <div class="card-body">
+                        <h5 class="card-title text_limit2">AI智能影像辨識系統</h5>
+                        <a href="text005.html" class="btn btn-primary">More...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-3">
+                <div class="card">
+                    <img class="card-img-top" src="images/09.jpg" alt="./images/09.jpg">
+                    <div class="card-body">
+                        <h5 class="card-title text_limit2">智慧綠建築顧問</h5>
+                        <a href="text006.html" class="btn btn-primary">More...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text_limit2">健康建築顧問</h5>
+                        <a href="text007.html" class="btn btn-primary">More...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h1>ITsESG 官網影片</h1>
+        <video id="test" controls width="640" height="360">
+            <source src="001.mp4" type="video/mp4">
+        </video>
+</main>
+
+<script src="script.js"></script>
+
+<footer>
+    <p>Copyright ©2023 ITsESG Corporation 版權所有</p>
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-10 col-lg-10">
+                    <div class="footer-content">
+                        <ul>
+                            <li><a href="text009.html">About Us</a></li>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+
+<<sugarhosts要怎麼進到操作畫面?>>
+
+大家好，
+想請問大家，
+這兩天買了sugarhosts的VPS的服務，
+主機架設在
+Cloud L1 (US-WEST)
+雲端主機（北美洲西部）
+
+安裝的作業系統是Ubuntu 22.04 LTS
+想請問要怎麼進到裡面去?
+爬文後，有人說左邊有cPanel可以進去，
+但是我的卻沒有..
+
+想再請問，如果進去後，它有像是windows的介面(桌面、電腦、資料夾..等)嗎?
+還是只能用cPanel?
+
+<<Exchange的log....>>
+
+有邦友知道要怎麼export Exchange的log嗎??  鵝有user要查mail為何會外流,因為賣Exchange的廠商只回了一句他沒查到就把球踢掉了,變成鵝要幫user看log(鵝跟Exchange一點都不熟啊),但是用"export-messagetrackinglog -start xxxx -end oooo"出來的東西看來只有RPC over HTTP的部份,沒看到真正收發信相關的log(i.e.類似標準的imap/pop3/smtp),有能人異士可以幫鵝指點一下迷津嗎....
+
+<<關於 CSS BEM 的選擇器設定>>
+
+如果我要設定表格儲存格的樣式，
+通常是設定成
+.table td { ... }
+但 CSS BEM 建議不要設定元素選擇器的樣式，
+只要使用 class，
+那我是要每個儲存格都設定 class 嗎？
+.table__cell { ... }
+那麼多儲存格設定下來，好像不太好？
+
+<<ERP 進銷項憑證產生筆數異常>>
+
+請問各位大神
+我們這個月要做進銷項憑證產作業
+產生後的筆數只有個位數
+明顯不符合應有筆數
+有可能是什麼原因造成這個結果呢?
+感謝
+
+<<WIN10ㄅ半輸入法無法輸入中文>>
+
+我在WIN10 22H2底下用登錄檔的方式新增ㄅ半輸入法
+不過在一些地方無法輸入中文 只能輸入英文
+
+嘗試過把新注音移除 也是不行
+換台電腦嘗試也是一樣
+ㄅ半登錄檔語法如下
+Windows Registry Editor Version 5.00
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP{B115690A-EA02-48D5-A231-E3578D2FDF80}\LanguageProfile\0x00000404{761309DE-317A-11D4-9B5D-0080C882687E}]
+"Description"="Chinese (Traditional) - Phonetic"
+"Display Description"=hex(2):40,00,25,00,53,00,79,00,73,00,74,00,65,00,6d,00,
+52,00,6f,00,6f,00,74,00,25,00,5c,00,53,00,59,00,53,00,54,00,45,00,4d,00,33,
+00,32,00,5c,00,69,00,6e,00,70,00,75,00,74,00,2e,00,64,00,6c,00,6c,00,2c,00,
+2d,00,35,00,30,00,36,00,36,00,00,00
+"IconFile"=hex(2):25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,
+74,00,25,00,5c,00,53,00,59,00,53,00,54,00,45,00,4d,00,33,00,32,00,5c,00,69,
+00,6d,00,65,00,5c,00,49,00,4d,00,45,00,54,00,43,00,5c,00,49,00,6d,00,54,00,
+43,00,54,00,69,00,70,00,2e,00,44,00,4c,00,4c,00,00,00
+"IconIndex"=dword:00000000
+"Enable"=dword:00000000
+"ProfileFlags"=dword:00000004
+
+<<新手如何學程式記憶深刻>>
+
+困難python遇到很多長串英文代碼該如何英文記憶
+
+<<網頁接Google第三方登入問題>>
+
+小弟利用HTML製作Google第三方登入，按下登入以後確實會有Popup，並且可以選擇帳號後自動關掉Popup視窗，但完成之後卻沒有執行onSignIn Function，他好像被判斷為用戶手動關閉，試過了好幾次都一樣，請問有什麼解法嗎?
+https://upload.cc/i1/2023/11/12/C4HiZJ.png
+Google Cloud設定上Localhost也有弄到授權名單
+https://upload.cc/i1/2023/11/12/0TXNZx.png
+CODE如下
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="XXXXXXXXXXXXX"> <!-- XXXXXXXXXXXXX為Client ID-->
+    <title>Document</title>
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="profileinfo"></div>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <script>
+        function onSignIn(googleUser){
+            var profile = googleUser.getBasicProfile();
+
+            $("#profileinfo").append("<h2>Name- " + profile.getName() + "</h2>");
+            $("#profileinfo").append("<img style='width: 150px;height:150px' src='"+profile.getImageUrl()+"'><br><br>");
+            $("#profileinfo").append("<p>Your email is: "+profile.getEmail()+"</p>");
+        }
+    </script>
+    <br>
+    <button type="button" class="btn btn-danger" onclick="signOut();">Sign Out</button>
+    <script>
+        function signOut(){
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function(){
+                console.log("User signed out.");
+            $("#profileinfo").empty();
+            $("#profileinfo").append("<h2>Signed Out.</h2>")
+            })
+        }
+    </script>
+</body>
+</html>
+
+
+<<Jenkins跑Katalon會一直loading>>
+
+大家好
+我在用Jenkins跑Katalon的自動化測試一直失敗 , 都會在在某個地方一直loading(End appending additional signatures ...)
+我的作法如下 :
+1.先在Katalon的Test Suites , 將要執行的suite點擊"Generate Command" , 並複製command
+2.接著打開Jenkins , 建立一個job , 建置步驟選擇"執行 Windows 批次指令" , 內如是第1行先cd到我安裝Katalon的位置 , 第2行是開啟Katalon.exe(這裡不開啟直接執行command會跳"Katalonc不是內部指令") , 第3行是剛剛複製的command(如附件1)
+
+3.其他設定我都沒特別去設定 , 就按"儲存" , 然後再按"馬上建置"
+4.結果就是跑到一半後就一直loading , 看Console也看不出個所以然來(如附件2)
+
+想問各位大神我是哪裡少做設定還是哪裡寫錯?!
+
+<<excel檔案，裡面有3個活頁簿 如何才能讓3個活頁簿分別獨立出現成3個視窗呢？>>
+
+我有一個excel檔案，裡面有3個活頁簿
+如何才能讓3個活頁簿分別獨立出現成3個視窗呢？（windows 工作列也是3個）
+
+<<Hyper-V 不能修改MAC地址為 C9-ED-D0-CE-BF-7F?>>
+
+出現錯誤無法修改設備"Synthetic Ehernet Port"
+
+確認內網沒有用到過此MAC
+修改為 C8-ED-D0-CE-BF-7F、C6-ED-D0-CE-BF-7F、C4-ED-D0-CE-BF-7F可以
+改為 C1-ED-D0-CE-BF-7F、C3-ED-D0-CE-BF-7F、C5-ED-D0-CE-BF-7F不可以
+以前可以修改，也一直使用，上周突然被修改成 01-..-..-..-..-.. mac 之後就不能改過來
+
+
+
+
+<<[解決]windows2019 利用工作排程器,執行(.bat) winscp 無法工作>>
+
+您好
+windows2019 使用winscp 將本機的目錄夾FTP到外部NAS,
+若利用工作排程器自動執行(.bat)無法成功 ,
+手動直接執行(.bat)成功,
+請問哪裡設定錯誤或是哪裡出錯?
+先謝謝您的幫忙!
+set LOCAL_FILE=M:\data\
+set REMOTE_DIR=/bak/
+
+echo open ftp://%FTP_USER%:%FTP_PASSWORD%@%FTP_SERVER% > winscp_script.txt
+echo lcd %LOCAL_FILE% >> winscp_script.txt
+echo cd %REMOTE_DIR% >> winscp_script.txt				
+echo put  -preservetime "%LOCAL_FILE%" >> winscp_script.txt 				
+echo exit >> winscp_script.txt	
+%WINSCP_PATH% /script=winscp_script.txt 
+				
+del winscp_script.txt
+
+[解決]
+winscp_script.txt 改成 c:\winscp\winscp_script.txt
+
+<<synology 掛載成網路硬碟 檔案不同步問題>>
+
+有人遇過我將Synology的NAS掛載成網路硬碟，同時也有使用桌面版synology drive client做同步任務
+這邊會發現兩邊的檔案會不同步，例如我在掛載網路硬碟上有看到資料夾。桌面版本的則沒有
+但是經過約10~20分鐘才會兩邊正常。
+有人遇過要等這麼九兩邊才會資料同步的嗎?
+
+<<有無辦法 讓USB 只能讀但不能寫?>>
+
+有需求是只能讀取USB但是不能寫入
+只有幾台電腦需要這樣 因為目前我把大家的USB孔透過登錄檔關閉
+所以不知道能不能只設定讀但是不能寫這樣的功能謝謝
+
+-------------------------------------第5頁-------------------------------------
+<<SRAM不足問題>>
+
+我在修改程式碼時出現以下Error Messager(具同仁所說是SRAM不足)，想請教我們已經打算換新的MCU，IAR上我也更新MCU型號，但是依舊Build不過，想請問可能原因。
+
+
+<<excel 折線圖、散布圖中，如何讓即時資料的最後一筆圖示標籤呈現不一樣的顏色或形狀>>
+
+excel 折線圖、散布圖中，如何讓即時資料的最後一筆圖示標籤呈現不一樣的顏色或形狀，只有最後一個而已哦，下一秒有新資料時，它又能恢復正常顏色，這該怎麼做呢？
+
+
+<<在VS安裝此套件後出錯：CommunityToolkit.Mvvm>>
+
+請問這是什麼問題?
+不可從 C:\Users\hans.huang.nuget\packages\communitytoolkit.mvvm\8.2.2\analyzers\dotnet\roslyn4.3\cs\CommunityToolkit.Mvvm.SourceGenerators.dll 建立分析器 CommunityToolkit.Mvvm.SourceGenerators.AsyncVoidReturningRelayCommandMethodAnalyzer 的執行個體: 無法載入檔案或組件 'System.Collections.Immutable, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' 或其相依性的其中之一。 系統找不到指定的檔案。。	TestCommunityToolkit (net6.0-android)	D:\Xamarin\TestCommunityToolkit\CSC	1	作用中
+
+<<PHP如何將資料庫tree寫出網頁排序>>
+
+我的資料庫結構如下
+cid  pid  name
+1     0     aa
+2     1     bb
+3     2     cc
+4     1     dd
+
+要如何寫出如下的html
+<select name="pid">
+<option value="0">----</option>
+<option value="1">aa</option>
+<option value="2">-bb</option>
+<option value="3">---cc</option>
+<option value="4">-dd</option>
+</select>
+
+
+<<ChatGPT(免費版)今天是不是陣亡一整個下午了?>>
+
+
+只能靠Copilot了
+
+<<MSSQL 多PIVOT或　EXCEL 樞紐呈現問題>>
+
+您好：
+如下圖，結果想要如圖又編那樣呈現
+請問
+1.MSSQL　內有辦法
+　以　部門，國籍，日期　當基礎
+PIVOT　多個欄位　嗎？
+2.EXCEL樞紐 似乎也無法　做到
+生產部	本國	上班
+　　　　	　加班
+　　　漏刷次數
+　　　工作人數
+因為他會層　階層展開
+或是　如圖二，在值的呈現，以直行呈現嗎？
+圖一
+　
+圖二
+
+
+<<WIN7 安裝分享印表機出現 0x00000709>>
+
+請問前輩,我在WIN7的作業系統上 安裝由 WIN10 分享的印表機 會出現下以下的訊息
+應該是與WIN7更新有關係,我是更新後無法連接的
+
+在google大神已經找了很多的方法了,測了4.5個小時,依然不行
+
+有人說 是安裝了 KB4048957 及 KB4048960 的關係 但我在更新檔裡也未找到這2支的更新
+我下載了 KB4055038 也不給我安裝
+請問到底問題是出在那裡呢??
+
+<<有關EXCEL的自動有順序換行>>
+
+請問一下高手們，如下圖所示，我希望可以照圖上的方式順序下來，儲存格裡面會是擷取出來的數值，GOOGLE了一段時間了，但還是無法完成，希望各位高手們幫幫忙一下，謝謝。
+
+各位高手們，你們誤會了我的意思，我的意思是1輸入完接到2，以此類推，並不是直接出來1~15，我的儲存格裡是電子式擷取的數字，需要照這個順序，再麻煩各位高手，謝謝。
+
+<<adobe 疑問>>
+
+今天安裝adobe ai跟 ps的時候出現以下問題，但我windows版本明明是22H2，他卻說版本不符合，想問有人有遇到相同問題嗎?
+!
+
+<<platform.c檔事做甚麼的?>>
+
+最近看到公司的source code中有一個platform.c檔查了很多資料但是每個人給的答案都不一樣，據說是跟硬體有關，想請教其功能是甚麼?
+
+<<excel VBA 中應該如何寫才能達到使用類似可以跳到指定範圍的效果，而不是選擇A1的儲存格>>
+
+我希望能夠用VBA寫入程序讓滑鼠指定到A1的儲存格的時候能出現白色小手的功能，且以點擊的作用進行跳到連結的位置，而不是選擇該範圍，這該如何寫呢？
+雖然這個vba寫法會圈選A8儲存格，但不是我要的
+Sheets("工作表1").Select
+Range("A1").Select
+Application.Goto Reference:="R8C1"
+請問有辦法寫入VBA讓可以用類似Hyperlink的方式連結而不是Select嗎？
+
+
+
+
+<<Line登入問題>>
+
+line舊賬號綁了fb（還能操作），手機號碼現在沒辦法用了，現在用fb登入要我轉移賬號，可是舊賬號現在沒有在其他地方登入，怎麼解？只能寫信了嗎？
+
+<<unifi ap忘記帳密了，能否清除>>
+
+各位先進好
+小弟公司前人設定好unifi ap
+但沒有留文件下來
+結果現在要作ap的進階接管，沒有帳密無法接管成功
+
+
+有看到可以作「清除」，但這會還原原廠設置
+在擔心這樣會不會讓這個unifi network整個打掉重來
+所有的設定皆跑掉？
+到時公司網路布署整個就gg了
+還請各位有這方面操作經驗的大大們給予一些方向
+看是該如何設定這個unifi ap，使之可以上線被管理
+萬分感謝
+
+<<電腦的網路不穩定，檔案打不開>>
+
+我們公司有分作生產區與辦公區，分別使用不同的網段連線到位於辦公區的伺服器與NAS，假設目前辦公區為192.168.1.XXX而生產區為192.168.2.XXX，但是大家都需要用到的公共資料庫為192.168.1.200卻在生產區使用的網段有連線不穩定的情況發生，可以一直Ping 的到192.168.1.200但是卻有時候會在開檔案時出現異常，每天都會發生，但不會時時刻刻發生，突然就不能用，等待幾分鐘由時候就可以用了，會出現如說權限不足無法開啟、檔案遺失或沒找到檔案異常，而如果把生產區使用的網段改到辦公區的就很順利完全不會有錯誤，可能是什麼情況呢，因為最開始是其中一台電腦的excel檔案有問題，有更換了作業系統、硬碟與資料檔，但都沒改善，有將網路線更新成CET6的線，問題依然存在。
+因為有一些問題，無法拍照說明，所以我畫了一張圖，其中生產區的SWITCH 是使用MikroTik，D-link的設備，辦公區是使用HP設備，雙方交換的SWITCH是HP的
+
+
+<<MySQL連線遺失帳秘問題>>
+
+網站是客人以前找別的工程師開發的
+我只是接手維護
+裡面有不少古老的寫法
+資料庫連線用的還是mysql，連mysqli都不是
+但是網站龐大，只能盡量修修補補，不太可能對其進行徹底翻新
+問題是這樣的
+由於網站內容，該網站會在深夜達到流量巔峰
+最近客戶反應，網站會出現錯誤訊息
+看了一下是資料連線失敗的訊息
+於是添加失敗時寫入錯誤訊息到文字檔中
+查看後發現錯誤訊息大部分如下:
+Error Code: 1045
+Error Message: Access denied for user ''@'localhost' (using password: NO)
+??????
+帳號密碼變成空白??
+我確定資料庫的帳密是正確的，而且出錯的部分平常開啟也都是正常的
+可以確定的是同一秒會出現多筆錯誤紀錄
+看起來好像是太多人同時瀏覽出現的問題
+仔細找一下
+果然在密密麻麻的紀錄中找到
+Error Code: 1040
+Error Message: Too many connections
+想請教，如果連線數量超過上限，會導致上述的帳密錯誤的發生嗎?
+除了調整連線數和timeout秒數外，有甚麼其他方法可以避免類似的情況發生嗎?
+另外，根據Google到的資訊顯示，PHP在頁面執行完成後，會自動切斷mysql的連線，所以沒有特意使用mysql_close()的必要，請問是這樣嗎?
+
+<<MySQL json 格式的 wildcard 搜尋問題>>
+
+資料庫有三筆資料
+
+[{"key": "field_1", "value": "test_1"}, {"key": "field_2", "value": "test_2"}]
+[{"key": "field_1", "value": "1"}, {"key": "field_2", "value": "test_2"}]
+[{"key": "field_2", "value": "test_2"}, {"key": "field_1", "value": "test_1"}]
+
+我想達到的結果為 "key" = "field_1" and "value" like "%est%"，也就是說只有 1 跟 3 符合，目前查了 MySQL 的 function 只有 json_search 有 wildcard 的功能，目前我卡在：
+select *
+from `table`
+where json_contains(metadata, '[{"key": "field_1"}]') and json_search(metadata, 'one', '%est%', null, '$[*].value') is not null
+
+這樣還是三筆都會找到，要把 $[*].value 裡面的 * 帶到符合 "key": "field_1" 那個 index 才是解答，想請教有沒有比較好的 function 可以做到這件事，謝謝。
+
+<<如何更改FortiAP的LLDP?>>
+
+您好,
+之前用的Fortinet資安鐵三角組合如下:
+FG-108D-POE, FS-108D-POE, FAP-231F(接在108D後面)
+今天嘗試將FS-108D-POE換成FS-108F,
+但遇到一個問題,
+FAP-231F始終一直處於offline狀態,
+但已確定FS-108F顯示接FAP-231F的port8是online的狀態,
+因此初步判定是FAP-231F設定的問題,
+然後我進設定就看到LLDP用的仍是FS-108D,
+所以我懷疑是因為這樣而導致FAP-231F無法online,
+但我找了一下都沒看到如何更改那個LLDP到108F上,
+所以就上來尋求協助,
+請問要如何調整LLDP到108F上呢?
+謝謝.
+
+
+
+<<node.js下載vue錯誤>>
+
+哪裡錯了
+
+
+<< Windows 11  的環境下用GMAIL 去收發信iCloud  信件>>
+
+專家您好,
+想請教一下, 公司長官要求在Windows 11 PC 的環境下, 用GMAIL 去收發信Apple 的iCloud 信箱, 但是GMAIL在 Chrome 瀏覽器下， 只能將信片用匯入的狀態匯到某個 GMAIL 信箱,而不是直接去開啟.
+想請問是否能像安卓手機一樣 GMAIL 只是一個APP, 可以直接去開啟外部信箱, 而不用綁在現有GMAIL信箱之中。
+當然GOOGLE WORKSPACE 可以做的到, 但是費用太貴了.
+謝謝您的指導.
+
+<<ERP盤點底稿無法取消確認>>
+
+盤點底稿無法取消確認
+有查過沒有對應的庫存調整單
+按取消確認時出現此訊息
+
+這通常是在做確認的時候就出現的訊息
+但現在卻在取消確認時出現
+無法做取消確認的動作，也無法修改或作廢這張盤點底稿
+請問各位大師，這該如何解
+謝謝
+
+<<M365 Exchange online 可以不使用嗎? 沿用原有的郵件服務器>>
+
+您好
+公司最近評估導入微軟的M365商務表準版，需要用到裡面的office與teams服務，請問是否可以沿用公司舊有郵件服務器來收發信件與 teams 所發出的邀請嗎? 若可以，可以指導如何設置嗎? 謝謝
+
+<<EXCEL 樞紐分析表，計算欄位問題請教>>
+
+您好：
+如下圖
+我想於日期後面 ，加欄位
+把 某個人， 他加班的日期，是一般 的加總
+假日的 加總
+這樣該如何做?
+謝謝
+
+
+
+<<C#/Java/JS/C 程序 excel/word 轉 pdf>>
+
+目前用LibreOffice的dll轉換office=>PDF
+但跑版問題太嚴重 (不知道為何都到7.6.2版本，跑版問題還是沒解決..)
+請問還有什麼免費不跑版的解決方案嗎?
+
+<<VS code 括弧著色功能 沒辦法使用>>
+
+有下載擴充套件Bracket Pair Color DLW 可是沒辦法使用
+也有透過VS內建的去修改括號的顏色 但重新啟動後也是沒有顏色
+"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+"workbench.colorCustomizations": {
+    // 層級括號顏色，從 1 至 6 層，此處只設定了 5 層
+    "editorBracketHighlight.foreground1": "#7777ff",
+    "editorBracketHighlight.foreground2": "#8a2be2",
+    "editorBracketHighlight.foreground3": "#DC143C",
+    "editorBracketHighlight.foreground4": "#5eaaa8",
+    "editorBracketHighlight.foreground5": "#800080",
+    // 異常括號的顏色，比如多出來的結尾括號
+    "editorBracketHighlight.unexpectedBracket.foreground": "#ffffff",
+}
+
+內建的括弧顏色寫法，我是看網路上別人教的方式
+我覺得顏色對於可讀性蠻重要的，希望有大神可以幫忙解決這個問題!!
+小弟目前在寫的是java
+
+<<趣味SQL又來了 統計時段訂便當  時段是不規則的>>
+
+承接上次 https://ithelp.ithome.com.tw/questions/10214403
+這次時段改成不規則的方式.
+
+歡迎大家來挑戰看看.
+
+<<網頁爬蟲如何下載檔案>>
+
+請問大大
+當我們使用爬蟲後，看到javascript:Download('CFswBQsuGB8DDBcHBQAAODMJGRwUBQMbCycDDhIyGA4KGBIqHgoyATwPAAMELzBeWDkiDwIJFw8JHB8JJT07BQslCR1HXHtPFgUV')
+除了用Click點擊下載外，有沒有辦法知道URL，在背景後下載
+用Click程式不知道它下載玩了沒，就會繼續執行下一個程式，或是可以知道檔案下載完成
+
+
+<<outlook封存不完整>>
+
+我使用outlook進行封存，但是照理說所選日期前的信件都應該封存進去，但卻發現遺漏了很多信甚至都沒有封存，請問原因為何，感謝各位解答。
+
+<<在 armhf 架構 linux 平台上建立 flutter 開發環境需要有那些東東？>>
+
+小弟是做BSP的
+APP團隊要求提供在 armhf 架構 linux(debian 9.0) 平台上可開發 flutter 的開發環境
+上網查了一下但其實不是很明白到底需要些什麼,因 flutter 對 armhf 不是很友好
+很多都要自編譯或是給一堆散檔需自行處理
+目前知道除了需要自編譯針對 armhf 的 flutter engine ( 因無 armhf deb 包 )
+執行大概如下配置後
+./flutter/tools/gn 
+--target-sysroot $HOME/flutter-engine/sdk/sysroot 
+--target-toolchain $HOME/flutter-engine/sdk/toolchain 
+--target-triple arm-linux-gnueabihf 
+--target-os linux 
+--linux-cpu arm 
+--embedder-for-target 
+--no-prebuilt-dart-sdk 
+--enable-fontconfig 
+--disable-desktop-embeddings 
+--no-lto 
+--no-goma 
+--runtime-mode release 
+--arm-float-abi hard
+將編譯後之產物
+icudtl.dat               放到目標機的  /usr/lib/
+libflutter_engine.so     放到目標機的  /usr/lib/
+flutter_embedder.h       放到目標機的  /usr/include/
+從 https://dart.dev/get-dart/archive 抓下來的 (因無 armhf deb 包)
+dart armv7 壓縮包 dartsdk-linux-arm-release.zip 解壓後放到目標機的  /usr/lib/
+提供給APP團隊開發 flutter ,這樣的環境就行了嗎?
+還有需要些什麼嗎?
+Thanks.
+
+<<看不懂的見頭函式請教>>
+
+來源bootstrap網站
+https://getbootstrap.com/docs/5.3/forms/validation/
+(() => {.....})()
+提問1 轉換成傳統的function函式會是什麼樣？
+提問2 尾端的() 是什麼作用？
+(() => {
+  'use strict'
+
+  const forms = document.querySelectorAll('.needs-validation')
+
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+
+
+<<在 create-react-app 專案內使用 dynamic import / import() 遇到 module not found 的錯誤>>
+
+請教各位
+我用 react-create-app 建立專案
+想從 url 片段中取一部分值 然後顯示對應資料夾內的圖片
+像這樣
+// 假設首頁是這個網址
+pseudo.com
+// 在這個網址時就顯示名為 projectName 資料夾內的圖片
+pseudo.com/categoryName/projectName
+
+我用 react-router-dom 處理路由
+用 useLocation 這個 Hook 來取得 routing 間傳遞的 data
+但會顯示 module not found error
+import() 的部分（會出現 module not found 錯誤）
+function ImageGallery({ galleryDirectory }) {
+  const [images, setImages] = useState([]);
+  useEffect(() => {
+    const loadImages = async () => {
+      try {
+        const imageContext = await import(
+          `./img/portfolio/${galleryDirectory}`
+        );
+        const imagePaths = imageContext.keys();
+        const imageComponents = await Promise.all(
+          imagePaths.map(async (path) => {
+            const module = await import(
+              `./img/portfolio/${galleryDirectory}/${path.slice(2)}`
+            );
+            const imageSrc = module.default;
+            return <img keys={path} src={imageSrc} alt={path} />;
+          })
+        );
+        setImages(imageComponents);
+      } catch (error) {
+        console.error("error loading images:", error);
+      }
+    };
+    loadImages();
+  }, [galleryDirectory]);
+  return <>{images}</>;
+}
+
+export default ImageGallery;
+
+如果用 require.context() 而不是import()的話 其中 directory 似乎不能是變數?
+require.context(
+  directory,
+  (useSubdirectories = true),
+  (regExp = /^\.\/.*$/),
+  (mode = 'sync')
+);
+
+資料夾結構
+public/
+src/
+  api/
+    projectData.js
+  img/
+    portfolio/
+      graphic1/
+        graphic_1.jpg
+        graphic_2.jpg
+        ...
+      web1/
+        web_1.png
+        web_2.jpg
+        ...
+  App.js
+  ImageGallery.js // 進行 import() 的檔案
+  SingleProject.js
+  index.js
+
+提供 package.json 版本資訊
+"dependencies":{
+    ...
+    "react": "^18.2.0",
+    "react-router-dom": "^6.14.2",
+    ...
+}
+"devDependencies": {
+    ...
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+}
+
+另外附上線上demo的codesandbox
+謝謝！
+
+-------------------------------------第6頁-------------------------------------
+<<請問如何將mysql的資料庫轉成sqlite3的資料庫>>
+
+網路上找了一些工具
+轉換後資料的屬性（int,text) 不見了，還有forrign key也會不見
+請問有好的方法嗎
+謝謝！
+
+<<redmine email 发送邮件时发生错误 (530-5.7.0 Authentication Required. Learn more at )>>
+
+我照網路上文章
+把我的configuration.yml
+production:
+email_delivery:
+delivery_method: :smtp
+smtp_settings:
+enable_starttls_auto: true
+address: "smtp.gmail.com"
+port: 587
+domain: "smtp.gmail.com"
+authentication: :plain
+user_name: "*****@gmail.com"
+password: "*******"
+設定如下 但是怎麼改都會出現530-5.7.0 Authentication Required. Learn more at
+錯誤訊息 是不是哪邊安裝沒設定還是設定檔沒吃到
+環境是 redmine 5.0.2-1/windows 11
+
+<<請問 notion 如何添加本地路徑link?>>
+
+想嘗試在 notion 建立 link = D:\xxx 打開 D盤下面的 xxx 資料夾
+但目前會跳到瀏覽器
+
+<<有關在nas上開啟word會出現錯誤訊息>>
+
+在nas開啟word會出現沒有足夠記憶體或磁碟空間可以完成操作
+下載下來開起就正常
+請問各位先進有解法嗎？
+
+<<web RWD 如何知道顧客截圖？>>
+
+想問一下，目前有個專案 web 跟 app 寫在一起，app就是使用 RWD 去實現，有個需求是要阻止使用者去截圖，想問一下該如何偵測到有截圖的行為？
+(專案使用: Nextjs)
+
+<<[已解決]javascript index 更新>>
+
+感謝底下回覆的兩位，後來發現確實Index會自己變動。
+但是要抓取的index要是tr的index。td & input好像抓不出來
+我原本一直拘泥於td Input上的i值，在這上面做文章，
+delete時更新i值做法是錯的，雖然id&name上的@i應該是有變化。
+但是onblur本身的@i值仍會是舊的，這點我一直搞不懂原因。
+(希望其他大老能提供相關解法或解釋為何這樣做是錯的)
+後來改成找到父節點tr的index值，發現這會隨著增減自動變動，
+就不用在delete上更新i值，直接在function中獲取
+var rowindex = node.parentNode.parentNode.rowIndex;
+這樣就會隨著增減變動，在傳遞GetCName然後反向解開獲取子節點，找到欄位後將值塞入。
+分隔線----------------------------------------分隔線----------------------------------------分隔線----------------------------------------
+我程式目標是 當我signname onblur時，會判斷該員工是否離職(判斷離職有做出來)，
+沒離職時，會從資料庫抓出該員工中文姓名並塞入 cname欄位。
+想問一下，當我點選delete後，js我有寫更新index的程式，
+但是當我Onblur的時候，他會抓舊的index值，然後塞入舊的index 欄位，
+這部分應該如何修改?
+有人建議說把資料放入資料庫後再從load就好，
+但是如果這個flow一直被刪刪改改頁面，
+就會Load好幾次，這不是我想要的。
+想請教一下有沒有更好的方法可以處理?
+HTML
+@for (int i = 0; i < Model.poSigns.Count; i++)
+{
+<tr>
+<td><input type="text" id="poSigns[@i].signname" name="poSigns[@i].signname"
+class="form-control" value="@Model.poSigns[@i].signname" onblur="checkSignName(this.value.trim(), @i)" />
+.
+.
+.
+</td>
+</tr>
+}
+
+JS 更新index
+function DeleteItem(btn, index) {
+btn.closest('tr').remove();
+// Update the index of remaining rows
+rows = $('#signTable tbody tr');
+for (var i = 0; i < rows.length; i++) {
+var currentRow = $(rows[i]);
+currentRow.find('input[type=text], input[type=number], select').each(function () {
+var name = $(this).attr('name');
+$(this).attr('name', name.replace(/\[\d+\]/, '[' + i + ']'));
+$(this).attr('id', name.replace(/\[\d+\]/, '[' + i + ']'));
+currentRow.find('input[type=text]').on('blur', function () {
+});
+checkSignName(this.value.trim(), i);
+});
+currentRow.find('select').on('blur', function () {
+checkSignName(currentRow.find('input[type=text]').val().trim(), i);
+});
+}
+}
+
+js獲取值
+function checkSignName(value,index) {
+var check = false;
+$.ajax({
+url: '/Home/checkSignName',
+type: 'POST',
+data: { value: value },
+async: false,
+success: function (response) {
+if (response.valid) {
+alert(value + ' may have resigned or no information has been created. Please contact MIS.');
+check = true;
+}
+else {
+GetCName(value, index);
+}
+}
+});
+return check;
+}
+function GetCName(signname, index) {
+$.ajax({
+url: '/Home/GetCName',
+type: 'POST',
+data: { signname: signname },
+success: function (response) {
+document.getElementById(`poSigns[${index}].cname`).value = response.cname;
+}
+});
+}
+
+
+
+
+<<seamlessM4T如何从头到尾配置运行>>
+
+Using the cached checkpoint of the model 'seamlessM4T_large'. Set force=True to download again
+
+<<[已解決] Microsoft 365 Outlook似乎中毒了, 要怎麼解?>>
+
+您好,
+昨天收outlook信件後,
+就到FortiGate通知說有病毒,
+然後我現在只要開outlook收發信,
+每收發一次就會收到FortiGate通知說已阻擋病毒(如下圖):
+
+
+
+看起來我的outlook好像被綁架了,
+只要有收發的動作病毒似乎就嘗試要把某個檔案給send出去,
+透過hinet mail server 168.95.4.14 port 995,
+但我查了outlook的草稿或寄件夾都沒有看到有信件,
+所以我想上來求助各位先進,
+我要怎麼解決這樣的問題?
+重新安裝outlook可能可以解決,
+但除了重裝之外有沒有額外的解決方式?
+謝謝.
+======================我是更新線======================
+自問自答,
+剛問題解決了,
+後來我仔細看outlook收發信的狀況,
+發現他在收信部分出現錯誤訊息,
+於是想到hinet雲端信箱是不會主動刪除信件的,
+所以剛就登入hinet雲端信箱,
+把所有的信都刪光,
+然後再嘗試用電腦版outlook收發信,
+就沒有再看到Fortinet警告訊息了,
+看起來可能是那封有病毒的信一直在雲端,
+然後因為Fortinet偵測到病毒而阻擋沒收下來,
+這也造成了outlook每次收發一次信,
+就被Fortinet阻擋並發告警信一次,
+當我把雲端的信件都刪除後(包含有病毒的那封信),
+之後outlook因為不會再嘗試從雲端收到那封信,
+所以就解決了這個問題!
+
+<<AD 帳號 密碼更新時間>>
+
+您好:
+請問 一般建立AD 帳號，他會3個月更新密碼一次
+但有些帳號沒有
+請問由哪邊可以看 該帳號是否 有使用該密碼更新原則
+謝謝
+
+<<IT新人請教方向>>
+
+小弟我大學時讀的是電機相關，後來大學畢業後陰差陽錯的進了某間公司成為資訊工程師，但是目前多是處理user遇到的問題，如：印表機無法印、電腦無法開、資訊資產的盤點、網路不通….等等，感覺自己這樣好像沒什麼成長，也不確定該往什麼方向走，所以來發文問問大大們的經驗。目前剛入職四個月。
+
+<<請問能用deciaml js替換原來js的+-*/符號功能?>>
+
+因為要使用高精度計算，目前使用decimal js都要創建物件+呼叫方法，變得繁瑣
+希望將以下方式
+new Decimal(1).sub(new Decimal(2)).add(new Decimal(3)).mul(new Decimal(4.3)).div(new Decimal(4.1)) 
+
+能改成符號又能兼顧精度
+1-2+3*4.3/4.1 = 2.1463
+
+
+<<Autoit3的if...else可以判斷字串嗎?>>
+
+有大神知道autoit的if要怎麼判斷字串嗎?我讀檔後把值丟給變數, 然後用if去判斷, 但是怎麼試都不成功, 我試過如果變數是數字就沒問題, google找了好久也沒看到類似的說明, 苦手中...
+$file = FileOpen("C:\Users\test\Desktop\Tools\ver.txt",0)
+$ver = FileReadLine($file,1)
+FileClose($file)
+If $ver == $A Then
+MsgBox(0, "test", $ver)
+ElseIf $ver == $C Then
+MsgBox(0, "test", $ver)
+EndIf
+
+<<網路ISP是中華電信，網頁請求時間很長>>
+
+各位好，
+小弟近期碰到一個問題，我司有一網站是架設在香港IP的雲端主機，網站供內部使用但有設立外部IP及網址。
+近期台灣公司員工在使用時發現，某些動作的Request sent及Waiting for server response，都在5秒以上甚至更久。
+
+台灣有三個據點(台北、台中)、皆使用中華電信固定制光世代，
+我也在家嘗試連線 (也是中華電信)，等待時間都很長；
+並同時並測試使用 手機網路、VPN(連到國內外)、非中華電信都是順暢的，如下圖
+
+網站供應商認為站台沒有問題，叫我們查一下是否為DNS是否轉址有問題。
+但我們使用外部IP連，速度同樣慢，故推翻DNS這個因素 (也想這樣判斷是否正確)。
+使用WinMTR測試之後發現，三個據點都是連到中華電信的特定機房，
+封包都將近掉了一半，如下圖。
+
+是否解法就是請中華電信協助排除機房的問題就能解決問題呢?
+目前是已經報修了，
+想請問這樣的處理方法是否正確，也想問一下還有沒有其他能做的
+謝謝各位
+
+<<本期生產投入成本(期末) - 本期生產投入成本(期初) = 本期在製成本(期末)問題>>
+
+目前幫別人看工廠，發現他們本期生產投入成本(期末) - 本期生產投入成本(期初) = 本期在製成本(期末)對不上，所以我說他們一定帳有問題或是給我們看的是假帳
+在我學習會計的概念，本期生產投入成本(期末) - 本期生產投入成本(期初) = 本期在製成本(期末)，但他們說原本就不會相等。
+
+<<FortiGate如何在SSL deep inspection的情況下讓電腦使用Line?>>
+
+您好,
+目前我的FortiGate 60F打開了SSL deep inspection, 所以目前家中電腦有安裝Fortinet cert簽證檔, 才得以瀏覽網頁, 但問題來了, 電腦版Line始終無法登入, 不知道是否是Line採用了web的方式去處理資料, 但電腦版Line並沒有相關設定可以採用簽證檔, 所以我猜測是否是因為這樣而導致Line出現"網路發生錯誤, 無法登入. 請確認網路連線後再試一次."的錯誤訊息, 但當我把SSL deep inspection關閉後, Line就可以正常登入使用.
+所以我想請教各位前輩, 如何在SSL deep inspection打開的狀態下, 仍然可以讓電腦版Line登入使用呢? 感謝!
+
+<<目前在用FortiSwitch 108D, 有必要升級成FortiSwitch 108F嗎?>>
+
+您好,
+目前家中採用Fortinet資安鐵三角, FG-60F, FAP-231F, 以及FS-108D, 想請教一下各位先進, 目前的switch用的是比較舊款的型號108D, FortiAP是接在這台108D上面, 目前使用上沒有什麼問題, 但我想知道有沒有什麼理由是我需要將108D換成同F世代的108F? 例如108D與FortiGate 60F以及FortiAP 231F的軟韌體配合度上, 108D採用較舊款韌體, 可能在某部分上限制了F世代的FortiGate以及FortiAP的功能? 或是, 我根本不需要去將108D換成108F, 目前這樣使用就可以了?
+另外想知道的是, 換了108F後, FortiAP 231F相關的設定還需要重新設定嗎? 因為FortiAP目前接在108D上, 不知道換了108F後, 除了FortiSwitch相關設定要重設定外, FortiAP相關設定是否都要重設?
+我家中網路使用環境比較單純, 網路使用中華光世代固定制, 沒有使用Fortinet VPN等比較複雜的建置, 但因為有時會居家上班, 所以我公司的筆電都是透過FortiAP無線上網使用, 以避免一些公司資料外洩, 或是平常家中電腦跟手機以及IoT設備連網的資安問題, 所以才在家裡採用Fortinet資安鐵三角.
+感謝各位的回答.
+
+<<Ping值突然變高，過一下又正常>>
+
+各位好：公司有網路設備約300台，近來發生恐怖事件，突然Ping所有設備的回應值高達數百至千ms，過了約莫5分鐘後又回到低於1ms正常值。請教各位碰到這種問題，該如何解決？每天都處於待人宰割的狀態.............
+
+<<teams 時常要求登入>>
+
+在使用 Microsoft Teams 期間，我們的團隊經常遇到一個問題，
+即每隔約兩天，我們需要重新登入該應用程式。
+這種情況對我們的工作流程造成了不便，我期望能夠保持長時間的登入狀態
+想了解是否有任何方式可以解決這個問題，或者是否有相應的建議和指導，感謝!
+嘗試過刪除重裝、退出公用帳戶、刪除teams的快取，這些動作但問題依然存在。
+
+<<有SSMS2012 + dbFore SQL complete  取代方案?>>
+
+您好：
+目前只能先用 SSMS 2012
+有另外 加 dbFore SQL complete 6.10.5
+之前用的還好好的
+但這一兩天，不知是否WIN 10 UPDATE 後，
+使用dbFore 的 自動提示功能，都會 卡住
+重開機，重新整理本機快取 都沒有效
+SSMS 有自己的 智能提示，但幾呼 都會沒反應..所以放棄
+1.是否以前輩有遇到類似的情況，有哪邊可以設定改善的
+2.或者有免費的可以取代軟體
+謝謝!
+
+<<類似 draw.io 開源免費好用的 PDF 編輯器?>>
+
+查看此問題 https://www.zhihu.com/question/388237379 幾乎都是廣告
+請問有類似 draw.io 開源免費好用的 PDF 編輯器嗎?
+目前用 Acrobat Pro DC 太貴了每年
+想詢找不會跑版，免費的PDF編輯器
+
+<<關於資安稽核的弱點等級評估？>>
+
+請問弱點等級評估是以組織現況去評估，還是要抽離組織現況？
+例如：
+有一項軟體資訊資產，我認為威脅是"未經授權存取或使用"，弱點是"存取權限授予不當或未定期審查"。
+現況是組織有定期審視授權，所以不太會有因為"未經授權存取或使用"的事情發生，所以弱點等級是低的。
+或是要依抽離組織現況來看，因為"存取權限授予不當或未定期審查"造成"未經授權存取或使用"的機會是高的，所以弱點等級是高的。
+
+<<SQL Server SSMS中，建立兩位A、B者及兩個資料庫A、B 如何讓A登入只看到A資料庫顯示出來，且針對A資料庫只有 唯讀權限。>>
+
+各位前輩好
+目前有一個問題:
+SQL Server SSMS中，建立兩位A、B者及兩個資料庫A、B
+如何讓A登入只看到A資料庫顯示出來，且針對A資料庫只有
+唯讀權限。
+參考作法如下:
+1.創建登入帳戶：
+開啟 SQL Server Management Studio (SSMS) 並以 sa 或其他具有適當權限的帳戶登入。然後，創建兩個登入帳戶，一個為使用者A，一個為使用者B。以下是一個示例 T-SQL 命令：
+sql
+Copy code
+CREATE LOGIN UserA WITH PASSWORD = 'YourPasswordA';
+CREATE LOGIN UserB WITH PASSWORD = 'YourPasswordB';
+2.創建資料庫使用者：
+為了讓使用者A只能訪問資料庫A，您需要為使用者A創建一個資料庫使用者。同樣，這是一個示例 T-SQL 命令：
+sql
+Copy code
+USE DatabaseA;
+CREATE USER UserA FOR LOGIN UserA;
+請確保將 "DatabaseA" 替換為您的實際資料庫名稱。
+3.授予只讀權限：
+現在，您需要授予使用者A只讀權限。您可以使用以下 T-SQL 命令來實現：
+sql
+USE DatabaseA;
+ALTER ROLE db_datareader ADD MEMBER UserA;
+這將讓使用者A成為 "db_datareader" 角色的成員，該角色具有對資料庫中所有表的只讀權限。
+4.設定資料庫層級的權限：
+確保使用者A無法訪問資料庫B，您可以在資料庫層級上配置權限。使用以下 T-SQL 命令：
+sql
+USE DatabaseB;
+DENY CONNECT SQL TO UserA
+這將禁止使用者A連接到資料庫B。
+
+<<laravel 做 unittest 時如何使用較新的 sqlite 版本>>
+
+目前使用 laravel 10 + hometead 開發，PHP 版本為 8.1，新的專案欄位有用到 json 的格式，跑測試用的資料庫是 sqlite in memory，為了要查某個欄位的某個值有沒有存在時使用了 Laravel 的 whereJsonContains，他是實作 MySQL 的 json_contains，問題來了 json_contains 根據 Laravel 的文件要 3.39 以上才支援，我原本以為 unittest 執行 datbase 相關指令時是拿取 local 的 sqlite3 command，所以想辦法 compiler 新版，後來才發現他是使用自己的 pdo_sqlite library 做掉這件事，版本也是 3.31。
+有想過參考這個頁面 的教學讓 sqlite 支援這個功能，目前測試結果是失敗的，可以的話希望可以透過套件或其他方式使用新一點的 sqlite 來解，盡量不要用這種外掛支援的方法，想請教各位有經驗的朋友們解方，謝謝。
+
+<<Programmer無法燒錄>>
+
+我們的產品因為RAM不夠用換新的MCU，最近在燒錄過程出了點問題，已經更改IDE(IAR)上支援的MCU型號也確認過沒問題，但是Programmer無法燒錄(computex出品的FP-10)，也已經更改FP-10上MCU的型號，但還是無法燒錄，想請教還有其他我沒有考量到的因素嗎?
+
+<<WIN 2019 共用資料夾，如何資料誰建立料夾及權限>>
+
+您好：
+請問 有加入網域 WIN2019 中
+有建立檔案伺服器，但 但沒建檔案伺服器資源管理員
+有設定共用資料夾及權限
+有辦法知道
+1.某個權限內的資料夾，其子資料夾 是由誰建立的嗎?
+2.誰使用資料夾中的檔案? 有辦法剔除嗎?
+3.若新增 檔案伺服器資源管理員，是否會移除掉現有的資料夾權限
+4.縣有資料夾權限，有辦法 類似 匯出，匯入嗎?
+謝謝
+===========回覆1
+沒有看到使用者
+
+再SERVER 端，管理，共用 沒有相關可以使用
+
+
+<<請問ERP業財一體化具體實際例子>>
+
+以下是我查的定義，但是太空泛，沒有實際例子說明業財一體化
+有大神能提供經驗例子嗎，謝謝!
+一、 信息化時代的業財一體化
+
+從2000年左右開始，業財一體化主要通過ERP系統來實現。
+
+由於信息化更強調管理和監控，ERP系統也偏重於以財務為核心，這導致了業財一體化項目往往不重視對業務的賦能。同時，由於ERP的最終產出主要是財務數據，因此業財一體化建設很容易變成由財務部門支持和主導的項目。
+
+同時，消費者市場變化相對緩慢、傳統企業普遍採用大兵團協同作戰，各部門按流程依次作業。因此，業財一體化系統更強調流程的穩定性和數據的準確性。
+
+由於企業內部遠離市場，業務部門普遍缺乏經營分析的意識。再加上ERP系統不擅長賦能業務，最終導致大部分的業財一體化只是實現了財務核算，較少涉及經營分析的功能。
+
+而且，系統的建設大多採用項目制。一旦系統上線就進入運維階段，項目建設團隊就地解散或轉移到新的項目。這也一定程度上導致了業財一體化項目無法自我進化，始終停留在財務核算層面。信息化時代的業財一體化特點總結如下：
+
+
+信息化時代的業財一體化特點
+
+二、 數字化時代的業財一體化
+
+在數字化時代，互聯網加速了信息傳播的速度，在讓消費者快速了解新產品的同時，也大大縮短了新產品的生命週期。
+
+為了應對快速變化的市場，企業不得不加速新產品的研發、生產和銷售，也越來越強調一線的機動性，以及對業務的賦能。
+
+比如，以前整個公司一年出一款新產品，產品盈利分析可以持續數月，相關的數據收集和分析可以緩慢處理。而現在如果要每個部門每季度出一款新產品，那麼就必須給業務部門提供快速、便捷的產品盈利分析能力。
+
+這客觀上要求業財一體化不能僅僅停留在財務核算的層面，需要更多站在業務分析的層面，為業務部門賦能。同時，由於市場在迅速變化，業務部門的需求也在不斷調整和優化。因此，業財一體化系統必須以產品的形式不斷迭代，持續響應業務部門變動的需求。
+
+數字化時代的業財一體化特點如下：
+
+
+數字化時代的業財一體化特點
+
+三、未來的業財一體化系統方案
+
+過去的ERP系統強調用一個系統滿足從業務到財務的所有需求，這種大包大攬的方式對系統的要求太高，最終的結局往往是達成妥協，勉強實現對業務的支撐。
+
+因此，未來的業財一體化系統一定是松耦合的、由多個獨立的業務系統和財務系統構成，這樣可以大大減輕單一系統的壓力。但是這樣又帶來了新的問題，即系統集成難度大幅增加。同時，業務系統離開了財務系統的剛性約束，也導致了業務數據錯誤率的大幅增加，解決辦法是構建一個財務數據中台系統，就像企業的經營管家一樣，承擔財務規則的提供、數據處理、數據存儲和數據分析的功能。
+
+由於不再受財務規則剛性約束，也不用過多處理數據，因此業務系統可以獲得最大化的靈活度，快速滿足業務變化的需求。而由於財務中台對所有業務系統的數據都進行了校驗、轉換和整合，因此財務核算系統和經營分析系統將得到統一、準確的數據，加快財務核算和分析的速度。
+
+整體架構示意圖如下：
+
+
+<<EXCEL  自動編號的方法>>
+
+2023/1/1		1	2023/1/1		1	2023/1/1
+2023/1/1			2023/1/1		2	2023/1/1
+2023/1/1			2023/1/1		3	2023/1/1
+2023/1/1			2023/1/1		4	2023/1/1
+2023/1/1			2023/1/1		5	2023/1/1
+2023/2/5		1	2023/2/5		1	2023/2/5
+2023/2/5			2023/2/5		2	2023/2/5
+2023/2/5			2023/2/5		3	2023/2/5
+2023/2/5			2023/2/5		4	2023/2/5
+2023/2/5			2023/2/5		5	2023/2/5
+2023/3/2		1	2023/3/2		1	2023/3/2
+2023/3/2			2023/3/2		2	2023/3/2
+2023/3/2			2023/3/2		3	2023/3/2
+2023/3/2			2023/3/2		4	2023/3/2
+2023/3/2			2023/3/2		5	2023/3/2
+2023/3/2			2023/3/2		6	2023/3/2
+2023/3/2			2023/3/2		7	2023/3/2
+2023/3/2			2023/3/2		8	2023/3/2
+2023/3/2			2023/3/2		9	2023/3/2
+2023/3/2			2023/3/2		10	2023/3/2
+2023/3/2			2023/3/2		11	2023/3/2
+2023/3/2			2023/3/2		12	2023/3/2
+
+不知道要如何使用公式，然後下拉完成，由最左邊的日期，找出中間的序號(一次下拉公式完成)，進而到最右邊的(第二段再一次下拉公式完成)，冒昧請大碗可以指導，謝謝
+
+<<要怎麼masking data>>
+
+我現在在寫一個程式主要是要把png輸入後轉換成點，再用散佈圖畫在三維空間坐標系統。現在的問題是我有些點是透明的，但參數C只有黑白，目前想到的方法是把那些alpha為零的點直接刪掉，但是因為這跟整個座標系統會連動不知道該怎麼辦，求大神幫忙！
+from PIL import Image
+import numpy as np
+from matplotlib import pyplot as plt
+
+
+fig = plt.figure(figsize=(20,8),dpi=100) # create a figure which size = 20*8 & dpi = 100
+ax = fig.add_subplot(111, projection='3d') #set up for graph
+img = Image.open('Baby.gnu-alpha-800x800.png') #set the path of graph
+pix = img.load()
+
+width = img.size[0]
+height = img.size[1]
+# set up the size of x,y,z axis
+x = np.arange(0,width) # x-axis from 0~800
+y = np.arange(0,height)
+x,y = np.meshgrid(x,y)
+z = np.zeros(width*height)
+
+color = []
+
+for i in range(width):
+    for j in range(height):
+        # make every pix into graph
+        rgb= tuple(np.array(img.getpixel((i,j)))/255)
+        # print(rgb)
+        color.append(rgb)
+        
+# print(color)
+
+# make a graph at z=0,you can change the value of z to control the height that graph show  
+ax.scatter(x,y,z,c = color,alpha = 1)
+plt.show()
+
+
+<<有啥開源工具可以作為團購或是訂便當系統？>>
+
+是這樣，
+本單位分行政外網跟管制區內網。
+想當然爾，處於內網的電腦只能存取單位機房的相關系統，並不能連外。
+在此環境之下，
+想要找一個方便跨部門訂便當或是搞團購的統計系統，
+雖然可以用excel啦..但承辦人想要有個更方便的系統。
+請問各位先進有類似的開源工具可以介紹嗎？
+
+<<沒有加網域的WINSERVER，要怎麼取得CA憑證呢？>>
+
+小弟有一台WINDOWS SERVER沒有加網域
+但是想用CA的憑證
+請問要怎麼進行呢？
+補充：原本的SERVER上已有CA憑證，但是我換失敗了冏
+
+-------------------------------------第7頁-------------------------------------
+<<Fortigate 如何設定能防止利用熱點分享？>>
+
+請問 FortiGate 要如何設定才能防止連線用戶使用手機或電腦進行網絡熱點分享？
+
+<<有無MIS相關書籍>>
+
+進入新公司不久 是外包資訊服務
+但我先前的工作比較基礎 軟硬體使用者端的很少機房端的
+現在都是使用者到機房都要處理
+但防火牆 NAS AD 我都不是很明白清楚
+之前也沒有接觸過AD
+想請問有無快速上手的書籍可以閱讀
+因為每次問題都不同 有時候虛擬機無法連等等
+一些有問題@@
+還有些公司用liunx伺服器
+
+<<JAVASCRIPT 如何讀取及產出XML檔案>>
+
+想在JAVASCRIPT將取得的資料存成XML格式檔案.但JAVASCIPT無法存檔.
+所以想用JAVA來存檔. 但測試都沒有反應.請問那裏有問題. 謝謝.
+JAVASCRIPT程式
+importPackage( Packages.org.apache.poi.hssf.usermodel );
+importPackage( Packages.java.io );
+out_txt +="<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:tip='http://www.dsc.com.tw/tiptop/TIPTOPServiceGateWay'>\n";
+out_txt +="		soapenv:Header/\n";
+out_txt +="		soapenv:Body\n";
+out_txt +="			tip:CreatePoDataRequest\n";
+out_txt +="				tip:request\n";
+out_txt +="</tip:request>\n";
+out_txt +="		</tip:CreatePoDataRequest>\n";
+out_txt +="	</soapenv:Body>\n";
+out_txt +="</soapenv:Envelope>";
+	Client.addInfoLog("\n"+out_txt); 	
+
+var sapject = new Packages.ext.write();
+writexml = sapject.getout_txt(out_txt);
+
+JAVA的程式.
+package ext;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+public class write {
+public static void main(String[] args) throws Exception{
+    String lib_out_txt = "ABC";
+    String result = getout_txt(lib_out_txt);
+    System.out.println("Result from getouttxt: " + result);
+}
+
+public static String getout_txt(String out_txt1) {
+
+    String data = out_txt1;
+    String fileName = "D:\\456.txt";
+
+    try {
+
+        FileWriter fileWriter = new FileWriter(fileName);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.write(data);
+        bufferedWriter.close();
+        System.out.println("Data written: " + fileName);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return data;
+}
+
+}
+
+<<SendGrid 註冊後出現 account is under review>>
+
+各位前輩好，想請教SendGrid問題
+透過GCP啟用SendGrid Email API服務，SendGrid註冊後出現
+Your account is under review Please check your ticket history for more information or contact us with questions....
+
+問題如下
+
+點選ticket history連結，狀態為Solved 代表帳號已經通過審核了嗎? 或是要主動聯絡SendGrid?
+
+
+若帳號審核中(under review)，是否就不能寄信?
+(自己測試是不行寄信，mail狀態有Processed但沒Delivered的紀錄)
+
+
+
+謝謝解答~~
+補充1
+寄信是用Single Sender Verification來驗證寄件者，有驗證成功
+
+補充2
+寄信程式為C# .net framework 4.5.2用Nuget套件SendGrid的SendGridClient，有確定程式可以正常執行發email
+
+11/17 自我解答與更新
+後來直接透過Contact us聯絡官方，官方回覆如下
+11/01 啟用GCP SendGrid，並聯絡官方帳號問題
+11/02 官方回覆
+
+11/08 有再次詢問是否有新進度，官方未回覆
+11/16 官方回覆-請我提供帳號相關的資訊(User Identification、Intended Use Case、Email Type)
+
+11/17 官方回覆-帳號已啟用
+
+
+<<open-vm-tool 要如何上patch>>
+
+由於cve-2023-34058的關係open-vm-tools需要上patch，但是虛擬機室centos作業系統的
+有查到https://github.com/vmware/open-vm-tools/tree/e5be40b9cc025d03ccd5689ef9192d29abd68bfe
+這個連結說可以上patch，但是還是搞不清楚如何執行
+
+<<虛擬機問題 : 其中一台卡在正在關閉 (問題已解決)>>
+
+各位同行前輩 大家好
+我的Hyper-V 中有一台虛擬機它卡在正在關閉中
+如果不以整台系統重新開機的狀況之下
+請問有什麼辦法強制這台虛擬機關閉呢
+伺服器系統版本 2019
+謝謝大家
+
+<<Fortigate SSLVPN相關問題>>
+
+各位好，
+想詢問Fortigate是否可以設定 : 若外部IP使用不存在的User嘗試登入，若IP非指定國家，則封鎖嘗試使用該User Name登入的所有IP?
+若可以，請一併告知如何解除封鎖，感謝各位。
+(被try login猜到有點怕，雖說有2FA，但是每天收上千封通知信也是很毛...)
+
+<<筆電封鎖SD卡方式>>
+
+usb封鎖可以透過登錄檔改
+想請問SD卡的話有無類似方式呢?
+
+<<CISCO WiFi AP天線延長線>>
+
+大家好，
+第一次上來發問請各位大大幫忙，
+公司使用的WiFi AP是CISCO C9120AXE-T，購買了兩條訊號延長線但兩頭的接頭沒辦法接到CISCO的天線跟AP本身，這條延長線可以使用在一般家用的WiFi AP，但無法使用在思科的AP。
+例如下圖黑色是一般家用的AP，天線孔徑是0.5 cm，但思科(下圖白色設備)的孔徑是1 cm，延長天線鎖不上去，不曉得各位大大知道是否有轉接頭可以對接? 感激不盡!
+
+
+非常感謝大大們的回覆讓我有些線索，CISCO的AP可能是TNC-RP規格，我下午去電子材料行找找看。補充，我們有CISCO原廠的天線，延長線是希望將天線從AP本身拉出去~
+
+
+cmwang、harry731兩位大大都很厲害，上週跑了一趟電子街成功買到轉接頭了，測試後原本訊號-60dBm的地方變成-40dBM，有效但確實衰竭也過高
+
+
+<<有沒有辦法做到 個性化 Coding Style?>>
+
+小弟覺得目前程式碼排版的方法好像還太原始
+想激發大家對於個人客製化程式碼排版（我想稱之為re-formatter） 的想像與探討
+不曉得可行性與否
+如果可行，希望最終有人能著手發展這個想法
+關於Coding Style
+
+程式碼 = 將邏輯作為文字語句排列組合的樣子
+
+每個人都有自己舒適的排版風格
+就像閱讀一篇文章，文字不能完全沒有排版，需要有空格、有換行
+這就是美感
+世界上可能有公認最舒服的排序方式
+雖說在人群間美感也許大同小異，但還是會有細微的差異
+實際上，相同的排版方式對每個人來說感受都不太一樣
+文章的標點符號受到筆者平時的換氣、講話習慣影響
+接著，會影響到閱讀者的停頓與連貫
+有人一次能閱讀5個字、有人能讀到7個字的名詞
+甚至選擇不同的字型(font style) 都會影響到這些
+每個人有所差異，每個人審美觀不同
+現有問題及痛點
+不同的程式碼風格的人要一同工作，這一直都是寫程式協作上很大的磨合成本
+以下從個人與協作上的幾個面向角度出發
+1. 學習新語言
+每當學習一門全新的語言時，無法立刻習慣與轉換
+（尤其同時寫兩門不同語言的時候）
+例如：不同語言間使用不同的英文字來表達函式：
+
+def
+function
+func
+fun
+f
+
+有時候我只想寫func
+我不想在鍵盤上敲function這麼多字、又覺得fun過短，也不想寫成def
+我希望能在javascript裡面使用func，希望func代表著function
+當IDE或編譯器在函示的位置上看到func時，程式碼在執行時就會自動轉成function
+a. 我希望能夠客製化一個程式語言裡的內置關鍵字 (customize program keyword)
+
+2. 對方怎麼沒有排版
+之前在公司看到兩個新人，在同一份專案間互相改來改去
+A看到B寫的code怎麼都沒有排版，於是按IDE的快捷鍵
+將整頁程式碼排版成IDE設定的風格，覺得自己做出了貢獻
+後來B看到A寫的code，也覺得A怎麼都沒有排版
+空白鍵的數目都對不上來，git比對一整片都是紅色的difference
+於是也按下快捷鍵，將整頁程式碼排版成IDE設定的風格，也覺得自己做出了貢獻
+兩人互相覺得，對方寫完code怎麼沒有做排版
+來來回回好幾次，然後git紀錄就增長了虛肥
+結果只是兩人IDE設定的tab, space不同
+3. 很嚴謹的風格，但沒有也沒影響
+有的專案規定比較嚴格，要求良好的寫程式習慣：
+
+要在行尾加分號
+每個物件的成員都要加上public或private
+（即使該語言不用加任何東西，預設就代表public的效果）
+頁尾要加一行空白
+
+每次寫程式我都會留意，照著規範走
+最終專案的程式碼一致也讓人看起來順眼
+但有時候也會思考，我每次多打的這些字、這些留意的心力，是不是只是為了風格的一致性？
+4. 段落換行空幾格
+每個人看到文章段落密集、鬆散的舒適度不一樣
+在段落與段落，有的人喜歡看到一行空白、有的喜歡兩行空白
+有的空白數目要取決於前後文到底多長
+
+記得國中時
+我在網上寫小說都不換行、整篇密密麻麻的
+然後被同學直接吐槽：『阿你家按Enter是要錢喔？』
+從此我就沒省過了
+
+5. 一行最多有幾個字
+一行程式碼到底只能有多少個字元寬？
+
+80字換行
+120字換行
+不限
+
+我不想讓程式碼被壓得太扁平，更不想看到程式碼突出螢幕範圍太多
+可是有的人螢幕就真的比較大阿！！
+b. 我希望每個人可以自訂排版方式，包括參數引數的換行、哪裡要留空白鍵
+但只會在自己的電腦上看到，不會影響到repository
+將本地的程式碼通通壓縮後（刪去全部空白以及無用輔助詞）
+或者照官方公訂的標準版本排版
+或者某些方式處理，才進行git比對、上傳到github
+
+
+但此會衍生出一個問題，造成在github上的code可讀性不佳
+希望自訂的排版方式也可以在瀏覽遠端儲存庫時套用
+
+另外，因為手機比較小，為方便在公車捷運上也能隨時閱讀
+如果這一點能搭配 a. 跨裝置整合再好不過
+ex: 電腦版呈現`func` 手機版呈現`fn`(縮小尺寸)
+
+6. 不同的地方，不同的命名Style
+每種程式語言通常都會有一些習慣、推薦規範：
+
+檔案名稱只能全部小寫
+常數要全大寫
+寫物件要用底線蛇形命名
+寫函式名稱要大駝峰命名
+寫函式內部變數要小駝峰命名
+html tag, class name 要小寫搭配-號
+html id 要小寫駝峰命名
+...
+
+我也知道官方推崇駝峰命名 helloWorldApiRequest
+但偏偏有時候又希望能夠交雜，因為我覺得這樣變數的單字可讀性比較佳
+就像我們真正在看英文單字 helloWorld_apiRequest
+到底英文為什麼還要區分大小寫，哪個天才發明的
+語意牽涉到語言本身符號，想往上怪罪都追溯不完
+
+其實我還有抱有好多類似疑問
+為什麼規定特殊符號只有這些!@#$%^&*()=+...
+鍵盤為什麼只有這麼多按鍵
+
+c. 我希望每個人可以自訂變數名稱的呈現方式，可以隨意調整大小寫與底線
+一樣只會在自己的電腦上看到
+
+甚至希望可以有變數名稱叫 "hello world(api request) - int64"
+跳脫空白與特殊符號的限制，不用被過往程式命名規則綁死
+
+
+---
+
+以下是異想天開：
+甚至有沒有空白、有沒有分隔符號或底線，只要語義對了，都代表著相同物件
+"hello_world (api request) - int64"
+"hello world(apiRequest) int64"
+
+希望有天能徹底解決由人類語言本身（溝通或書寫）所產生的障礙
+ex: 由多個術語描述同個實體或語義
+"referer"vs"referrer"、"溼姊"vs"濕姐"、"Hello"vs"Ｈｅｌｌｏ"、"磁碟"vs"軟盤"、"一二三"vs"甲乙丙"
+
+7. 不同程式語言間的整合
+這個是最終極的版本，跨語言的整合
+一些不同語言的規範與約定
+有的html元素是self-closing tag，只有opening卻沒有closing tag
+在html內優先使用雙引號
+在javascript內優先使用單引號
+大寫駝峰代表export
+小寫駝峰代表local
+字串用雙引號
+字元用單引號
+多行句尾都加上逗號
+但最後一行有的語言要加、有的語言不能加逗號
+_hello_
+__hello__
+...
+...
+...
+每種程式語言都有各自不一樣的用法特色
+假如每一種都寫，難道只能每一種都記憶嗎QQ
+程式語言基本用法
+常見的語言迴圈有這幾種寫法
+for (x;x;x) {
+    ...
+}
+
+for x; x; x {
+    ...
+}
+
+for x in range(x):
+    ...
+
+這些有辦法自定義、或者互通嗎？
+d. 我希望我寫任何的程式語言都能用目前已熟練的語言進行開發
+不過考慮到型別類型與物件導向的支援度，這實際上應該不可行...
+
+
+比較可行的是，希望透過設定這些關係達成程式語言的映射
+能夠將if, for, function等用法，轉換成與熟悉語言類似的寫法
+達成像排列積木那樣操控程式的基本邏輯
+
+
+希望的願景
+程式碼排版工具層出不窮，配置方式都不同
+各家排版工具互相競爭紛擾、百家齊鳴
+約定成俗的東西越來越多，最終產出一版又一版的 Coding Convention
+導致工程師的腦容量越來越大
+現在2023年11月，一進到新公司
+主管馬上要你安裝某種formatter外掛，然後丟給你一包程式碼整理的工具設定檔
+要求你每次寫完程式碼後，使用這套設定來做排版並上傳
+目的是為了保持專案程式碼的一致性風格
+但，程式碼語義應該是不受到任何排版風格影響的
+這好像違背了每個人應該是看自己舒適的扣看得爽的初衷
+寫程式的風格什麼時候是需要全體共同討論決定的事情呢？
+辯論這個是需要花費時間與精力的事情、也很沒有意義
+討論完後一定有人不願意買單
+新進人員的意見也無法傳達給做出決策卻早已離開的元老
+每個人都有自己的偏好
+為什麼我不能有我看得順眼的風格，雖然看起來獨特但不影響與他人友好協作呢
+（如果連變數的英文命名、程式上的邏輯風格也能相同就更好了
+嘛，但這是胡思亂想的、好像沒有辦法解決... 如果連演算法風格都能一致，那是很可怕的事）
+希望有朝一日
+工程師能暢快的帶著自己的Profile Setting到處趴趴走
+到哪不論看什麼專案、到處看了什麼都舒服，因為都是自己習慣的風格
+不用再記憶這些風格的眉眉角角，而是專注在眼前的邏輯與意境上
+所以，希望未來有人能做出這樣完整的一套工具
+不曉得現在有沒有團隊在思考類似的解決方案，或者已有什麼套件能達成？
+或者這樣實際上可能會面臨、產生什麼問題嗎？
+整理過往寫程式的體驗，拋出自己想法
+期待這顆硬邦邦的磚頭引來讓大家思考與討論，激盪出更好的辦法
+
+<<WIN 11 HOME 升級成 PRO(已解決)>>
+
+公司有台筆電原本是WIN10 HOME，後來升級成WIN11 HOME，
+現在有購買WIN11 PRO盒裝要升級，於設定/啟用介面，變更產品金鑰輸入卡上的序號，但顯示序號無效，想請問需要注意什麼地方?
+(以為只要買盒裝輸入就可以蓋過原本的HOME版但看起來不行)
+2023/11/01
+使用更新序號更新後顯示--無法在此裝置啟用Winodws，因為您不具有有效的數位授權或產品金鑰，錯誤碼0x803fa067，詢問客服說要重灌..ISO重新安裝中
+2023/11/02
+用專業版提供的USB重新安裝，連選項都沒跳出來，所以還是HOME版本
+後來發現問題了!!!!!!!!
+官方提供的升級序號必須在斷網的情況使用，否則在有數位授權的情況下會不給升級
+升級後使用購買的序號就可以啟用了!
+
+<<Linux主機與Windows電腦的網路連線問題>>
+
+目前公司有一台Linux RedHat主機,裡面有舊的ERP系統,之前更換過IP位址,之後就無法連線使用,但是更換過的IP可以ping的通,可是使用net use指令又無法連線,因此目前還是無法連線使用,請問各位大大,是否Linux系統有哪裡要修改,才能使用指令連線.
+
+
+<<請問 做好的 EBS 快照 有辦法會出道地端嗎或放 S3>>
+
+請問 做好的 EBS 快照 有辦法會出道地端嗎  或放 S3
+
+<<ERP憑證上，一定要有ISO的表單編號嗎？>>
+
+近期公司做一年一度內部稽核，多位稽核員表示，如果ISO程序書上面的表單有上ERP憑證的話，那憑證表單上面一定要有ISO表單的編號。
+小弟不確定，如果表單憑證電子化後，憑證上面沒有ISO表單編號的話，也屬於缺失嗎？
+
+<<老舊系統Ghost轉到虛擬機使用>>
+
+各位大神好
+現在我有一個OS2系統 機器實在不好找，想說有沒有辦法用新機器使用OS2
+但目前看起來都失敗，CPU不夠舊似乎都不行
+所以有想說有沒有方法可以在虛擬機上面將舊有的完整OS2+程式導入進去
+想請問各位大神這個有戲還是沒戲
+謝謝
+
+<<FTP在區網無法登入???>>
+
+想請問一個鬼打牆的問題
+對外只有一台中華電信 H660WM
+裡面有做PORT轉發將21 PORT轉到FTP主機192.168.1.20
+被動模式的ip範圍跟990也有做轉發過來
+防火牆全關
+有申請網域  也有設定dns代管
+在外面的網路可以用ftp.xxxx.com.tw連線到這台登入都沒問題
+在內部區網只能指定192.168.1.20連線 或主機上locolhost連線都可以
+但用ftp.xxxx.com.tw或外網IP連線就會失敗
+出現下方訊息
+狀態:	已從伺服器離線
+狀態:	正在解析 ftp.xxxx.com.tw 的 IP 位址
+狀態:	正在連線到 113.33.11.111:21...
+狀態:	連線已建立, 正在等候歡迎訊息...
+狀態:	不安全的伺服器, 它不支援透過 TLS 的 FTP.
+指令:	USER weizhiftp
+回應:	331 Password please.
+指令:	PASS
+回應:	530 Login incorrect.
+錯誤:	嚴重錯誤: 無法連線到伺服器
+ftp軟體是FileZilla
+
+更新  已解決
+架一台dns server讓ftp跟mailserver的網址優先指向對應內部ip即可
+
+<<Jquery  mousedown 在 ios瀏覽器上不正常>>
+
+ios的手機上 不管是 Safari 或 chrome 的瀏覽器上 mousedown 觸發後 按第一次沒有出現該有的預期結果 結果還要再點第二次 才會出現預期的結果
+可是在 Android的手機上 使用 chrome 卻是正常 一次就出現預期的結果
+請問是要怎麼解決這個問題呢?  讓ios手機上也能像Android手機上一次就成功呢?
+
+<<Windows 檔案總管顯示檔案名稱問題 (已解決)>>
+
+最近在備份Switch 設定檔, 把檔案存在Synology NAS 上, 用檔案總管去看檔案
+會顯示成這樣 , 有幾個正常,幾個異常
+
+但用Linux 去看則是正常的
+
+試過隨機存一個很長的長檔名 ,用windows11 , 10 檔案總管看,也是正常的,
+想請問能怎麼調整Windows 顯示方式, 讓檔名看起來正常?
+========== 2023/11/16 更新===============
+問題已解決,
+Windows 目錄不支援: 所以在檔安總管看不到完整檔案名稱, 只能透過其它方式,
+如nfs 或 synology 的file station 將檔名 : 變更為 其它支援的字元就可以正常顥示,
+但這樣手工並不能完全解決這個問題,
+故寫一支python 程式, 讀取目錄檔案,將:變更為- 就解決了 , 提供大家參考
+
+<<DNS 資安事件處理方式建議>>
+
+我是資深菜鳥工程師，又有好奇的問題了。
+這邊的 DNS Server 有時會被通報「內部主機觸發大量IPS已阻擋事件」，而被通報的原因是「DNS: ISC BIND RRSIG Record Response Assertion Failure Denial of Service」，Server 是 Windows 2019 ，裡面好像有個 BIND 的選項，不過沒有被勾起來。
+想知道兩件事：
+1.什麼原因會發生此一通報？真的是去攻擊人家？被當跳板？
+2.來源 IP 會怎麼處理？我有查了兩個 IP ，一個好像是一般電腦，中華電信的 IP ，另一個不太記得詳細資訊，不過好像也是一台 DNS Server ，目前負責網路的同事是把來源 IP 阻擋掉，不知道這樣處理方式合適嗎？
+謝謝！
+
+<<關於MCU(MKL26Z128VLH4)燒錄>>
+
+我把PCB上的MCU(MKL26Z128VLH4)更換成family及相同pin的新MCU(MKL26Z256VLH4)
+因為記憶體不夠，但是卻無法燒錄，已經在各大網站找過很多因素但依然無解，想請教可能原因。
+
+<<社群影音播放的實作方式>>
+
+想請問像IG滑動態時，若是影片這類型的檔案其傳輸的機制大概是如何呢?
+目前是負責後端的部分，前端我想應該是取得檔案流再透過html一些語法播放影片
+後端以API的形式效能很差，所以是以socket的方式持續的連線，後端再持續的傳遞檔案嗎?
+主要是想知道實作的基本邏輯，目前只實作過用C#的singnalR 傳遞訊息，基本上也是一次性的。  如果有C#的內容很感謝，不過主要是來問個方向，一般這種問題都是如何處裡的，謝謝。
+
+<<Arduino mega 2560 + ESP8266 連接XAMPP Server錯誤>>
+
+為什麼資料出到一半就會[WiFiEsp] TIMEOUT: 215。
+有方法可以延長TIMEOUT的時間嗎？
+問題與這個差不多：https://forum.arduino.cc/t/solved-esp-01-wifiesp-unable-to-get-request-response-from-some-sites/457983
+getdata.php
+<?php
+echo "Hello";
+?>
+
+Arduino Code
+#include "WiFiEsp.h"
+#define ESP_BAUDRATE 115200
+char ssid[] = "xxxxx";
+char pass[] = "xxxxx";
+int status = WL_IDLE_STATUS;
+WiFiEspClient client;
+
+int    HTTP_PORT   = 80;
+String HTTP_METHOD = "GET";
+char   HOST_NAME[] = "192.168.50.24";
+String PATH_NAME   = "/getdata.php";
+
+void setup() {
+  Serial.begin(115200);
+  Serial1.begin(ESP_BAUDRATE);
+  WiFi.init(&Serial1);
+  if(WiFi.status() != WL_CONNECTED){
+    Serial.print("Attempting to connect to SSID: ");
+    Serial.println(ssid);
+    while(WiFi.status() != WL_CONNECTED){
+      WiFi.begin(ssid, pass); // Connect to WPA/WPA2 network
+      Serial.print("...");
+      delay(5000);
+    }
+  }
+  Serial.println("\nConnected");
+  
+  WiFiEspClient client;
+
+  if(client.connect(HOST_NAME, HTTP_PORT)) {
+    client.println("GET /getdata.php HTTP/1.1");       
+    client.println("Host: 192.168.50.24"); 
+    client.println("Connection: close"); 
+    client.println();
+    delay(5000);
+    while(client.connected()) {
+      if(client.available()){
+        char c = client.read();
+        Serial.print(c);
+      }
+    }
+    client.stop();
+    Serial.println();
+    Serial.println("disconnected");
+  } else {
+    Serial.println("connection failed");
+  }
+  Serial.println("\nFinish");
+}
+void loop() {
+}
+
+Serial Monitor
+17:48:07.443 -> [WiFiEsp] Initializing ESP module
+17:48:11.759 -> [WiFiEsp] Warning: Unsupported firmware 3.0.4
+17:48:15.757 -> Attempting to connect to SSID: xxxx
+17:48:20.514 -> [WiFiEsp] Connected to xxxx
+17:48:20.514 -> ...
+17:48:25.535 -> Connected
+17:48:25.535 -> [WiFiEsp] Connecting to 192.168.50.24
+17:48:30.715 -> HTTP/1.1 200 OK
+17:48:30.715 -> Date: Sun, 29 Oc[WiFiEsp] TIMEOUT: 215
+17:48:32.753 -> 
+17:48:32.753 -> disconnected
+17:48:32.753 -> 
+17:48:32.753 -> Finish
+
+
+我把thingspeak.h library的 connection function修改來使用就成功了。
+雖然改的有點亂，不過能跑就行，有需要的可以參考一下。
+#include "Arduino.h"
+#include <Client.h>
+#include "WiFiEsp.h"
+#include <SPI.h> 
+#include <Wire.h> 
+
+#define SERVER_URL "192.168.50.24"
+#define SERVER_PORT_NUMBER 80
+#define TIMEOUT_MS_SERVERRESPONSE 5000  // Wait up to five seconds for server to respond
+#define TS_OK_SUCCESS              200     // OK / Success
+#define TS_ERR_BADAPIKEY           400     // Incorrect API key (or invalid server address)
+#define TS_ERR_BADURL              404     // Incorrect API key (or invalid server address)
+#define TS_ERR_OUT_OF_RANGE        -101    // Value is out of range or string is too long (> 255 bytes)
+#define TS_ERR_INVALID_FIELD_NUM   -201    // Invalid field number specified
+#define TS_ERR_SETFIELD_NOT_CALLED -210    // setField() was not called before writeFields()
+#define TS_ERR_CONNECT_FAILED      -301    // Failed to connect to server
+#define TS_ERR_UNEXPECTED_FAIL     -302    // Unexpected failure during write to server
+#define TS_ERR_BAD_RESPONSE        -303    // Unable to parse response
+#define TS_ERR_TIMEOUT             -304    // Timeout waiting for server to respond
+#define TS_ERR_NOT_INSERTED        -401  
+
+unsigned int port = SERVER_PORT_NUMBER;
+String hostname = SERVER_URL;
+const int status = WL_IDLE_STATUS;
+int lastReadStatus;
+WiFiEspClient wifiClient;
+Client * client = &wifiClient;
+
+bool connectServer()
+{
+  bool connectSuccess = false;
+      
+  connectSuccess = client->connect(SERVER_URL, port);
+
+  Serial.println(connectSuccess);
+    
+  return connectSuccess;
+}
+
+int getHTTPResponse(String & response)
+{
+
+  client->flush();
+  
+  long timeoutTime = millis() + TIMEOUT_MS_SERVERRESPONSE;
+  
+  while(client-> available() < 17){
+    delay(2);
+    if(millis() > timeoutTime){
+      return TS_ERR_TIMEOUT;
+    }
+  }
+  
+  if(!client->find(const_cast<char *>("HTTP/1.1")))
+  {
+    Serial.println("P");
+    return TS_ERR_BAD_RESPONSE; 
+  }
+  
+  int status = client->parseInt();
+
+  if(status != TS_OK_SUCCESS)
+  {
+    return status;
+  }
+
+  // Find Content-Length
+  if(!client->find(const_cast<char *>("Content-Length:"))){
+    Serial.println("L");
+    return TS_ERR_BAD_RESPONSE;
+  }
+  int contentLength = client->parseInt();
+  
+  if(!client->find(const_cast<char *>("\r\n\r\n")))
+  {
+    Serial.println("M");
+    return TS_ERR_BAD_RESPONSE;
+  }
+  
+  timeoutTime = millis() + TIMEOUT_MS_SERVERRESPONSE;
+  
+  while(client->available() < contentLength){
+    delay(2);
+    if(millis() > timeoutTime){
+      return TS_ERR_TIMEOUT;
+    }
+  }
+  
+  String tempString = String("");
+  char y = 0;
+  for(int i = 0; i < contentLength; i++){
+    y = client->read();
+    tempString.concat(y);
+  }
+  response = tempString;
+  
+  return status;
+}
+
+void emptyStream(){
+  while(client->available() > 0){
+    client->read();
+  }
+}
+
+String read_id(String id)
+{
+
+  if(!connectServer())
+  {
+      lastReadStatus = TS_ERR_CONNECT_FAILED;
+      return String("");
+  }
+
+  String readURL = String("/");
+  readURL.concat("getdata.php");
+  readURL.concat("?id="+id);
+
+  if(!client->print("GET ")) Serial.println("F");
+  if(!client->print(readURL)) Serial.println("F");
+  if(!client->print(" HTTP/1.1\r\n")) Serial.println("F");
+  if(!client->print("Host: " + hostname + "\r\n")) Serial.println("F");
+  if(!client->print("\r\n")) Serial.println("F");
+  
+  String content = String();
+  Serial.println(content);
+  int status = getHTTPResponse(content);
+  Serial.println(status);
+    
+  lastReadStatus = status;
+  
+  emptyStream();
+
+  client->stop();
+
+  if(status != TS_OK_SUCCESS) return String("");
+
+  return content;
+}
+
+主程式
+void setup() {
+...
+Serial.print(read_id("001"));
+...
+}
+
+
+<<like在哪>>
+
+like在哪我真的找不到
+
+<<Dell R720xd不支援內接裝置(BIOS直接Disable SATA選項)，有解嗎？>>
+
+日前購買Dell R420、R720，皆可利用主機板上的SATA Port與4pin電源供電給DVD(SSD轉接盒)使用
+近日入手Dell R720xd，赫然發現BIOS無SATA mode選項！
+果不其然！抓不到DVD(SSD轉接盒)...
+爬Dell官網看說明書，詳見截圖
+
+有點傻眼貓咪...
+真的無解嗎？
+Dell R720/R720xd應該是同一張主機板吧？
+拿Dell R720安裝Windows server 2022的系統硬碟在R720xd開機，會有一大堆無法辨識的裝置！但移除晶片組驅動程式後，再重新安裝一次，所有裝置可正常抓到！
+重點是！晶片組的驅動程式是同一個...
+哎！
+可見我是如此的才疏學淺...
+有請邦友釋疑
+感謝！
++++++++++++++++++++++++
+補充說明
+疑似DDR5正式普及？導致DDR3 32G、64G價格快速崩盤！因此一腳踩入洋垃圾的坑(之前要架設Lab最常遇到的問題就是記憶體不足！)
+
+第一台Dell R420(32Gx12、H310 mini)，系統(Windows Server 2019、ESXi 6.5-8.0)安裝在DVD轉SSD中，後來覺得PCI-e插槽太少(x2)，因此脫手
+第二台Dell R720(32Gx24、H710P mini)，直接沿用之前安裝系統的SSD(Windows Server 2019、ESXi 8.0)，正常開機、測試，嘗試脫手賺小小的差價，買家要求安裝Windows Server 2022(安裝在兩顆硬碟(Raid0x2))，其中一顆隨機出貨
+第三台Dell R720xd(之前購買的賣家沒R720了！改給R720xd)，Raid card是H710 mini，直接載入之前安裝Windows Server 2022硬碟的設定，開機正常(除了上述的問題)
+
+以上
+
+<<excel VBA 中的Time 應該如何寫才能達到在儲存欄中跨過00:00:00 時用24:00:00>>
+
+excel VBA 中的Time 應該如何寫才能達到在儲存欄中 C:C 的時間可以隨著時間
+每間隔1秒往下增加，而且在跨過00:00:00 時，即24:00:00 時，
+時間可能顯示成24:00:0,24:00:01,24:00:02,24:00:03,24:00:04 ......。
+不要顯示成 00:00:01,00:00:02,00:00:03,00:00:04, ......。
+且在01:00:00之後,可以顯示成 25:00:00,25:00:02,25:00:02,25:00:03 .....。
+依此類推。
+**** 跨過00:00:00 時可以用24:00:00， 25:00:00 來表示
+
+
+<<LaTeX論文引用的問題>>
+
+各位大大好，我最近才接觸LaTeX，在引用論文的時候，發現會出現下方紅色框框內的數字列，想請問是否有辦法將其移除呢?
+
+
+
+<<請教 ~~~~關於直播互動 (需要任何硬體 或 軟體?)>>
+
+最近想研究一下關於直播互動的結構~~
+像最近不是有人在直播寵物餵食的,凡事只要有人斗內,
+籠子就會自動投放食物,
+這到底是如何實現的?
+有沒有大神知道~~ 感謝 orz(需要任何硬體 或 軟體?)
+
+<<json-server 環境安裝>>
+
+第一次發文 想請問在mac終端機安裝出現以下的訊息
+剛開始學習前端 所以不熟悉
+想請問要如何解決 謝謝
+Last login: Fri Oct 27 23:09:31 on ttys000
+liaobili@liaobilideMacBook-Pro ~ % sudo npm install -g json-server
+Password:
+changed 116 packages in 6s
+15 packages are looking for funding
+run npm fund for details
+liaobili@liaobilideMacBook-Pro ~ % npm install -g json-server
+npm ERR! code EACCES
+npm ERR! syscall rename
+npm ERR! path /usr/local/lib/node_modules/json-server
+npm ERR! dest /usr/local/lib/node_modules/.json-server-SmlbN4FS
+npm ERR! errno -13
+npm ERR! Error: EACCES: permission denied, rename '/usr/local/lib/node_modules/json-server' -> '/usr/local/lib/node_modules/.json-server-SmlbN4FS'
+npm ERR!  [Error: EACCES: permission denied, rename '/usr/local/lib/node_modules/json-server' -> '/usr/local/lib/node_modules/.json-server-SmlbN4FS'] {
+npm ERR!   errno: -13,
+npm ERR!   code: 'EACCES',
+npm ERR!   syscall: 'rename',
+npm ERR!   path: '/usr/local/lib/node_modules/json-server',
+npm ERR!   dest: '/usr/local/lib/node_modules/.json-server-SmlbN4FS'
+npm ERR! }
+npm ERR!
+npm ERR! The operation was rejected by your operating system.
+npm ERR! It is likely you do not have the permissions to access this file as the current user
+npm ERR!
+npm ERR! If you believe this might be a permissions issue, please double-check the
+npm ERR! permissions of the file and its containing directories, or try running
+npm ERR! the command again as root/Administrator.
+npm ERR! A complete log of this run can be found in: /Users/liaobili/.npm/_logs/2023-10-27T15_17_06_992Z-debug-0.log
+liaobili@liaobilideMacBook-Pro ~ % sudo chow -R 501:20 "/Users/liaobili/.nom"
+sudo: chow: command not found
+liaobili@liaobilideMacBook-Pro ~ %
+
+<<想問一個有關LAPTOP問題>>
+
+因本人很少接觸LAPTOP(主要是台式電腦)。 所以不太了解而問以下這問題。
+事因近日一批加入了DOMAIN的LAPTOP, 用戶經常用後不關機, 只是把屏幕蓋上(SLEEP MODE)便算。 有見及此, 高層要求整頓一下問題。 第一時間只想到用GPO, 在設定好後以為一切完善。 但兩天後發現情況一樣(只怪當日太有自信, 沒有測試), 蓋上的機沒有關掉。 好奇到電源管理一看, 卻發現LAPTOP沒有【蓋上螢幕的行為】一項。
+想問, 【蓋上螢幕的行為】不是正常會有的東西嗎? 還是需要安裝指定的軟件? 又或是BIOS要有什麼項目打開了才出現的呢?
+補充, 系統是WINDOWS 10
+
+<<要如何使用前端js上傳至python django?[以解決]>>
+
+結果是不能加 ajax.setRequestHeader("Content-type","multipart/form-data;boundary="+Date.now())😑
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>test</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+
+        <input type="file" class="file" name="file" id="file">
+
+        <script src="index.js"></script>
+    </body>
+</html>
+
+ // 前端index.js
+ document.getElementById("file").onchange=function(){
+    let ajax=new XMLHttpRequest()
+    let formdata=new FormData()
+    formdata.append("file",this.files[0])
+    ajax.onload=function(){
+        let data=JSON.parse(this.responseText)
+        if(data["success"]){
+            alert("結果: "+data["data"])
+        }else{
+            alert(data["data"])
+        }
+    }
+    ajax.open("POST","/backend/test/upload/"+questionid,true)
+    ajax.setRequestHeader("Content-type","multipart/form-data;boundary="+Date.now())
+    ajax.setRequestHeader("Authorization","Bearer "+localStorage.getItem("token"))
+    ajax.send(formdata)
+}
+
+# 後端/backend/test/upload/
+# import
+import bcrypt
+import hashlib
+import json
+import os
+import random
+import re
+from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
+from django.utils.text import get_valid_filename
+from django.views.decorators.http import require_http_methods
+from rest_framework import status
+from rest_framework.decorators import api_view,renderer_classes
+from rest_framework.renderers import JSONRenderer
+from rest_framework.response import Response
+
+def uploadfile(path,file):
+    try:
+        with open(os.path.join(path,file.name),"wb") as f:
+            for chunk in file.chunks():
+                f.write(chunk)
+    except Exception as error:
+        printcolorhaveline("fail","[ERROR] function uploadfile error: "+str(error),"")
+
+@api_view(["POST"])
+def newans(request,questionid):
+    try:
+        print(request.POST)
+        print(request.FILES)
+        uploadfile("./test/upload",request.FILES["file"])
+
+        return Response({
+            "success": True,
+            "data": ""
+        },status.HTTP_200_OK)
+    except Exception as error:
+        printcolorhaveline("fail","[ERROR] "+str(error),"")
+        return Response({
+            "success": False,
+            "data": "[ERROR] unknow error pls tell the admin error:\n"+str(error)
+        },status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+而他會輸出
+<QueryDict: {}>
+<MultiValueDict: {}>
+[ERROR] 'file'
+[27/Oct/2023 19:30:47] "POST /test/upload/1 HTTP/1.0" 500 81
+使用postman測試後沒問題
+如圖:
+
+請問各位大大有發現我是哪裡有打錯或是理解錯嗎? 感謝各位
+
+-------------------------------------第8頁-------------------------------------
+<<Visual Studio 2019 Entity Framework 連接Oracle資料庫錯誤  "ORA-00942:表格或境觀表不存在">>
+
+想請問在用 Visual Studio  連接 Oracle資料庫的時候，在[伺服器總管]裡的資料連接連線功能都正常，能夠連線資料庫和列出資料表，但是因為要用MVC架構新增Model的原因要新增 "ADO.NET"實體模型，就用"實體資料模型"要新增Model，但是在選好資料連接按下一步選資料表的時候，就會跳出下面錯誤，請問是哪邊權限或設定有問題嗎?
+
+
+<<排序好的合約編號資料, 自動排序號>>
+
+謝謝各位的回覆,
+祇能選一位最佳,
+祇能失禮其他大大了。
+再次謝謝大家解決我的問題~
+=============================
+各位大大們好,
+我有一堆已排序好的合約編號資料(有重覆的),
+需排序號,但因有重覆的,無法依 =ROW()-1 作業
+想請問有無公式可以讓其自動編號?
+先謝謝了~
+
+
+<<網路不穩>>
+
+我們公司有分作生產區與辦公區，分別使用不同的網段連線到位於辦公區的伺服器與NAS，假設目前辦公區為192.168.1.XXX而生產區為192.168.2.XXX，但是大家都需要用到的公共資料庫為192.168.1.200卻在生產區使用的網段有連線不穩定的情況發生，可以一直Ping 的到192.168.1.200但是卻有時候會在開檔案時出現異常，每天都會發生，但不會時時刻刻發生，突然就不能用，等待幾分鐘由時候就可以用了，會出現如說權限不足無法開啟、檔案遺失或沒找到檔案異常，而如果把生產區使用的網段改到辦公區的就很順利完全不會有錯誤，可能是什麼情況呢，因為最開始是其中一台電腦的excel檔案有問題，有更換了作業系統、硬碟與資料檔，但都沒改善，有將網路線更新成CET6的線，問題依然存在。
+因為有一些問題，無法拍照說明，所以我畫了一張圖，其中生產區的SWITCH 是使用MikroTik，D-link的設備，辦公區是使用HP設備，雙方交換的SWITCH是HP的
+
+
+<<請問如何捕捉附近空氣中的所有設備的WIFI、無線設備、4G的封包跟數據?>>
+
+請問如何捕捉附近空氣中的所有設備的WIFI、無線設備、4G的封包跟數據?
+想了解生活中的無法看到的數據量
+是否真的會有明碼被查看泄露的風險
+我會使用 wireshark 但只能看到電腦的傳輸過程，看不到空中的
+
+<<如何在一個oracle procedure裏設兩個transaction?>>
+
+我想追踪procedure執行情況,所以每個執行命令會寫到另一個table以防出錯時可以查看,但發生錯誤時執行rollback就什麼都沒了
+
+<<excel 圖表中如何設定才能夠讓區間 200 ~ -200的資料點隱藏不出現在表中呢？>>
+
+excel 圖表中如何設定才能夠讓區間 200 ~ -200的資料點隱藏不出現在表中呢？
+**** 資料還在但是介於 200 ~ -200 的資料不要出現，以方便瀏覽
+
+
+<<DevTools查找Javascript問題預設中斷點方式>>
+
+請教
+當使用JAVA或.NET都能利用IDE預先下好中斷點，再開啟BUG模式偵錯
+就能一步一步查詢問題
+而Javascript也知道能在DevTools內下中斷點偵錯
+但有時程式設計會redirect或其他機制導致原本想偵錯的JS已消失，來不及在DevTools的Sources下好中斷點，程式就已經跳開了
+請教大家會利用甚麼方式或技巧來偵錯呢?  (除了console.log)
+謝謝
+
+<<Windows音訊裝置已靜音不用疑難排解員怎麼解決>>
+
+有些NB的內建麥克風會不定期失靈，OS是WIN10
+目前我的解決方法都是直接跑內建的疑難排解員讓系統自己去修復
+大多跑完都可以解決，不過解決後顯示的狀態都是 Windows音訊裝置已靜音 ，如下圖
+
+不確定是不是windows更新導致的
+最主要是一般user沒有系統管理員權限，執行不了疑難排解。
+想問下不用疑難排解員的情況下，user可以怎麼自己操作解決
+自己試過關掉許多設定，再去跑疑難排解，都不對
+像是服務關閉Windows Audio、裝置管理員停用麥克風或是控制台將麥克風停用等都不對
+請問是哪邊麥克風設定打開或關閉，可以解決這問題呢?
+
+<<為啥只印出一次 HELLO    SHELL   有那麼難嗎?  哪個大神救我>>
+
+for i in {1..5}; do   echo "HELLO";  done;
+HELLO
+為啥只有印出一次
+這個就無限次
+while true; do echo 'HELLO'; sleep 1; done
+
+<<IE11 javascript使用axios顯示未定義>>
+
+如題，使用Chrome和Edge都可以正常使用axios功能，但IE11會失敗
+我的axios cdn
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+也有試過網路上的方法，在axios的cdn上面加入(這是Polyfill嗎?)
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+不過一樣會顯示"axios"未定義
+下面是我的javascript語法
+            axios.post("/ecom/edit/get_position", { name: selectedName })
+                .then(function (response) {
+                    console.log(response)
+                    positionDisplay.textContent = response.data.職位名稱;
+                })
+                .catch(function (error) {
+                    console.error(error);
+                    positionDisplay.textContent = "找不到該名字的職位信息";
+                });
+
+有大神能解決嗎QQ
+
+<<關於 Google Analytics  轉移至新板GA4>>
+
+各位大大好：
+目前新版GA4也建立起來 也開始收集網站資料了
+但舊的收集資料只能在舊版顯示，不知道是否能將資料全部轉移至新版呢?
+找了很多資訊...好像是說兩邊的架構與資料不同，但也沒有提到能不能轉移問題-.-"
+不知道是否有大大有方向 是不能轉  或是成功轉移的!
+謝謝!
+
+<<WINDOW S    聲音不見了  要怎麼排除呢>>
+
+WINDOWS    聲音不見了  要怎麼排除呢
+感覺好像 更新玩 WINDOWS  聲音就不見了
+
+<<event log error message>>
+
+請問各位大大  早上看事件薄發現
+report server 錯誤(如圖)
+
+MSCRMWebService 錯誤(如圖)
+
+請問是那裡發生問題, 要怎麼解決  tks
+
+<<php+mysql的後端專案，該怎麼部屬到雲端呢?>>
+
+大家好，
+請問如果我做好一個網站，有前台跟後台。
+網站是用vue3+php+mysql+xampp去部屬在本機裡。
+因為想要將網站當作作品集，給其他人觀看。
+所以想要將專案部屬在雲端上。
+前端是用vue3打包成index.html，會部屬在github上，問題不大。
+後端該怎麼辦呢?
+有甚麼地方可以將寫好的php跟mysql直接部屬上去呢?
+我有試著使用Firebase，不過它是NoSQL，
+好像不行直接將mysql的資料直接上傳?
+這樣的話，後端api就要重新寫過?前端fetch也要重新寫過?
+
+可以請問大家都是怎麼部屬作品集的嗎?
+感恩
+
+謝謝大家
+
+
+<<如何建立本機的資料庫引擎(SSMS)>>
+
+大家好
+如下圖所示
+在公司電腦的SSMS在選SQL SERVER只能選公司的SERVER
+(自已家裝的SSMS好像都會幫建localhost的SQLSERVER ?)
+如果要用自已本機電腦當SQL SERVER
+應該要怎麼做??
+
+
+<<Render部屬前端出現NOT FOUND，但有成功連接到後端。>>
+
+我在Github上傳一個資料夾裡面分別放了前後端的資料夾，然後在Render上傳前後端，但後端雖然有上傳成功，但是出現了
+我後端server有程式出錯，但我不知道該怎麼連到前端取資料，因為我上傳後端是上傳後端的資料夾。
+
+
+也不確定是不是這個bug才會導致網站除了首頁其他頁面按F5就出現NOT FOUND。
+我的網站:https://project-9-frontend.onrender.com
+
+<<已刪文02>>
+
+已刪文
+
+<<Drupal 誤刪討論區>>
+
+請問 Drupal 的 誤刪討論區 有辦法救回嗎?
+
+<<Chrome無法連上Exchange OWA>>
+
+各位大神好~
+在上次的Windows 10更新後，
+使用Chrome就無法連上Exchange的OWA了，
+但Edge可以正常連上，使用另一台電腦開啟Chrome，
+也可以正常連上Exchange的OWA，
+清除過不限時間Cookie，仍然無法連上OWA，
+也交叉比對過Windows功能，一樣的配置還是無法解決，
+所以上來發問看看各位大神有無解決方法。https://ithelp.ithome.com.tw/upload/images/20231025/20102612VIr4ohJd9L.png
+
+<<請問ERP使用多階BOM多工單模式，庫存如何拆解回實際原物料用量、成本明細?>>
+
+請問ERP使用多階BOM多工單模式，庫存如何拆解回實際原物料用量?
+目前能按照標準用量拆分
+舉例 :
+標準手機BOM表
+
+
+
+零件名稱
+型號
+數量
+成本（元）
+
+
+
+
+主板
+A001
+1
+500
+
+
+
+現在系統有 1000 手機庫存，可能來源於2張工單，實際數量成本都跟標準不一樣，甚至料號都不一樣
+工單1生產500數量
+
+
+
+零件名稱
+料號
+數量
+成本
+
+
+
+
+主板
+A001
+1 * 550
+400 * 550
+
+
+
+工單2生產500數量
+
+
+
+零件名稱
+型號
+數量
+成本
+
+
+
+
+主板
+A002
+1 * 700
+300 * 700
+
+
+
+
+想要得到報表結構
+
+
+
+庫存名稱
+庫存
+實際使用-零件名稱
+實際使用-型號
+實際使用-數量
+實際使用-成本
+
+
+
+
+手機
+1000
+----
+----
+----
+----
+
+
+
+
+主板
+A001
+1 * 550
+400 * 550
+
+
+
+
+主板
+A002
+1 * 700
+300 * 700
+
+
+
+目前只能按照標準展開如下
+
+
+
+庫存名稱
+庫存
+實際使用-零件名稱
+實際使用-型號
+實際使用-數量
+實際使用-成本
+
+
+
+
+手機
+1000
+----
+----
+----
+----
+
+
+
+
+主板
+A001
+1 * 1000
+500 * 1000
+
+
+
+以上案例只是為了方便簡化，實際可能會有4,5層+張BOM+工單
+請問Tiptop/SAP/或是其他ERP、外圍系統有辦法展開"庫存實際來源原物料用量"嗎?
+詢問過廠商目前辦不到。
+
+<<公司電腦登陸域帳號，用戶可以收到登入郵件通知>>
+
+如題，請問有什麼方法可以實現?
+環境：域控win2016,exchange2016
+當用戶登入公司電腦時，用戶可以收到自己登入電腦的郵件通知
+就像手機網路銀行一樣，域用戶可以收到郵件通知
+1.登陸域用戶帳號成功
+2.登陸域用戶帳號輸入錯誤
+感謝大神
+
+<<Apache Hop實作CDC的步驟>>
+
+我需要監聽別人的資料庫的某個資料表
+如果有新增資料
+那我就要整理這筆資料的格式
+然後call我自己開的api來新增資料到我的資料庫
+請問怎部分怎麼在Apache Hop實作?
+
+<<請問無聯網驗證lisence如何做? 驗證mac, IP 還有哪些數據嗎?>>
+
+請問無聯網驗證lisence如何做? 驗證mac, IP 還有哪些數據嗎?
+請問想要做服務，驗證lisence，支持用戶不聯網情況
+我想到的做法是以mac做MD5當lisence，請問業界做法? 謝謝!
+
+詢問AI
+如果您想要實現無聯網驗證license的功能，可以考慮使用以下方式：
+
+驗證硬件信息：您可以驗證用戶的硬件信息，例如MAC地址、IP地址、硬件序列號等。這些信息通常是唯一的，可以用於驗證用戶的身份。
+
+使用加密算法：您可以使用加密算法來保護您的license文件，防止被盜用或複製。這可以提高license的安全性。
+
+本地存儲：您可以將license文件存儲在用戶的本地計算機上，而不是在遠程服務器上。這樣，即使用戶沒有聯網，也可以使用您的應用程序。
+
+需要注意的是，無聯網驗證license的實現需要考慮到用戶體驗和安全性等方面。您需要仔細設計和測試您的license驗證功能，以確保其穩定性和安全性。
+
+
+<<[抽獎]資訊素養自我效能對資訊安全認知與資訊安全政策遵循關係之調查(可抽獎)>>
+
+問卷名稱:資訊素養自我效能對資訊安全認知與資訊安全政策遵循關係之調查
+研究目的:探討資訊素養自我效能對資訊安全認知與資訊安全政策遵循關係
+填答條件：研究參與對象為18歲以上具意識能力之成年人
+其他聲明：
+
+作答時間約為5-10分鐘，本問卷內容將以匿名進行填寫，並不用於商業用途，請放心填答。
+2.為確保研究結果，請勿重複填寫。
+
+研究單位：私立真理大學人文與資訊學系
+研究者姓名：賴冠宇
+聯絡人姓名：賴冠宇
+聯絡方式：sr6714989@gmail.com
+問卷連結：https://forms.gle/BZB3eVeYtmGMmVP47
+回饋獎品：本次實驗將從有效問卷填答者中，隨機抽抽出25名贈送711禮卷:3名500元，7名200元，15名100元
+問卷截止時間:問卷數量填答者達220位截止!
+
+<<EXCEL 公式>>
+
+如網址:https://drive.google.com/file/d/19Jn3CXwR_ECPiME5eo9omryE9706a9hQ/view?usp=share_link
+請問有大大能幫忙嗎??謝謝!!
+有沒有公式在所有資料中C1:E7找出A1:A7相同的資料並且傳回結果(C9:E9)的資料??
+
+<<我用C語言寫一個關於Dijkstra演算法的練習，請問有哪些地方可以優化？>>
+
+大家好，我第一次發文，有甚麼違反規定的地方麻煩告知。
+我在練習C語言，用C寫一個關於Dijkstra演算法的練習，結果是寫出來了，但感覺寫得不好，想請問有哪些地方可以優化的？不知道這問題合不合適？
+先感謝各位回答了。
+
+從START點走道FIN點，箭頭是單行道。START->A為6，START->B為2，B->A為3，B->FIN為5，A->FIN為1，找出最短路徑。
+#include <stdio.h>
+#include <string.h>
+#define MAX_INT 2147483647
+#define MAX_NODE_LENGTH 10
+typedef struct path {
+  char *node;
+  int distance;
+}PATH;
+typedef struct graph{
+  char *node;
+  PATH *graph_path;            //一開始設成這樣PATH graph_path[MAX_PATH];，結果無法一起賦值，只好將PATH拉出去單獨宣告，然後忘了改成ptr，就讀不到資料
+  int member;
+}GRAPH;
+typedef struct mileage{
+  char *node;
+  int total;
+}MILEAGE;
+typedef struct parent{
+  char *node;
+  char father[MAX_NODE_LENGTH];
+}PARENT;
+void findShortestPath(GRAPH *start_to_fin, MILEAGE *shortest_mileage, PARENT *parent_node, int siezeof_graph, int sizeof_mileage);
+int findGraphNodeIndex(GRAPH *start_to_fin, char *node, int siezeof_graph);
+int renewCost(GRAPH *start_to_fin, MILEAGE *shortest_mileage, PARENT *parent_node, int graph_index, int sizeof_mileage, int *visited);
+int findMileageNodeIndex(char *name_node, MILEAGE *shortest_mileage, int sizeof_mileage);
+void renewParent(char *name_graph, PARENT *parent_node, int index_mileage);
+
+int main(void) {
+  PATH START[] ={{"A", 6}, {"B", 2}}, A[] = {{"FIN", 1}}, B[] = {{"A", 3}, {"FIN", 5}}, FIN[] = {{0, 0}};
+  GRAPH start_to_fin[] = {{"START", START, 2}, {"A", A, 1}, {"B", B, 2}, {"FIN", FIN, 0}};
+  MILEAGE shortest_mileage[] = {{"A", MAX_INT}, {"B", MAX_INT}, {"FIN", MAX_INT}};
+  PARENT parent_node[] = {{"A", ""}, {"B", ""}, {"FIN", ""}};
+  int sizeof_mileage = sizeof(shortest_mileage)/sizeof(shortest_mileage[0]);
+  findShortestPath(start_to_fin, shortest_mileage, parent_node, sizeof(start_to_fin)/sizeof(start_to_fin[0]), sizeof_mileage);
+  for (int j = 0; j < sizeof_mileage; ++j) printf("total %s = %d, ", shortest_mileage[j].node, shortest_mileage[j].total);      //測試shortest_mileage
+  printf("\n");
+  for (int j = 0; j < sizeof_mileage; ++j) printf("%s'parent = %s, ", parent_node[j].node, parent_node[j].father);          //測試parent
+  printf("\n");  
+  return 0;
+}
+
+void findShortestPath(GRAPH *start_to_fin, MILEAGE *shortest_mileage, PARENT *parent_node, int siezeof_graph, int sizeof_mileage) {    //找最短路徑
+  int graph_index = findGraphNodeIndex(start_to_fin, "START", siezeof_graph);
+  int visited[sizeof_mileage];                                     //觀察節點是否使用過，序號對應graph_index，用過為1，沒用過為0
+  for (int i = 0; i < siezeof_graph; ++i) visited[i] = 0;
+  int visited_index = renewCost(start_to_fin, shortest_mileage, parent_node, graph_index, sizeof_mileage, visited);    //第一次更新shortest_mileage
+  while (visited_index != sizeof_mileage-1) {                                                             //重複更新，直到FIN節點為未更新節點中的最低
+    graph_index = findGraphNodeIndex(start_to_fin, shortest_mileage[visited_index].node, siezeof_graph);
+    visited_index = renewCost(start_to_fin, shortest_mileage, parent_node, graph_index, sizeof_mileage, visited);
+  }
+}
+
+int findGraphNodeIndex(GRAPH *start_to_fin, char *node, int siezeof_graph) {      //找出節點圖形中對應名子的序號
+  for (int i = 0; i < siezeof_graph; ++i) {
+    if (strcmp(start_to_fin[i].node, node) == 0) return i;
+  }
+  return -1;
+}
+
+int renewCost(GRAPH *start_to_fin, MILEAGE *shortest_mileage, PARENT *parent_node, int graph_index, int sizeof_mileage, int *visited) {
+  int index_mileage_node = findMileageNodeIndex(start_to_fin[graph_index].node, shortest_mileage, sizeof_mileage);
+  for (int i = 0; i < start_to_fin[graph_index].member; ++i) {
+    int index_mileage = findMileageNodeIndex(start_to_fin[graph_index].graph_path[i].node, shortest_mileage, sizeof_mileage);  //找出對應節點並更新
+    if (index_mileage_node == -1) {                                                                                       //檢查是否為shortest_mileage中的節點
+      shortest_mileage[index_mileage].total = start_to_fin[graph_index].graph_path[i].distance;
+      renewParent(start_to_fin[graph_index].node, parent_node, index_mileage);
+    }
+    else if (shortest_mileage[index_mileage].total > shortest_mileage[index_mileage_node].total + start_to_fin[graph_index].graph_path[i].distance) {
+      shortest_mileage[index_mileage].total = shortest_mileage[index_mileage_node].total + start_to_fin[graph_index].graph_path[i].distance;   //要先找出對應graph_index的mileage_index
+      renewParent(start_to_fin[graph_index].node, parent_node, index_mileage);
+    }
+  }
+  // for (int j = 0; j <sizeof_mileage; ++j) printf("%s = %d, ", shortest_mileage[j].node, shortest_mileage[j].total);      //測試shortest_mileage
+  // printf("\n");
+  int shortest_distence = MAX_INT, mileage_index = 0;               
+  for (int j = 0; j <sizeof_mileage; ++j) {                       //找出要刪除的節點
+    if (shortest_distence > shortest_mileage[j].total && visited[j] == 0) {
+      shortest_distence = shortest_mileage[j].total;
+      mileage_index = j;
+    }
+  }
+  visited[mileage_index] = 1;           //標記用過節點
+  // for (int j = 0; j < sizeof_mileage; ++j) printf("visited %s = %d, ", shortest_mileage[j].node, visited[j]);          //測試visited
+  // printf("\n");
+  // for (int j = 0; j < sizeof_mileage; ++j) printf("parent %s = %s, ", parent_node[j].node, parent_node[j].father);          //測試parent
+  // printf("\n");
+  return mileage_index;
+}
+
+int findMileageNodeIndex(char *name_node, MILEAGE *shortest_mileage, int sizeof_mileage) {        //找出shortest_mileage中對應名子的序號
+  for (int i = 0; i < sizeof_mileage; ++i) {
+    if (strcmp(name_node, shortest_mileage[i].node) == 0) return i;
+  }
+  return -1;
+}
+
+void renewParent(char *name_graph, PARENT *parent_node, int index_mileage) {      //更新parent節點
+  strcpy(parent_node[index_mileage].father, name_graph);
+}
+
+
+
+<<我把我原本localhost8080改成localhost:3000>>
+
+{
+// 使用 IntelliSense 以得知可用的屬性。
+// 暫留以檢視現有屬性的描述。
+// 如需詳細資訊，請瀏覽: https://go.microsoft.com/fwlink/?linkid=830387
+"version": "0.2.0",
+"configurations": [
+{
+"type": "chrome",
+"request": "launch",
+"name":"Launch Chrome against localhost",
+"url": "http://localhost:3000",
+"webRoot":"${workspaceFolder}"
+}
+]
+}
+為什麼終端機，我都按了YES，結果說error
+PS C:\Users\User\my-app> node_modules.bin\eslint.cmd --init
+You can also run this command directly using 'npm init @eslint/config'.
+PS C:\Users\User\my-app> node_modules.bin\eslint.cmd --init
+You can also run this command directly using 'npm init @eslint/config'.
+Need to install the following packages:
+@eslint/create-config@0.4.6
+Ok to proceed? (y)
+? How would you like to use ESLint? ...
+To check syntax only
+
+To check syntax and find problems
+√ How would you like to use ESLint? · problems
+? What type of modules does your project use? ...
+JavaScript modules (import/export)
+CommonJS (require/exports)
+√ What type of modules does your project use? · esm
+√ Which framework does your project use? · react
+√ Does your project use TypeScript? · No / Yes
+√ Where does your code run? · browser
+√ What format do you want your config file to be in? · JavaScript
+Local ESLint installation not found.
+The config that you've selected requires the following dependencies:
+
+@typescript-eslint/eslint-plugin@latest eslint-plugin-react@latest @typescript-eslint/parser@latest eslint@latest
+√ Would you like to install them now? · No / Yes
+√ Which package manager do you want to use? · npm
+Installing @typescript-eslint/eslint-plugin@latest, eslint-plugin-react@latest, @typescript-eslint/parser@latest, eslint@latest
+npm ERR! code ERESOLVE
+npm ERR! ERESOLVE could not resolve
+npm ERR!
+npm ERR! While resolving: my-app@0.1.0
+npm ERR! Found: @typescript-eslint/eslint-plugin@5.62.0
+npm ERR! node_modules/@typescript-eslint/eslint-plugin
+npm ERR!   @typescript-eslint/eslint-plugin@"^5.5.0" from eslint-config-react-app@7.0.1
+npm ERR!   node_modules/eslint-config-react-app
+npm ERR!     eslint-config-react-app@"^7.0.1" from react-scripts@5.0.1
+npm ERR!     node_modules/react-scripts
+npm ERR!       react-scripts@"5.0.1" from the root project
+npm ERR!   peerOptional @typescript-eslint/eslint-plugin@"^4.0.0 || ^5.0.0" from eslint-plugin-jest@25.7.0
+npm ERR!   node_modules/eslint-plugin-jest
+npm ERR!     eslint-plugin-jest@"^25.3.0" from eslint-config-react-app@7.0.1
+npm ERR!     node_modules/eslint-config-react-app
+npm ERR!       eslint-config-react-app@"^7.0.1" from react-scripts@5.0.1
+npm ERR!       node_modules/react-scripts
+npm ERR!         react-scripts@"5.0.1" from the root project
+npm ERR!   1 more (the root project)
+npm ERR!
+npm ERR! Could not resolve dependency:
+npm ERR! dev @typescript-eslint/eslint-plugin@"6.8.0" from the root project
+npm ERR!
+npm ERR! Conflicting peer dependency: @typescript-eslint/parser@6.8.0
+npm ERR! node_modules/@typescript-eslint/parser
+npm ERR!   peer @typescript-eslint/parser@"^6.0.0 || ^6.0.0-alpha" from @typescript-eslint/eslint-plugin@6.8.0
+npm ERR!   node_modules/@typescript-eslint/eslint-plugin
+npm ERR!     dev @typescript-eslint/eslint-plugin@"6.8.0" from the root project
+npm ERR!
+npm ERR! Fix the upstream dependency conflict, or retry
+npm ERR! this command with --force or --legacy-peer-deps
+npm ERR! to accept an incorrect (and potentially broken) dependency resolution.
+npm ERR!
+npm ERR!
+npm ERR! For a full report see:
+npm ERR! C:\Users\User\AppData\Local\npm-cache_logs\2023-10-23T06_11_27_825Z-eresolve-report.txt
+npm ERR! A complete log of this run can be found in: C:\Users\User\AppData\Local\npm-cache_logs\2023-10-23T06_11_27_825Z-debug-0.log
+Successfully created .eslintrc.js file in C:\Users\User\my-app
+PS C:\Users\User\my-app>
+
+<<SQL Server 可以建立雪水ID Function嗎?>>
+
+假設不依賴外部程序，SQL Server 可以建立雪水ID Function嗎?
+查到這個 https://blog.csdn.net/qq_18932003/article/details/114334290 ，依賴於newid但沒有順序性
+詢問AI，需要也是需要建立外部程序庫，不能純sql function
+是的，SQL Server 可以建立雪花ID函數。雪花ID是一種用於生成唯一標識符的算法，它可以在SQL Server中使用。您可以使用T-SQL編寫一個用戶定義函數（UDF）來生成雪花ID。這個函數可以在查詢中使用，以便為每個行生成唯一的ID。需要注意的是，雪花ID算法的性能可能會受到影響，因此在設計和使用時需要進行評估和測試。
+
+或是不考慮分布，只能用uniqueidentifier?
+
+<<WPF 可編輯文字的radiobutton>>
+
+以前都在使用winform，現在換成WPF遇到些問題，還請各位指教，謝謝
+目前使用WPF設計了一個radiobutton自定義控件，其中包含一個textblock和textbox
+當這個radiobutton被點兩下就把textblock隱藏並把textbox顯示，同時textbox內容會和textblock一樣
+<RadioButton
+    x:Name="Radiobutton1"
+    Background="{x:Null}"
+    Margin="5"
+    >
+    <StackPanel>
+        <StackPanel x:Name="StackPanel1" Orientation="Horizontal">
+            <TextBlock
+                x:Name="NameTextBlock1"
+                Width="80"
+                Margin="4,2,4,0"
+                VerticalAlignment="Center"
+                FontSize="10"
+                MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"
+                Background="{x:Null}"
+                Text="{Binding Text, RelativeSource={RelativeSource AncestorType={x:Type local:EditRadiobutton}}}">
+            </TextBlock>
+            <TextBox
+                x:Name="NameTextBox1"
+                Width="80"
+                Margin="0,0,0,0"
+                HorizontalAlignment="Left"
+                KeyDown="PortNameTextBox_KeyDown"
+                LostFocus="PortNameTextBox_LostFocus"
+                MaxLength="6"
+                MaxLines="1"
+                Background="{x:Null}"
+                Visibility="Collapsed" />
+        </StackPanel>
+    </StackPanel>
+</RadioButton>
+
+這是雙擊文字方塊後的事件，SetControl是抓textBox使用的，不確定是不是這部分有衝突
+private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            SetControl(sender);
+            
+            e.Handled = true;
+            textBox.Text = textBlock.Text;
+            textBox.Visibility = Visibility.Visible;
+            textBlock.Visibility = Visibility.Collapsed;
+            textBox.Focus();
+            
+        }
+
+但我在使用這個控件的頁面C#部分，使用以下程式碼指派事件，卻無法執行RadioButton_Checked，但雙擊修改文字的功能還在
+customRadio.Checked += RadioButton_Checked;
+
+想請問應該怎麼修改才能實現單擊執行RadioButton_Checked事件，雙擊執行修改內容事件，謝謝各位
+
+<<請問該如何在github-page配置環境變數？>>
+
+我有一個create-react-app項目是安裝套件 gh-pages，直接用本地下 depoly 到gh-pages分支就完成部署步驟了。
+但現在我想要配置自己的環境變數(本地有.env檔案)，但這檔案.env我不會推上去github，部署後環境變數則想存在github上，我去了該專案的setting->Actions secrets and variables的variable配了一些。
+ex:
+REACT_APP_API_KEY=your-api-key
+REACT_APP_API_URL=https://test
+我以為這可能是github會自己設定幫我預設引用，但實際部署後沒有抓到。（是有抓到我本地設定好的設定，不是github setting裡的）。
+關於變數的說明
+
+GitHub sets default variables for each GitHub Actions workflow run. You can also set custom variables for use in a single workflow or multiple workflows.
+
+問題1：從說明看來是否應該自訂yaml設定env區塊？
+問題2:該修改或新增workflow action?
+我目前有看到現存 action 中有預設 workflow "pages build and deployment"
+https://github.com/minilabmemo/f2e-time-twbus/actions
+但這一份似乎沒有可以修改的地方？
+如果按新增，有蠻多選擇可以選的（不太確定要選哪一種，是否會影響到這一份？）
+是否是一定要自訂.github\workflows\xxx.yaml才能抓到環境變數呢？
+網路上查到的資訊蠻多種的，不確定方向想先來問問看，
+希望有人可以指點迷津，謝謝～
+
+-------------------------------------第9頁-------------------------------------
+<<請問兩個系統數據庫之間想要做同步系統，如何有更新ID或是token可以判斷?>>
+
+請問兩個系統數據庫之間想要做同步系統，如何有更新ID或是token可以判斷?
+目前需要在每個表格增加一個欄位叫更新ID，每次有更新時會去隨機生成一個新的ID
+另外還要新增一個欄位叫更新日期，每次更新同時更新此日期
+然後判斷更新日期>=當日半夜12點 + 更新ID是否不一樣
+假如True才去做此行數據的同步動作
+請問原生sql server 是否有自帶的隱藏欄位或是其它方式能做到?
+詢問過AI，好像沒有:
+SQL Server 沒有自帶的隱藏欄位，但可以透過使用 ROWVERSION 或 TIMESTAMP 欄位來實現類似的功能。
+
+ROWVERSION 是一個自動產生的二進位數據，每當一行資料被更新時，ROWVERSION 的值就會自動更新。您可以在同步時比較源和目標數據庫的 ROWVERSION 值，如果不一樣就進行同步操作。以下是一個示例：
+
+plaintext
+copy code
+-- 在表格中新增 ROWVERSION 欄位
+ALTER TABLE MyTable ADD RowVersion ROWVERSION
+
+-- 比較源和目標數據庫的 ROWVERSION 值
+SELECT * FROM MyTable WHERE RowVersion > @LastSyncRowVersion
+TIMESTAMP 是一個類似 ROWVERSION 的欄位，每當一行資料被更新時，TIMESTAMP 的值也會自動更新。您可以在同步時比較源和目標數據庫的 TIMESTAMP 值，如果不一樣就進行同步操作。以下是一個示例：
+
+plaintext
+copy code
+-- 在表格中新增 TIMESTAMP 欄位
+ALTER TABLE MyTable ADD MyTimestamp TIMESTAMP
+
+-- 比較源和目標數據庫的 TIMESTAMP 值
+SELECT * FROM MyTable WHERE MyTimestamp > @LastSyncTimestamp
+請注意，ROWVERSION 和 TIMESTAMP 欄位的值只在資料行更新時才會更新，因此如果只是修改了資料行中的其他欄位，而沒有修改 ROWVERSION 或 TIMESTAMP 欄位，那麼同步操作就不會被觸發。另外，ROWVERSION 和 TIMESTAMP 欄位的值是二進位數據，不是日期或時間，因此不能直接比較大小，需要使用特定的函數進行比較。
+
+
+<<在mac安裝flutter時遇到了問題:rudy已經更到最新的，為甚麼cocoapods還是不相容。有人能幫我解答嗎~>>
+
+
+
+<<WINDOWS DNS Server Master Slave Replication 主從式架構 建議>>
+
+前言:
+目前domain 管理 怕DNS SERVER 掛掉 所以架了兩台WINDOWS DNS SERVER
+分別設定主要伺服器及次要區域 (未加入AD網域)
+目前有發現：
+當主要伺服器的DNS SEVER 掛掉後  超過特定時間後
+設定為次要區域DNS SERVER 會因無法同步而造成 服務中斷 要重啟才會正常提供服務
+試問：
+1.目前如何當主要伺服器掛點後  次要區域的DNS SERVER 還是持續能正常運行？
+2.目前就是想說第一台掛點時第二台可以持續提供服務而不會造成DNS查詢服務中斷，請問是否還有更推薦的設定方案呢?
+
+<<新手發文>>
+
+Hi 大家好,
+小的對於許多技術不熟練,請多指教
+
+<<proxy伺服器推薦>>
+
+家裡使用HA想讓他對外開放，想透過伺服代理，有哪一家比較推薦的嗎?
+
+<<外包案的SSL憑證與私鑰該由哪方管理？>>
+
+如題，第一次經手外包的案子
+已約定好甲方管理網域，乙方建置主機，申請 SSL 憑證時通常會是哪方要提供 CSR 跟 KEY 呢？
+我傾向管理 DNS 的甲方負責處理，申請完收到憑證後，再提交憑證跟金鑰給乙方做主機設定。
+不過甲方似乎對於這部分不太熟悉，覺得已經申請好網域，剩下的就是乙方的工作。
+
+<<請問一下特殊符號要怎麼打出來>>
+
+請問各位大大 請問一下在win 10 中, 要打出如 ≥ 要怎麼打不是用複製貼上的, 而是可以用打打出來的, 我記的以前好像在右下角那裡有個標點符號的圖示可以點進去選, 不知道要去那裡叫什麼   tks
+
+<<網域AD GPO政策被拒絕>>
+
+前幾天有詢問類似的問題，此篇把問題簡短與集中
+目前DC上，網域除了有Default Domain Policy還有自建一個A政策，同時A政策有綁到OU
+A政策主要是軟體安裝與規範使用者密碼原則
+
+跑群組模型時系統表示GPO被拒絕且理由是空白，同時使用者電腦gpresult還是只有套用預設的(間隔3~4天應該已套用)，但軟體安裝確實是會執行的，所以是有套用了?
+然後PSO沒用，因為介面還在找
+
+<<遷移AD中的使用者至其他網域>>
+
+各位大大好，想請問遷移AD USER至其他網域除了ADMT之外還有什麼工具能夠達成呢？
+
+<<使用LoRA去tune我的llama2遇到的問題>>
+
+我目前遇到一個問題，想來求助
+我在使用LoRA去訓練我的llama2模型的時候，出現了這個問題，不知道大家有遇過嗎？!
+
+
+<<如何讓電腦連不到特定IP>>
+
+大家好，目前測試程式需要能連到 192.168.1.1 但是要連不到 192.168.1.2
+又因為192.168.1.2這台主機正在正常運行 很多人在使用 無法關閉
+請問我有哪些方法可以讓我的電腦連不到192.168.1.2這台 (用SMB2連)
+
+<<輸入法問題>>
+
+請問各位大大, 有user 問我他要在系統中 第一頁是打英文, 打完之後再點到另一個頁面, 也是英文 , 不是按shift 去做切換, 但點選Line 打字時, 顯示是中文輸入法, 請問要怎麼設定??
+我記的好像有一個英數輸入是這個嗎??? 是的話但我按設定進去找不到它??
+
+
+<<突然腦子斷片 忘記發文過  請協助 刪除發文>>
+
+突然腦子斷片 忘記發文過  請協助 刪除發文
+
+<<使用C# 讀取 AWS S3 資訊， Access key 該儲存在哪裡呢>>
+
+我是參考此篇教學文
+https://codewithmukesh.com/blog/working-with-aws-s3-using-aspnet-core/
+提到原本C#專案儲存金鑰等資訊都是儲存在appsettings.json，在專案執行時在從appsettings.json 提取key，但AWS提供更安全的方式是存在本地端。目前理解這種作法就是把金鑰另外儲存在其他檔案，這樣為何會比較安全，是因為有加密過?
+還有若是以這樣的形式儲存，在部屬時不也是連同檔案都要一起放在server嗎?
+但如果選擇以 AWS Elastic Beanstalk 方式部屬，這種方式還可行嗎?
+主要是目前開發經驗都是把key儲存在appsettings.json，想請教這兩種方式的差異。
+還有是否有儲存 Access key 在appsettings.json的範例
+
+<<HYPER V 內的機器，是否有軟體可以移動磁區大小>>
+
+您好：
+HOST機器 2019
+GUST機器 2019 HYPER V
+我想要 將D 的硬碟空間挪 5G 到C
+但 HPYERＶ　軟體顯示
+
+我用另一套免費軟體
+Macrorit Partition Expert Pro 7.9
+但最後又需要序號
+請問是否還有其他方式可以　移動空間　（無痛的）
+因為機器上線中
+謝謝
+
+<<請問有沒有youtubeAPP看影片使用的廣告攔截器?一大堆廣告.客廳電視在Android11的使用環境下.>>
+
+桌機查網頁看youtube的影片有使用廣告攔截器,但客廳大電視因是使用
+Android系統下載youtubeAPP觀看影片一大堆廣告.
+請問有沒有youtubeAPP使用的廣告攔截器?在Android11的使用環境下.
+謝謝!!
+
+<<MLOps裡的選擇模型  這個模型是哪裡來的?>>
+
+MLOps裡的選擇模型  這個模型是哪裡來的?
+
+
+<<Windows無法存取\\192.168.x.x>>
+
+WIN11這兩天更新後發現無法連線到區網上的共享資料夾，網路探索更共用皆都開啟了，還是無法連線，用其他台電腦是可以正常進入的，請問該如何解決呢 謝謝!
+https://drive.google.com/file/d/1x9WxKDsUu86KwsBZDyxkLtKrJGHz5gCt/view?usp=share_link
+
+<<Python Sanic框架與Flask框架差異在哪>>
+
+Sanic與Flask都是Python的web框架
+Sanic與Flask的寫法也非常相似
+例如:
+Sanic:
+from sanic import Sanic
+from sanic.response import text
+from sanic.response import json
+
+
+app = Sanic(__name__)
+
+@app.route("/hello")
+async def test(request):
+    return text('Hello world!')
+
+@app.route("/hello_sanic")
+async def hello_sanic(request):
+  data = json({"code":0})
+  return data
+
+而Flask:
+from flask import Flask
+app = Flask(__name__)
+@app.route("/hello")
+def hello():
+    return "Hello, World!" 
+
+乍看之下是非常的相似，
+有查到Sanic在執行非阻塞的速度會比其他框架快很多，
+但是Sanic的可用的拓展套件又比較少，
+Flask雖然在非阻塞的速度比較慢，
+但拓展的套件又相對多，
+想知道Sanic除了處理非阻塞快跟Flask還有甚麼大的差別嗎?
+
+<<如何使透過VPN播放遠端影音檔更順暢>>
+
+從B端APPLE TV播放A端NAS內4K影音檔容易出現卡頓現象，播放2K影音檔是順暢的。
+兩端ISP都是今網300M線路
+
+EdgeRouter X 系列產品的技術規格資料
+
+
+<<請問ERP考哪些證照好?>>
+
+查看 中華企業資源規劃學會(CERPS) 有 :
+Workflow ERP GP軟體應用師
+Workflow ERP GP軟體顧問師
+或是 中華民國電腦技能基金會(CSF) ERP證照 https://www.cerps.org.tw/zh-TW/category/2020-09-04%2016:09:46
+https://www.cerps.org.tw/zh-TW/category/2020-09-04%2016:09:46
+請問以上兩個有考的價值嗎?還是有N年經驗ERP經驗即可抵過上面
+目前有正常工作，用到ERP有SAP，TT GP，Sunlike，想說現在有空考個證照好一點，所以有此疑問
+目前有初級會計證跟SAP MM PA證
+
+<<MSSQL  where 條件 使用IN動態 語法>>
+
+您好：
+請問
+declare @w as varchar(4)
+set @w=1  或 者 set @w=''
+
+select * 
+from table
+where wx in ( case when @w='' then 'X','B'
+                   ELSE @w
+            )
+ 
+
+但是  then 'X','B'，這樣不能過
+於是 then ( select w from w_table  ) ,這樣可以多筆，可使就會回傳 該語法下不能多筆
+請問，有方法可以 讓他多筆嗎?
+謝謝
+
+<<MSSQL  JOIN 欄位空白效能問題請教>>
+
+您好：
+若同一個TABLE 中，
+類別 ，條碼，條碼_備註
+1  ，A123456789011 ,空白
+1  ，A123456789012 ,1
+1  ，A123456789012 ,2
+2  ，A123456789011 ,空白
+2  ，A123456789012 ,1
+2  ，A123456789012 ,2
+這樣關聯時
+select * from
+( select 類別 ，條碼，條碼_備註 from table1 whrer 類別=1 )A
+left join
+( select 類別 ，條碼，條碼_備註 from table1 whrer 類別=2 )B
+on A.條碼=A.條碼 and B.條碼_備註=B.條碼_備註
+這樣情況下 條碼_備註 99% 為空白
+與        條碼_備註 100% 非空白
+在關聯時，有效能上的影響嗎?
+謝謝
+
+<<excel 中如何利用儲存格中D2及E2寫入函數 來立即即時的知道 儲存欄A:A 的加總數量 將數值為1的加總=D2 將數值為2及2以上的加總=E2>>
+
+excel 中如何利用儲存格中D2及E2
+D3,E3寫入函數
+來立即即時的知道 儲存欄A:A 的加總數量
+將數值為1的加總=D2
+將數值為2及2以上的加總=E2
+將數值為-1的加總=D3
+將數值為-2及小於-2以上的加總=E3
+**** 儲存欄A:A 有部份是空格的情形
+**** 儲存欄A:A 有部份是#N/A的情形
+**** (A:A) 有上萬筆資料
+如下圖中(一)
+
+
+<<階段錯誤5018>>
+
+不知錯在那，請各位大神幫忙。
+
+
+<<VBA chart 語法>>
+
+各位高手請教, 有幾個語法不會寫
+' 巨集1 巨集
+'
+'
+ActiveSheet.ChartObjects("圖表 5").Activate
+ActiveChart.Axes(xlCategory).Select
+Selection.MajorTickMark = xlNone
+ActiveChart.Axes(xlValue).Select
+Selection.MajorTickMark = xlNone
+ActiveChart.Axes(xlValue).MajorGridlines.Select
+With Selection.Format.Line
+.Visible = msoTrue
+.ForeColor.ObjectThemeColor = msoThemeColorBackground1
+.ForeColor.TintAndShade = 0
+.ForeColor.Brightness = -0.150000006
+.Transparency = 0
+End With
+End Sub
+1.Y軸刻度 主要類型 外側改無
+2.X軸刻度 次要類形 外側改無
+3.X方向背景橫線 黑色改灰色
+
+煩請幫忙, 謝謝
+
+<<Fortiget 的SSL inspection 實作問題>>
+
+各位好：
+小弟有做FG SSL的深層檢查LAB測試，公司的CA裝好了也裝在Fortiget和USER上了，檢測一下都OK，上網有確認憑證生效，防毒CDR也OK，進病毒測試eicar網頁也有偵測到，並擋下來，但唯獨LINE都無法上線，目前只能將LINE設PROXY才能通，這是為何?有先進遇過嗎? 謝謝大家指教。
+
+<<FortiGate 分 VLAN 後，Windows 連接網絡磁碟機問題>>
+
+先講一下設定:
+寬頻 --- FortiGate 81E --- FortiLink --- FortiSwitch 124E
+在 FortiSwitch 上分了兩組 VLAN:
+VLAN_10 - 192.168.10.0 / 255.255.255.0 Gateway: 192.168.10.250
+VLAN_20 - 192.168.20.0 / 255.255.255.0 Gateway: 192.168.20.250
+兩組 VLAN DNS 設定上用回介面 IP (Same as Interface IP) - 即 Gateway IP
+兩組 VLAN 都開啟 DHCP
+已在81E上加上以下 DNS Server 服務政策：
+介面：VLAN_10 / Mode：Recursive
+介面：VLAN_20 / Mode：Recursive
+在 VLAN_10 上接上了2個設備：
+1）Synology DS＋ NAS (簡稱：NAS)
+系統名稱：NAS＿Test
+IP：固定 IP - 192.168.10.2
+DNS / Gateway：192.168.10.250
+2）Windows 10 PC (簡稱：PC)
+IP：DHCP (192.168.10.x)
+DNS / Gateway：DHCP (192.168.10.250)
+在上面這個情況下 PC 能夠 ping NAS IP (192.168.10.2) 和 Hostname (NAS＿Test)
+也能連接 NAS share folder: \NAS＿Test\Data
+接著嘗試將 PC 連接到 VLAN_20
+PC 設定改成：
+IP：DHCP (192.168.20.x)
+DNS / Gateway：DHCP (192.168.20.250)
+已在81E上加上以下防火牆政策：
+容許 VLAN_10 --- VLAN_20
+容許 VLAN_20 --- VLAN_10
+改變後 PC 依然能夠 ping NAS IP (192.168.10.2)，但就不能 ping Hostname (NAS＿Test)
+改變後 PC 也不能用 \NAS＿Test\Data 連接 NAS share folder，只可以用 IP 連接：\192.168.10.2\Data
+但奇怪的是當在 PC 上運行一次 ping -a 192.168.10.2 後，結果正常，而原有不能連接的 \NAS_Test\Data 亦自動能連接並正常使用，但當重新開啟電腦就變回不能連接
+目標是想知道為何不能 ping hostname 和 為何不能用 NAS＿Test 連接 share folder
+我個人估計應該是 DNS 問題，但就不知道問題在那裏，請各位幫忙一下
+
+<<C語言 我要怎麼取得buffer裡的數字設定給int size>>
+
+for(i=0; i<sizeof(buff); i++)
+{
+recv(sockfd, buff+i, 1, 0); //+i是因為資料會從前面掉出去
+if(i>=1 && memcmp(buff+i-1, "\r\n", 2)==0)
+break;
+}
+        buff[i-1]='\0';
+        
+       //現在buff裡是9\0 我想把9賦值給int size
+
+
+<<LINUX下INFORMIX問題解決>>
+
+各位大師好，小弟有個小問題想請教
+目前有一台設備為LINUX系統，安裝INFORMIX，最近要關閉infomix系統(下onmode -ky指令)
+系統會回覆 shared memory not initialized for INFORMIXSERVER 'NAME'
+請問此狀況如何排除?再麻煩大師們解惑了
+
+-------------------------------------第10頁-------------------------------------
+<<資料表AUTO_INCREMENT ID出現規律性3倍數的情況>>
+
+目前我正在寫一個程式，是將另外兩張資料表的特定資料抓出來並建立到新的表上，在單位的BETA及自己的開發區測試ID都正常照順序，後面資料數據也沒問題，但是轉移到UAT區域就發生以下情況
+
+他後面資料經同仁確認是沒錯的，但就是新增的時候ID是3的倍數跳著，以下是我create()的golang程式碼
+var mds []model.USDTOrders
+	//dataMap := make(map[string]USDTOrderAll) 
+	for _, payOrder := range payOrders {
+		mds = append(mds, model.USDTOrders{
+			OrderID:       payOrder.OrderID,
+			OutOrderID:    payOrder.OutOrderID,
+			PartnerID:     payOrder.PartnerID,
+			OrderType:     "pay",
+			Amount:        payOrder.Amount,
+			Actual:        payOrder.Actual,
+			Quantity:      payOrder.Quantity,
+			Fee:           payOrder.Fee,
+			FeeRate:       payOrder.FeeRate,
+			Price:         payOrder.Price,
+			PriceDiff:     payOrder.PriceDiff,
+			PriceDiffRate: payOrder.PriceDiffRate,
+			Owner:         payOrder.Owner,
+			CreateDate:    payOrder.CreateDate,
+		})
+	}
+	for _, receiveOrder := range receiveOrders {
+		mds = append(mds, model.USDTOrders{
+			OrderID:       receiveOrder.OrderID,
+			OutOrderID:    receiveOrder.OutOrderID,
+			PartnerID:     receiveOrder.PartnerID,
+			OrderType:     "receive",
+			Amount:        receiveOrder.Amount,
+			Actual:        receiveOrder.Actual,
+			Quantity:      receiveOrder.Quantity,
+			Fee:           receiveOrder.Fee,
+			FeeRate:       receiveOrder.FeeRate,
+			Price:         receiveOrder.Price,
+			PriceDiff:     receiveOrder.PriceDiff,
+			PriceDiffRate: receiveOrder.PriceDiffRate,
+			Owner:         receiveOrder.Owner,
+			CreateDate:    receiveOrder.CreateDate,
+		})
+	}
+	for i := 0; i < len(mds)-1; i++ {
+		for j := 0; j < len(mds)-1-i; j++ {
+			if mds[j].CreateDate.After(mds[j+1].CreateDate) {
+				mds[j], mds[j+1] = mds[j+1], mds[j]
+			}
+		}
+	}
+	db.GoodPayGet().Debug().Create(&mds) //批量創建
+
+我是用gorm套件作業，我自己是推測是併發嗎，因為我進不到UAT資料庫裡面看實際情況?
+感覺是UAT那邊每次都連續創立3次，但資料表重複數據不會記錄，每次都只到紀錄第三次事務創建的東西
+如果大老有答案，可以建議我改進程式碼的方法或思路嗎?
+補ordertype:
+
+
+<<請問一下，有辨法在登入新使用者的時候，就在D:嗎？>>
+
+公司端有一台電腦長期都有不同的使用者要使用
+導致c:使用者常常滿，刪了又滿
+正常都建立在
+c:\使用者\a-1
+c:\使用者\a-2
+c:\使用者\a-3
+不知道有沒有辨法，新登入的使用者，都直接建立在D:呢？
+D:\使用者\a-1
+D:\使用者\a-2
+D:\使用者\a-3
+D:\使用者\a-4
+
+
+<<將h3:L的圖片做輸出到路徑"D:\TEST\"目錄>>
+
+各位導師請教一下,要使用excel vba寫一個代碼
+1.現在我要將h3:L的圖片做輸出到路徑"D:\TEST"目錄
+2.圖片的尺寸是：寬度：883 圖元、高度：603 圖元
+4.圖片輸出後需要刪除工作表上的圖片
+5.需要保持圖片清楚,不要有空白處
+
+<<北部公車預約下車按鈴API>>
+
+如題，常常搭公車，我自己用的是台北公車通，它裡面有個功能是預約下車自動按鈴，我就很好奇，他的API文件是在哪個網站，不曉得有沒有人有串過、有經驗的，因為我也想串串看，可以分享一下嗎?
+ps.上網怎麼搜都只有路線圖或公車的位置等的資料可以串，關於下車按鈴的部分都沒找到資料
+
+<<零售業ERP系統詢問>>
+
+各位前輩們好
+小妹在親戚經營的一間南部小型零售業公司工作，目前公司內部員工不到20人(年齡層偏高)，一直以來使用EXCEL來記錄工作，紙本一大堆，覺得很繁雜又容易出錯，就學時有學過ERP系統，但對於實務上的細節較不熟悉，想請有經驗的大家幫我解答🙏
+問題：
+1.零售業是否建議導入ERP系統？
+2.如果建議，有無推薦的零售業ERP系統？
+需求：
+1.價格實惠
+2.好上手、好用、容易學習
+3.庫存管理、供應鏈管理、進貨銷貨管理等
+4.想跟POS結合
+5.廠商好溝通、積極處理問題
+希望大家可以提供建議，感激不盡！
+
+<<請問一下這段SQL可以怎麼寫呢?>>
+
+我想請問一下我有一段SQL
+for result in(
+    select * from tableA
+    where Dt <= '2021/10/18' AND Dt >'2021/10/17'
+)loop
+
+假設今天是10/18我想取這10天的區間會產生這樣的語法
+for result in(
+    select * from tableA
+    where Dt <= '2021/10/18' AND Dt >'2021/10/17'
+)loop
+
+for result in(
+    select * from tableA
+    where Dt <= '2021/10/16' AND Dt >'2021/10/15'
+)loop
+
+for result in(
+    select * from tableA
+    where Dt <= '2021/10/14' AND Dt >'2021/10/13'
+)loop
+
+
+for result in(
+    select * from tableA
+    where Dt <= '2021/10/12' AND Dt >'2021/10/11'
+)loop
+
+
+for result in(
+    select * from tableA
+    where Dt <= '2021/10/10' AND Dt >'2021/10/09'
+)loop
+
+for result in(
+    select * from tableA
+    where Dt <= '2021/10/08' AND Dt >'2021/10/07'
+)loop
+
+類似迴圈的寫法
+只是我不清楚怎麼寫，所以想請問各位該如何調整呢?
+
+<<React app.js跟 index.js差別>>
+
+React新手，React:app.js跟index.js差別在哪，一樣的話我寫在同一個檔案，為什麼要分成兩個來寫，第一次碰完全不懂有什麼差別。
+
+<<使用微軟釋出跨平臺機器學習框架ML.NET，實作二分類中文人名 (判斷 : 是中文人名或不是中文人名)>>
+
+微軟提供的範例程式碼網址
+https://learn.microsoft.com/zh-tw/dotnet/machine-learning/how-does-mldotnet-work
+using Microsoft.ML;
+using Microsoft.ML.Data;
+
+class Program
+{
+    public class HouseData
+    {
+        public float Size { get; set; }
+        public float Price { get; set; }
+    }
+
+    public class Prediction
+    {
+        [ColumnName("Score")]
+        public float Price { get; set; }
+    }
+
+    static void Main(string[] args)
+    {
+        MLContext mlContext = new MLContext();
+
+        // 1. Import or create training data
+        HouseData[] houseData = {
+               new HouseData() { Size = 1.1F, Price = 1.2F },
+               new HouseData() { Size = 1.9F, Price = 2.3F },
+               new HouseData() { Size = 2.8F, Price = 3.0F },
+               new HouseData() { Size = 3.4F, Price = 3.7F } };
+        IDataView trainingData = mlContext.Data.LoadFromEnumerable(houseData);
+
+        // 2. Specify data preparation and model training pipeline
+        var pipeline = mlContext.Transforms.Concatenate("Features", new[] { "Size" })
+            .Append(mlContext.Regression.Trainers.Sdca(labelColumnName: "Price", maximumNumberOfIterations: 100));
+
+        // 3. Train model
+        var model = pipeline.Fit(trainingData);
+
+        // 4. Make a prediction
+        var size = new HouseData() { Size = 2.5F };
+        var price = mlContext.Model.CreatePredictionEngine<HouseData, Prediction>(model).Predict(size);
+
+        Console.WriteLine($"Predicted price for size: {size.Size * 1000} sq ft= {price.Price * 100:C}k");
+
+        // Predicted price for size: 2500 sq ft= $261.98k
+    }
+}
+
+以上此範例為微軟提供的Machine Learning使用房子大小及價格資料來預測房價
+我在嘗試把這個code修改成能夠辨識中文人名的二分類，現在先以訓練模型之後給模型"一個"人名能夠辨識後，print在主控台(是中文人名)或(不是中文人名)的二分類，之後若是大致上可以就會增加訓練資料的量再以迴圈一次丟多一點的中文人名讓模型辨識，以下是我修改後的code，有些問題想讓各位看能否給點建議，是哪裡的想法有錯誤或是寫錯
+using System;
+using System.Collections.Generic;
+using Microsoft.ML;
+using Microsoft.ML.Data;
+
+class NameData
+{
+    [LoadColumn(0)]
+    public string? Name;
+
+    [LoadColumn(1)]
+    public bool IsName = false;
+}
+
+class NamePrediction
+{
+    [ColumnName("PredictedLabel")]
+    public bool IsName = false;
+}
+
+
+class Program
+{
+    static void Main(string[] args)
+    {        
+        var context = new MLContext();
+        string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Name.csv";
+        var data = context.Data.LoadFromTextFile<NameData>(filePath, separatorChar: ',');
+
+        
+        var pipeline = context.Transforms.Conversion.MapValueToKey("Label", "IsName").Append(context.BinaryClassification.Trainers.SdcaLogisticRegression("Label"));
+        
+        var model = pipeline.Fit(data);
+       
+        var engine = context.Model.CreatePredictionEngine<NameData, NamePrediction>(model);
+      
+        var newData = new NameData() { Name = "張三" };
+        var prediction = engine.Predict(newData);
+        
+        Console.WriteLine($"是否為中文人名? {prediction.IsName}");
+    }
+}
+
+附上一張程式碼截圖
+
+資料是以Notepad++先製造幾筆簡單的人名測試整體架構能不能正常運作附檔名是csv
+Name, IsName
+王小明, 1
+張三, 1
+張四, 1
+張武, 1
+張六, 1
+張妻, 1
+張八, 1
+張久, 1
+
+1代表true  0代表False  不過我給的訓練資料一律都會是1，那我也應該不需要做特徵工程因為中文人名本身就是一個很大的特徵了，原本有嘗試過寫成true，不過微軟的ML.NET目前好像無法處理直接使用 bool 類型作為Label。ML.NET 需要Label欄位的類型是整數或浮點數，才能進行二元或多元分類，這是我的猜想而已，因為改成1後有些問題好像解決了，不過目前出現的問題依舊是在訓練模型那段程式碼會一直出現"未處理的例外狀況System.ArgumentOutOfRangeException: 'Could not find feature column 'Features' Arg_ParamName_Name'然後就沒有其他錯誤訊息以及警告訊息，實在無從下手
+以下附上截圖
+
+這個訊息點檢視詳細資料會看到一堆值
+
+另外執行程式後跑出的黑色主控台視窗基本上都是沒有任何訊息的全黑畫面
+
+但是在visual studio的上方按下繼續或是不進入函式，視窗會出現訊息，但是不知道這訊息是否有幫助
+
+好像也只是告之36行有問題，因為36行就是var model = pipeline.Fit(data);訓練這行
+
+
+<<excel 中如何利用儲存格中D2及E2寫入函數  來立即即時的知道 儲存欄A:A 及 儲存欄B:B  中的倒數第4個資料>>
+
+excel 中如何利用儲存格中D2及E2寫入函數
+來立即即時的知道 儲存欄A:A 及 儲存欄A:A
+中的倒數第4個資料
+**** 儲存欄A:A 及 儲存欄A:A 有部份是空格的情形
+**** 儲存欄A:A 及 儲存欄A:A 有部份是#N/A的情形
+**** (A:A) (B:B) 有上萬筆資料
+如下圖中(一)
+
+
+<<公司內阿爾卡特交換機使用的DECT手機，有無他牌可使用?>>
+
+如標題，因為公司使用的交換機系統是阿爾卡特，但價格都偏高訂貨也需較久的時間，不知道有沒有他牌DECT手機能夠適用此交換機系統的訊號。
+
+<<wordpress  新增文章，編輯文字之功能項目都變英文>>
+
+wordpress  新增文章時，先前編輯介面功能，顯示的文字都是中文的，但不知道為何現在變英文了，有點困擾，wordpress系統語系，我是設定 繁體中文的，想請問有解法嗎，謝謝!!
+版本：6.3
+
+
+目前已使用的外掛
+
+能知道紅色標記的地方的顯示語系是要從那裡調整嗎?
+下圖是二個分開的網站，語系都是繁體中文，呈現的樣子不一樣，謝謝~!
+
+
+<<Windows開機 一直請稍後>>
+
+手上有一批加入了AD的LAPTOP, 每天第一次開機, 還未到登入介面, 都會沒有特定時間的"請稍後", 同一批型號(30部HP, i3 10th GEN, 8G RAM 及使用SSD), 有些5分鐘, 有些半小時也出現過。有些則正常。
+想請教一下大家有沒有這經驗, 知道解決方法嗎?
+p.s. 而用的SSID只有一個, 理應不會連接到其他SSID。
+
+<<(以解決)PHP 執行FTP 上傳檔案前就發生TIMEOUT 請問重新連線為甚麼會失敗?>>
+
+<?php
+class Remote_FTP_Controller {
+   private $ftp_conn;
+    
+    public $Main_Dir;
+
+    private $Error_Msg;
+
+    public function __construct($ftp_server="",$ftp_username="", $ftp_password="",$ftp_ssl=false)
+    {
+      if(trim($ftp_server)!=""){
+        $this->FTP_connect($ftp_server,$ftp_username, $ftp_password,$ftp_ssl);
+      }
+    }
+
+    public function __destruct(){
+      if ($this->ftp_conn) {
+        ftp_close($this->ftp_conn);
+      }
+    }
+
+    public function Error_Msg(){
+        return $this->Error_Msg;
+    }
+
+    //FTP連線 
+    //ftp_ssl true:使用SSL加密連線 , false:使用未加密連線
+    public function FTP_connect($ftp_server,$ftp_username, $ftp_password,$ftp_ssl=false){
+        try{
+          if($ftp_ssl){
+            //SSL 加密連線
+            $ftp_conn=ftp_ssl_connect($ftp_server,"21");
+          }else{
+            //未加密連線
+            $ftp_conn=ftp_connect($ftp_server);
+          }
+
+          if(!$ftp_conn){
+               throw new Exception('FTP 連線失敗:請確認遠端FTP功能是否有啟用或是FTP_IP是否正確');
+                
+          }else{
+                $this->ftp_conn= $ftp_conn;
+                $this->FTP_Login($ftp_conn,$ftp_username, $ftp_password);
+          }
+        }catch(Exception $e){
+           // $error_message = error_get_last()['message'];
+            $this->Error_Msg = $e->getMessage();
+        }
+    }
+
+    //設定超時
+    public function FTP_TIMEOUT_SET($second){
+      ftp_set_option($this->ftp_conn,FTP_TIMEOUT_SEC,$second);
+    }
+
+    //FTP登入
+    private function FTP_Login($ftp_conn,$ftp_username, $ftp_password){
+      try{
+        $login=ftp_login($ftp_conn,$ftp_username, $ftp_password);
+        if(!$login){    
+          $error_message = error_get_last()['message'];  
+          throw new Exception($error_message);
+        }
+      }catch(Exception $e){
+        $this->Error_Msg = 'FTP 登入失敗:'.$e->getMessage();
+      }
+    }
+
+    public function ftpConn(){
+      return $this->ftp_conn;
+    }
+
+    public function FTP_Close($ftp_conn){
+       ftp_close($ftp_conn);
+    }
+
+    //設定FTP連線模式 true :被動模式 ,false 主動模式
+    public function Set_PASV_Mode($is_Passive=false){
+        ftp_pasv($this->ftp_conn,$is_Passive);
+    }
+
+    //設定主要目錄並預設切換到主要目錄
+    public function Set_Connect_Main_Dir($Dir){
+          $this->Main_Dir=$Dir;
+          ftp_chdir ($this->ftp_conn,$Dir);
+    }
+
+
+    public function FTP_List($Remote_Floder){
+      $conn=$this->ftp_conn;
+      $result=[];
+
+      //切換到路徑目錄
+      if(!ftp_chdir ($conn,$Remote_Floder)){
+
+      }else{
+        $folder_list = ftp_nlist($conn,".");
+        if($folder_list){
+          foreach ($folder_list as $folder){
+            $result[]=$folder;
+          }
+        }
+      }     
+      return $result;
+    }
+
+    //資料夾上傳
+    public function FTP_Folder_upload($Server_Floder,$Remote_Floder){
+          $msg="";
+
+          //若超時則重新連線
+         /* if($this->Is_TIMEOUT($this->ftp_conn)){
+            $this->FTP_ReConnect();
+          }*/
+        
+          $conn=$this->ftp_conn;
+      
+          ftp_chdir ($conn,$this->Main_Dir);
+
+          // 遍歷本地資料夾內的內容
+          $files = scandir($Server_Floder);
+        
+          foreach ($files as $file) {
+              if ($file === '.' || $file === '..') {
+                continue;
+              }
+              $Servar_path=$Server_Floder."/".$file;
+              $remote_path=$Remote_Floder."/".$file;
+          
+          if(is_dir($Servar_path)){
+                // 如果是資料夾，遞迴
+                $this->FTP_Folder_upload($Servar_path, $remote_path);
+                $this->ftp_mkdir_recursive($remote_path);
+              }else{
+          
+                // 如果是檔案，上傳            
+                $msg=$this->FTP_upload($Remote_Floder,$Server_Floder,$file);
+              }	         
+          } 
+          return  $msg;
+    }
+
+
+
+    //單檔(檔案)上傳
+    /***
+     * 
+     * @param $dir: Nas路徑(不含檔名)
+     * @param $Server_Path: Server檔案的路徑(不含檔名)
+     * @param $File:檔名(含副檔名)
+     */
+    public function FTP_upload($dir,$Server_Path,$File){
+      $conn=$this->ftp_conn;
+      $msg="";
+
+      $Server_file=$Server_Path."/".$File;
+      if(!file_exists( $Server_file)){
+        $msg = "查無此上傳路徑:(".$Server_file.")";
+      }else{
+          //判斷路徑是否需要新增資夾
+          $this->FTP_mkdir_recursive($dir);
+
+          //切換到路徑目錄
+          ftp_chdir ($conn,$dir);
+
+          //上傳檔案    
+          $upload=ftp_put($conn, $File, $Server_file, FTP_BINARY);
+          if (!$upload) {
+            $error_message = error_get_last()['message'];
+            //$this->Error_Msg = 'FTP 上傳失敗: ' .$error_message; 
+            $msg = 'FTP 上傳失敗: ' .$error_message; 
+            // $error = error_get_last();
+            // $msg= $error['message'];
+          } 
+      }
+
+      return $msg;
+    }
+
+    /**FTP下載資料夾
+     * 遠端目錄 
+     * server主要目錄
+     * server資料夾(完整目錄)
+     */
+    public function FTP_Folder_Download($remote_folder ,$Server_Route,$Server_folder){
+      $msg="";
+      if($this->FTP_is_dir_exists($remote_folder)){
+          //檢查Server 路徑是否存在
+          if(!is_dir($Server_folder))
+          {
+            mkdir($Server_folder,0777,true);
+          }
+          
+          ftp_chdir($this->ftp_conn,$remote_folder);
+          
+          // 獲取遠端資料夾內的檔案列表
+          $files = ftp_nlist($this->ftp_conn, $remote_folder);
+
+          foreach($files as $file){
+            if ($file === '.' || $file === '..') 
+            {
+              continue;
+            }
+
+            $is_Floder=ftp_size($this->ftp_conn,$file);
+            if($is_Floder===-1){
+              // 如果是資料夾，遞迴處理
+              $this->FTP_Folder_Download($file,$Server_Route,$Server_Route."/".$file);	
+              //$this->FTP_Folder_Download($file,"E:/HERS"."/".$file);	
+            }else{
+              // 如果是檔案，下載
+              $Dowlond=ftp_get($this->ftp_conn,$Server_Route."/".$file,$file,FTP_BINARY);
+             
+              if(!$Dowlond){
+                  $error_message = error_get_last()['message'];
+                  $msg =  'FTP 下載失敗: ' .$error_message;//$this->Error_Msg = 'FTP 下載失敗: ' .$error_message;     
+              }
+
+            }
+          }
+      }else{
+        $msg="FTP查無:".$remote_folder;
+      }
+      return $msg;
+    }
+
+    /**FTP下載檔案
+     * 遠端路徑 
+     * 遠端檔名 
+     * server路徑
+     */
+    public function FTP_File_Download($remote_file_path,$remote_file,$Server_Route){
+      $file_lists = ftp_nlist($this->ftp_conn, dirname($remote_file_path));
+      
+      $msg ="";
+      $file_exists = false;
+      foreach($file_lists as $file_list){			
+          $file_info = pathinfo($file_list);
+      
+          if($file_info["basename"] == $remote_file){
+            $file_exists = true;
+            break;
+          }				
+      }
+      
+      if($file_exists){
+       
+        $Dowlond = ftp_get($this->ftp_conn,$Server_Route,$remote_file_path,FTP_BINARY);
+        if(!$Dowlond){
+          $msg = "FTP下載失敗:".$remote_file_path;
+        }
+
+      }else{
+        $msg = "FTP查無:".$remote_file_path;
+      }
+      return $msg;
+  }
+
+    //檢查遠端資料夾的大小(GB)
+    public function FTP_GetFloderSize($remote_folder){       
+       $ftp=$this->ftp_conn;
+
+       $totalSize = 0;
+
+       //獲取目錄內的所有文件和文件夾列
+       $files= ftp_nlist($ftp,$remote_folder);
+      
+       foreach($files as $file){
+          $size = ftp_size($ftp,$file);
+          if($size==-1){
+            //遞迴計算資料夾中的檔案
+            $subfolderSize = $this->FTP_GetFloderSize($file);
+            $totalSize +=$subfolderSize;
+          }else{
+            //文件大小
+            $totalSize +=$size;
+          }
+       }
+       //$totalSize = $totalSize !=0 ? round($totalSize /(1024*1024*1024),2):$totalSize;
+       return $totalSize;
+    }
+
+    // 檢查遠端資料夾是否存在
+    public function FTP_is_dir_exists($remote_dir){
+        $conn=$this->ftp_conn;
+
+        if(!ftp_chdir($conn, $remote_dir)) {
+            return false;
+        }
+        return true;
+    }
+
+    // 新增遠端資料夾
+    public function FTP_mkdir_recursive($target_path){
+      $conn=$this->ftp_conn;
+
+      //拆解目標路徑為各層資料夾
+      $folders = explode('/', $target_path);
+      $current_path = '';
+
+      //切換到主到目錄
+      // ftp_chdir ($conn,$this->Main_Dir);
+
+      // 逐層檢查並新增資料夾
+      foreach ($folders as $folder) {
+          $current_path .= '/' . $folder;
+          if(!$this->FTP_is_dir_exists($current_path)){
+              $createDir = ftp_mkdir($this->ftp_conn, $current_path);
+              if ($createDir) {
+                //echo '成功新增資料夾: ' . $current_path;
+                ftp_chdir($conn, $current_path);
+              } 
+              else 
+              {
+                // $error_message = error_get_last()['message'];
+                // $this->Error_Msg = 'FTP 無法新增遠端資料夾: ' .$error_message;     
+                echo 'FTP 無法新增遠端資料夾:' . $current_path;
+              }
+          }
+      }
+    }
+
+    //刪除遠端檔案
+    public function FTP_Delete($target_path){
+      $conn=$this->ftp_conn;
+      $msg="";
+      $fileSize = ftp_size($conn, $target_path);
+
+      if ($fileSize !== -1) {                  
+            $Delete = ftp_delete($conn, $target_path);
+            if(!$Delete){
+              $error_message = error_get_last()['message'];
+              $msg = 'FTP 刪除檔案失敗: ' . $error_message;
+            }
+      }
+      // else{
+      //   $msg = "FTP 查無此檔案:".$target_path;
+      // }
+
+      return $msg;
+  }
+
+
+    //刪除遠端資料夾
+    public function FTP_Folder_Delete($target_path){
+            $conn=$this->ftp_conn;
+            $msg="";
+          
+            if(!$this->FTP_is_dir_exists($target_path)){
+                $msg = "FTP 查無此路徑:" .$target_path;
+                return  $msg;
+            }
+          
+            // 取得資料夾內的檔案和子資料夾
+            $files = ftp_nlist($conn, $target_path);
+        
+          foreach ($files as $file) {
+              if ($file === '.' || $file === '..') 
+              {
+                      continue;
+              }
+            
+            $is_Floder = ftp_size($this->ftp_conn,$file);
+            if($is_Floder===-1){
+                // 如果是資料夾，遞迴
+              $this->FTP_Folder_Delete($file);
+            }else{
+              // 如果是檔案，直接刪除
+              $Delete = ftp_delete($conn, $file);
+                if(!$Delete){
+                    $error_message = error_get_last()['message'];					
+                            $msg = 'FTP 刪除檔案失敗: ' . $error_message;
+                }
+            }
+          }
+          
+          if($this->FTP_is_dir_exists($target_path)){
+                  // 刪除資料夾
+                $Delete=ftp_rmdir($conn, $target_path);
+                if(!$Delete){
+                    $error_message = error_get_last()['message'];
+                    $msg = 'FTP 刪除失敗: ' . $error_message;
+                }
+          }
+          return  $msg;
+    }
+
+    //刪除Server 的檔案或資料夾
+    public function Server_Delete($target_path){
+      if(file_exists($target_path)){
+            if(is_dir($target_path)){
+              //目標路徑為資料夾
+              $files = scandir($target_path);
+            
+              // 遍歷本地資料夾內的內容
+              foreach ($files as $file) {
+                  if ($file === '.' || $file === '..') {
+                    continue;
+                  }
+                 
+
+                  $Servar_path=$target_path."/".$file;           
+                  if(is_dir($Servar_path)){
+                      $this->Server_Delete( $Servar_path);
+                  }else{               
+                      unlink($Servar_path);
+                  }	         
+              } 
+              rmdir($target_path);
+          }else{
+              //目標路徑為檔案
+              unlink($target_path);
+          }
+      }
+    }
+
+    //刪除遠端資料夾中指定附檔名檔案
+    public function FTP_FILE_EXTENSION_DEL($target_path,$target_EXTENSION){
+      $conn=$this->ftp_conn;
+      $msg="";
+
+      if(!$this->FTP_is_dir_exists($target_path)){
+          $msg = "FTP 查無此路徑:" .$target_path;
+          return  $msg;
+      }
+    
+      // 取得資料夾內的檔案和子資料夾
+      $files = ftp_nlist($conn, $target_path);
+      foreach ($files as $file) {
+          if ($file === '.' || $file === '..') 
+          {
+                  continue;
+          }
+        
+          $is_Floder = ftp_size($this->ftp_conn,$file);
+          if($is_Floder===-1){
+              // 如果是資料夾，遞迴
+            $this->FTP_Folder_Delete($file);
+          }else{
+            //判斷附檔名,若為目標副檔名則刪除
+            $file_parts = pathinfo($file);
+            $extension = $file_parts["extension"];
+
+            if(strtoupper($extension)==strtoupper($target_EXTENSION)){
+              $Delete = ftp_delete($conn, $file);
+              if(!$Delete){
+                  $error_message = error_get_last()['message'];					
+                  $msg = 'FTP 刪除檔案失敗: ' . $error_message;
+              }
+            }
+        }
+      }
+    }
+}
+
+?>
+
+測試ws
+ $FTP=new Remote_FTP_Controller($this->FTP_IP, $this->FTP_USER, $this->FTP_PASSWD);
+        $msg = $FTP->Error_Msg();
+        if(trim($msg)==""){
+            $FTP->Set_PASV_Mode(true);
+            $FTP->Set_Connect_Main_Dir($this->FTP_DIR); 
+           
+               $msg = $FTP->FTP_Folder_upload( SerVer路徑,遠端路徑);
+               if(trim($msg)==""){
+                //關閉FTP連線
+                    $ftpConn = $FTP->ftpConn();
+                    $FTP->FTP_Close($ftpConn);
+               }
+       }
+
+
+<<隨身碟時間被電腦擅自修改>>
+
+代友詢問，以下為朋友的問題
+我的電腦只要插入隨身碟，就會呈現「此磁碟機有問題，請掃描」的資訊，如果不做任何選擇，就會自動打開隨身碟。
+後來，我發現我的監視器的時間就會被修改，時間顯現變成開機錄影時，時間是接續上一個影片的時間。而不是記錄真正開始錄影的時間。
+例如，10/17 20:00錄，應該顯示20:00到結束時。上次影片如果是顯示錄到10/16 17:50，明明是10/17 20:00錄，時間就會顯示10/16 17:51開始錄。
+我曾經重置隨身碟，然後錄影，在別的電腦看，時間記錄都是正常的。但只要用我這台筆電看過，第一次會是正常的，之後時間就全部被改了，包括之前已經錄的檔案。
+想請問各位，問題可能是什麼？
+謝謝
+
+<<超級菜鳥的iteration問題>>
+
+大家好，最近在自學機器學習，真的很菜但又沒有老師只好上來問Q_Q
+想請問如果我有65張圖，batch是64的話，跑一個epoch，iteration是1次還是2次?iteration可以為浮點數嗎?
+另外，YOLOv4建議的max_batch(我理解為iteration次數)為class乘2或6000，但v7好像把這個超參數拿掉、剩epoch，那還需要用epoch回推iteration，讓iteration落在class乘2或6000嗎?還是從訓練跟驗證的loss決定何時停止呢?
+
+<<STM32 asm code包成obj之類給客戶>>
+
+如何將 STM32 asm code包成obj之類給別人
+重要函式原始碼 不提供他人
+TI的 M3 ic 也會需要
+
+<<zap-baseline scan>>
+
+請問線上大大
+zap-baseline是否可以掃描完成後，僅print出risk level=high就好？
+目前掃描方式如下
+docker run -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t https://www.example.com
+但想僅顯示high即可，感謝
+
+<<WMware 在Win11 22H2 效能太慢>>
+
+如題。同一個VM在舊NB i5 Win10, SSD, (RAM: 16GB) ，只給VM 2 Core + 8GB 完全沒問題。新NB i7 Win11, SSD, (RAM 32GB)，就算給VM 8 Core + 20GB 也慢。
+舊NB 是PCIe Gen 3 x 1, No RAID
+新NB 是PCIe Gen 4 x 2, RAID 0
+以複製100GB VM Folder, 新NB 快多了，只有VM 運作很慢
+已試
+To disable side-channel mitigations
+ulm.disableMitigations="TRUE"
+Disable Core isolation > Memory Integrity
+Dos Command & Powershell:
+bcdedit /set hypervisorlaunchtype off
+DISM /Online /Disable-Feature /FeatureName:Microsoft-Hyper-V-All
+DISM /Online /Disable-Feature:Microsoft-Hyper-V
+Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
+
+<<[已解決]DeleteItem 第二次後，stage的排序錯亂>>
+
+已自行解決，
+發完後隔天突然想到，我index排序後，stage跟著重新排序即可。
+各位好，如下圖，
+第一次刪除的時候，stage會正常-1
+但是我刪除第二次的時候，就會錯亂。
+請各位幫我看一下，邏輯應該要如何修改?
+Delete Item內部功能是，
+當我delete單一列時，該列後面的stage比較大，stage 要-1
+然後再刪除該列。
+最後在重新排序表單上的row，排序後資料新增才不會有誤
+
+@model PoProcessViewModel
+<form method="post" action="/Home/editPoFLow">
+    <h3>Sign Flow</h3>
+    <button type="button" class="btn btn-primary" onclick="AddRow()">Add Row</button>
+    <br />
+    <table id="signTable">
+        <thead>
+            <tr>
+                <th>Sign Name</th>
+                <th>Stage</th>
+                <th>Price</th>
+                <th>C Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.poSigns.Count; i++)
+            {
+                <tr>
+                    <td><input type="text" id="poSigns[@i].signname" name="poSigns[@i].signname" class="form-control" value="@Model.poSigns[@i].signname" /></td>
+                    <td><input type="number" id="poSigns[@i].stage" name="poSigns[@i].stage" class="form-control" value="@Model.poSigns[@i].stage" /></td>
+                    <td>
+                        <select class="form-select form-select-lg" id="poSigns[@i].price" name="poSigns[@i].price">
+                            <option value="-1">-1</option>
+                            <option value="5000000" selected="@(Model.poSigns[i].price == 5000000)">5000000</option>
+                            <option value="15000000" selected="@(Model.poSigns[i].price == 15000000)">15000000</option>
+                        </select>
+                    </td>
+                    <td><input type="text" id="poSigns[@i].cname" name="poSigns[@i].cname" class="form-control" value="@Model.poSigns[@i].cname" /></td>
+                    <td>
+                        <button id="btnremove-@i" type="button" class="btn btn-sm btn-danger visible" onclick="DeleteItem(this,@i)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="hidden" id="hdnLastIndex" value="0" />
+    <input class="btn btn-default" type="submit" value="儲存" />
+</form>
+<script type=text/javascript language=javascript src=https://code.jquery.com/jquery-3.7.0.js></script>
+<script>
+    function DeleteItem(btn, index) {
+        var stageValue = $('#poSigns\\[' + index + '\\]\\.stage').val();
+        var rows = $('#signTable tbody tr');
+        // Check if there is a larger stage value
+        var hasLargerStage = false;
+        for (var i = 0; i < rows.length; i++) {
+            var currentStageValue = $(rows[i]).find('input[name^="poSigns["][name$="].stage"]').val();
+            if (currentStageValue > stageValue) {
+                hasLargerStage = true;
+                break;
+            }
+        }
+        if (hasLargerStage) {
+            // Subtract 1 from larger stage values
+            for (var i = 0; i < rows.length; i++) {
+                var currentStageElement = $(rows[i]).find('input[name^="poSigns["][name$="].stage"]');
+                var currentStageValue = currentStageElement.val();
+
+                if (currentStageValue > stageValue) {
+                    currentStageElement.val(currentStageValue - 1);
+                }
+            }
+        }
+                // Update the index of remaining rows
+        rows = $('#signTable tbody tr');
+        for (var i = 0; i < rows.length; i++) {
+            var currentRow = $(rows[i]);
+            currentRow.find('input[type=text], input[type=number], select').each(function () {
+                var name = $(this).attr('name');
+                $(this).attr('name', name.replace(/\[\d+\]/, '[' + i + ']'));
+                $(this).attr('id', name.replace(/\[\d+\]/, '[' + i + ']'));
+            });
+        }
+    }
+
+
+<<  ESXI紫屏 當機有解決方法嗎>>
+
+SERVER跳出CPU異常
+ESXI系統跳紫屏
+
+
+<<Hackmd今天是有在維護嗎?>>
+
+請問大家一下，Hackmd今天是不是三不五時就顯示【已離線】
+不知道是不是在維護中 ...
+
+<<Zara首頁圖片顯示特效>>
+
+https://www.zara.com/tw/
+想請問此首頁手機板畫面往下滑動，會顯示下一層的圖片，而不是像一般輪播圖的滑動效果
+，可以從輪播的概念修改而來嗎
+目前打算照著此教學的輪播圖
+https://css-tricks.com/practical-css-scroll-snapping/?source=post_page-----b3089e13ed8f--------------------------------
+，達成Vertical full screen的效果，不知道容不容易改成像zara首頁的形式。
+
+<<求助PYTHON CSV提取問題>>
+
+
+如何從這個CSV提取test中是NA
+但只要顯示ID 跟NAME
+test_no_na = mark.loc[result["test"].isna(), "ID"]
+我只能顯示了ID
+
+<<home assistant 找不到附加元件>>
+
+我用VPN連線家裡的openmediavault，並在在OMV底下用docker-compose架設home assistant，目前版本是2023.10.3，但我無法找到附加元件這個選項，我爬文看到的是HA他們在2021.12.1的版本後，把supervisor移除並將附加元件放到設定裡，但我卻也找不到附加元件，目前也沒看到其他人有這個問題，是因為遠端連線的關係嗎?
+
+
+
+<<docker-compose 底下的plex精靈沒跳出>>
+
+我在openmediavault 底下用docker-compose 安裝plex，當時登入plex時，我用VPN遠端登入的，發現他並沒有跳出server精靈，後來爬文才知道第一次要從本地登入，於是我就遠端連線本地的物理電腦去進plex伺服器，但它似乎並沒有認為我是管理員，以下是我登入後的現況。
+我不確定是不是權限問題。請問要如何再次將精靈叫出?
+
+這是我server的網頁畫面
+
+<<SI菜鳥想走了>>
+
+本人目前在國內某SI的子公司做Sales，待的不久，經驗較不足，但離職意願偏大，希望各位大大可以給一些看法。
+主要是公司氛圍與環境變化導致有這些想法，以下分成幾點來討論。
+
+
+公司主要客戶幾乎都是國內某一間電信，業務內容包含機房建置、維運等項目。但如各位所知，該間電信也是會合併的其中一員，當兩間電信合併時，兩邊的供應商會造成競爭，而我們公司的規模不一定能夠撐過競爭。但另外一個角度想，如果競爭通過了，也許就能建立我自己的穩定客戶。
+
+
+公司內部的主要業務幾乎集中在年資超過20年的業務上，加上獎金他們的平均月薪資可能在我的兩三倍以上。並且若我想開發客戶，除了我經驗較不夠，同時人脈不足，再來大金額的案子在公司制度上，會被母公司拿走，我拿不到業績，得不到獎金。說白了就是公司的案子就那麼多，又難以開發客戶。不過公司倒不會因為沒業績就開除人或是有懲處。
+
+
+公司制度極度放任與不管，不會沒業績開除，也就是也不會有人PUSH你事情，也沒人要support你，作為一個菜鳥的我，同事幾乎不願意教導我或協助我任何事，工程師也不想配合你的事情，愛幫不幫的，案子有技術問題，沒有要動手的話，業務可以說完全自己想辦法。甚至在公司可以一整天都沒有任何人互相說話，只有跟客戶電話。對於一個想混薪水的其實真的很棒，沒幹嘛都有底薪，不過對於尚未而立之年的我來說則是非常浪費我的年輕，因為既學不到東西也賺不到錢。
+
+
+存在繼續待著的先例，其中一個同事年資大約5年，在公司有案子也還是沒有同事要幫他，有需要協助的案子只能花錢再請更多廠商。並且整天努力做案子，業績達成率還是很低。實際上跟該同事走跳過，不覺得是他的能力不足。
+
+
+以上這些幾乎都是推力，而讓我會想留下來的拉力，一個是這間公司我還沒有待超過一年，貿然離職會怕在資歷上面產生影響，再來是還是有經驗老道的前輩在了解狀況之後，覺得沒有一間公司可以給我這麼大的空間，要我好好珍惜。
+以上內容可能包含了我的誤解與不成熟，歡迎各位批判，為迷惘的年輕人指點迷津。
+
+<<Fortinet 防火牆效能要怎麼評估>>
+
+　　前陣子因公司資安要求切了VLAN，以L3 Switch將ServerFarm和Client切為不同網段，並在ServerFarm前放了一台舊的防火牆Froti 80E。現在已將所有主機存取的Policy設好，運作上不去看Dashboard的話是沒有感覺有問題。Dashboard的截圖如下:
+
+　　有以下問題想要請教:
+
+在圖中間的CPU區的使用率，我從來沒看他超過10%(通常只有在登入的瞬間)，而下方Session區的CPU，我看過最低是89%多(從一開始只有一條Policy All/All/Allow到現在50條Policy都差不多)，這樣的Loading到底算是高還是低？我是否應申請預算採購一台新的？
+如果有需要採購一台新的，和我主管討論過，他的想法是再買一台Forti，那我要如何評估那個型號的效能才夠用呢？問了廠商都說很難評估，但他們可以借測，若測的OK直接借貨轉出貨(很無言，離開台灣幾年，現在SI生意都是這樣作的嗎？)
+
+
+<<(問題已解決)>>
+
+原本的問題是圖上Bounding box沒有顯示，後來自己發現是utils有問題，在沒人回答這篇發問的情況下，想說問題已解決、不要占用大家的時間才編輯掉問題。不知道板內風氣很在意問題被編輯，下次不會這樣，謝謝大家指教。
+
+<<SPF的放行該做到何種程度?>>
+
+大家好
+每天看到這種信真的很阿砸
+有些釣魚信是Received-SPF: softfail(其他就不列舉了)
+我很想擋掉這種信，但是一堆供應商、客戶的SPF就是有問題
+最常見的就是跟google的mail server扯上關係的來源
+像下面這個範例MX查下去是alt1~5.aspmx.l.google.com共五組
+可是看起來像是smtp.isl.net.tw這台寄出來的信
+我是不知道對方設定有沒有設錯
+對我來說SPF只要不是PASS，看起來就很礙眼
+MX設錯我這邊也有錯過，前人設錯就一直用下去
+直到某些合作廠商收不到信
+對方還很好心地(打臉(O)跟我說錯在哪裡，我才發現問題
+耳聞有些公司的政策是只要SPF不是PASS，就是直接擋掉
+感覺這有解決辦法可走
+延伸閱讀
+關於 email security 的大小事 — 設定篇 SPF
+Received-SPF: softfail (aasc.com.tw: Sender is not authorized by default to use 'service@aasc.com.tw' in 'mfrom' identity, however domain is not currently prepared for false failures (mechanism '~all' matched)) receiver=我公司.tw; identity=mailfrom; envelope-from="service@aasc.com.tw"; helo=smtp.isl.net.tw; client-ip=61.63.128.25
+Received: from smtp.isl.net.tw (smtp.isl.net.tw [61.63.128.25])
+	by 我公司.tw (Postfix) with ESMTP id A781B1901D3C
+	for <anyone@我公司.com.tw>; 時間 +0800 (CST)
+Received: from webmail.tsg.com.tw (plesk6.isl.net.tw [61.63.128.120])
+	by smtp.isl.net.tw (Postfix) with ESMTP id 3B2FF636BF
+	for <anyone@我公司.com.tw>; 時間 +0800 (CST)
+
+這個是PChome的廣告信，他們很努力地寄，結果都被系統丟到垃圾信，使用者永遠看不到
+Received-SPF: softfail (return.pcstore.com.tw: Sender is not authorized by default to use 'returnedm@return.pcstore.com.tw' in 'mfrom' identity, however domain is not currently prepared for false failures (mechanism '~all' matched)) receiver=我公司.com.tw; identity=mailfrom; envelope-from="returnedm@return.pcstore.com.tw"; helo=smx-eccrm.pcstore.com.tw; client-ip=220.228.9.13
+Received: from smx-eccrm.pcstore.com.tw (unknown [220.228.9.13])
+	by 我公司.com.tw (Postfix) with SMTP id C108C19030BB
+	for <anyone@我公司.com.tw>; 時間 +0800 (CST)
+Received: from (post-eccrm-1 [172.19.0.92]) by smx-eccrm.pcstore.com.tw
+	id 1696976068.862186;時間 +0800 (CST)
+
+
+<<已刪文06>>
+
+已刪文
+

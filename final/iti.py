@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup #匯入BS套件
 import urllib.request as req #匯入urllib 套件
 
-file=open("IThelp_pages.txt",mode="w",encoding="utf-8") #開啟一個文檔
+file=open("IThelp_pages2.txt",mode="w",encoding="utf-8") #開啟一個文檔
 url="https://ithelp.ithome.com.tw" #設置要爬蟲的第一頁
 
 def getContent(url):
@@ -35,7 +35,7 @@ def getContent(url):
     return nextLink["href"]
 
 count = 0 #設定翻頁
-while count<300: #抓取300頁
+while count<10: #抓取300頁
     file.write("-------------------------------------第" + str(count+1) + "頁-------------------------------------" + "\n")
     #進行翻頁
     url = getContent(url)
