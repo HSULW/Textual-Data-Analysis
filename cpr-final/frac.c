@@ -10,8 +10,7 @@ int32_t gcd(int32_t a, int32_t b) {
     return a;
 }
 
-void reduce_fraction(int32_t *numerator, int32_t *denominator) {
-
+int32_t reduce_fraction(int32_t *numerator, int32_t *denominator) {
     int32_t common_factor = gcd(*numerator, *denominator);
     *numerator /= common_factor;
     *denominator /= common_factor;
@@ -20,10 +19,16 @@ void reduce_fraction(int32_t *numerator, int32_t *denominator) {
         *numerator *= -1;
         *denominator *= -1;
     }
+
+    if ((*denominator > INT_MAX / common_factor) || (*denominator < INT_MIN / common_factor) ||
+        (*numerator > INT_MAX / common_factor) || (*numerator < INT_MIN / common_factor)) {
+        return -1;  // 溢位
+    }
+
+    return 0;  // 成功完成簡化
 }
 
 int32_t frac_add(int32_t *x, int32_t *y, int32_t a, int32_t b, int32_t c, int32_t d) {
-
     if (b == 0 || d == 0) {
         return -1;
     }
@@ -31,18 +36,14 @@ int32_t frac_add(int32_t *x, int32_t *y, int32_t a, int32_t b, int32_t c, int32_
     *x = a * d + c * b;
     *y = b * d;
 
-    if ((*x > INT_MAX) || (*x < INT_MIN) ||
-        (*y > INT_MAX) || (*y < INT_MIN)) {
-        return -1;
+    if (reduce_fraction(x, y) != 0) {
+        return -1;  // 溢位
     }
-
-    reduce_fraction(x, y);
 
     return 0;
 }
 
 int32_t frac_del(int32_t *x, int32_t *y, int32_t a, int32_t b, int32_t c, int32_t d) {
-
     if (b == 0 || d == 0) {
         return -1;
     }
@@ -50,18 +51,14 @@ int32_t frac_del(int32_t *x, int32_t *y, int32_t a, int32_t b, int32_t c, int32_
     *x = a * d - c * b;
     *y = b * d;
 
-    if ((*x > INT_MAX) || (*x < INT_MIN) ||
-        (*y > INT_MAX) || (*y < INT_MIN)) {
-        return -1;
+    if (reduce_fraction(x, y) != 0) {
+        return -1;  // 溢位
     }
-
-    reduce_fraction(x, y);
 
     return 0;
 }
 
 int32_t frac_mul(int32_t *x, int32_t *y, int32_t a, int32_t b, int32_t c, int32_t d) {
-
     if (b == 0 || d == 0) {
         return -1;
     }
@@ -69,18 +66,14 @@ int32_t frac_mul(int32_t *x, int32_t *y, int32_t a, int32_t b, int32_t c, int32_
     *x = a * c;
     *y = b * d;
 
-    if ((*x > INT_MAX) || (*x < INT_MIN) ||
-        (*y > INT_MAX) || (*y < INT_MIN)) {
-        return -1;
+    if (reduce_fraction(x, y) != 0) {
+        return -1;  // 溢位
     }
-
-    reduce_fraction(x, y);
 
     return 0;
 }
 
 int32_t frac_div(int32_t *x, int32_t *y, int32_t a, int32_t b, int32_t c, int32_t d) {
-
     if (b == 0 || d == 0 || c == 0) {
         return -1;
     }
@@ -88,12 +81,9 @@ int32_t frac_div(int32_t *x, int32_t *y, int32_t a, int32_t b, int32_t c, int32_
     *x = a * d;
     *y = b * c;
 
-    if ((*x > INT_MAX) || (*x < INT_MIN) ||
-        (*y > INT_MAX) || (*y < INT_MIN)) {
-        return -1;
+    if (reduce_fraction(x, y) != 0) {
+        return -1;  // 溢位
     }
-
-    reduce_fraction(x, y);
 
     return 0;
 }
